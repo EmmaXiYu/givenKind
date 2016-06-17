@@ -1,0 +1,147 @@
+.error {
+	color: red;
+}
+
+.required label: after {
+	color: red;
+	content: ' *';
+	display: inline;
+}
+
+body { 
+	background-image: url("../img/homepagepic.jpg");
+	background-repeat: repeat-y;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center; 
+	overflow-x: hidden;
+	padding-bottom: 70px;
+	padding-top: 70px;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#itemLink {
+	color: black;
+}
+
+.btnNonprofit, .btnDonor {
+	-moz-box-shadow: inset 0px 1px 0px 0px #cf866c;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #cf866c;
+	box-shadow: inset 0px 1px 0px 0px #6cc5cf;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #008ded), color-stop(1, #1515bc));
+	background: -moz-linear-gradient(top, #008ded 5%, #1515bc 100%);
+	background: -webkit-linear-gradient(top, #008ded 5%, #1515bc 100%);
+	background: -o-linear-gradient(top, #008ded 5%, #1515bc 100%);
+	background: -ms-linear-gradient(top, #008ded 5%, #1515bc 100%);
+	background: linear-gradient(to bottom, #008ded 5%, #1515bc 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008ded', endColorstr='#1515bc',GradientType=0);
+	background-color: #008ded;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #231194;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Officina Sans;
+	font-size: 16px;
+	padding: 6px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #854629;
+	font-weight: 900;
+	width: 136px;
+}
+.btnNonprofit: hover, .btnDonor: hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #008ded), color-stop(1, #1515bc));
+	background: -moz-linear-gradient(top, #008ded 5%, #1515bc 100%);
+	background: -webkit-linear-gradient(top, #008ded 5%, #1515bc 100%);
+	background: -o-linear-gradient(top, #008ded 5%, #1515bc 100%);
+	background: -ms-linear-gradient(top, #008ded 5%, #1515bc 100%);
+	background: linear-gradient(to bottom, #008ded 5%, #1515bc 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008ded', endColorstr='#1515bc',GradientType=0);
+	background-color: #008ded;
+}
+
+#ontop {
+	position: relative;
+	top: 4.6em;
+	z-index: 2;
+}
+
+#gnk-navbar-center-anon {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#gnk-navbar-center-auth {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#gnk-aboutus img {
+    max-height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logo {
+	height: 100px;
+	background-color: white;
+	border-radius: 0px 0px 50px 50px;
+}
+
+#blankspace {
+	height: 40px;
+	width: 100%;
+}
+
+#mainContainer {
+    vertical-align: top;
+	width: 75%;
+	position: relative;
+	background-color: rgba(255,255,255, 1);
+}
+
+h1 {
+	font-size: 32pt;
+	font-family: Optima;
+}
+
+h2 {
+	font-size: 24pt;
+	font-family: Optima;
+}
+
+h4 {
+	font-family: Officiana Sans Book;
+	font-size: 8pt;
+}
+
+p, li {
+	font-family: Officiana Sans Book;
+	font-size: 16pt;
+}
+
+
+#gnk-slogan-row {
+	margin-top: 80px;
+}
+
+.gnk-slogan {
+	font-size: 40px;
+	color: #ffffff;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#gnk-home-btn-row {
+	margin-top: 10px;
+}
+
+.socialLinks img {
+	height: 30px;
+}

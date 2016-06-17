@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/givenkind</property>
+	<property name="hibernate.connection.username">root</property>
+	<property name="hibernate.connection.password">ffg2015</property>
+	<mapping class="org.givenkind.model.ActiveTransactionItems"></mapping>
+	<mapping class="org.givenkind.model.AdminUserLogon"></mapping>
+	<mapping class="org.givenkind.model.ApprovalStatus"></mapping>
+	<mapping class="org.givenkind.model.CompletedTransactions"></mapping>
+	<mapping class="org.givenkind.model.DonorlistItem"></mapping>
+	<mapping class="org.givenkind.model.DonorUserLogon"></mapping>
+	<mapping class="org.givenkind.model.ItemCategory"></mapping>
+	<mapping class="org.givenkind.model.NonProfitCategory"></mapping>
+	<mapping class="org.givenkind.model.NonProfitUserLogon"></mapping>
+	<mapping class="org.givenkind.model.PasswordReset"></mapping>
+	<mapping class="org.givenkind.model.Profile"></mapping>
+	<mapping class="org.givenkind.model.State"></mapping>
+	<mapping class="org.givenkind.model.StatusCategory"></mapping>
+	<mapping class="org.givenkind.model.UserLogon"></mapping>
+	<mapping class="org.givenkind.model.UserRole"></mapping>
+	<mapping class="org.givenkind.model.WishlistItem"></mapping>
+	</session-factory>
+</hibernate-configuration>
