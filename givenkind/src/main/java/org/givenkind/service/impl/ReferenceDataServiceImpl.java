@@ -32,18 +32,6 @@ public class ReferenceDataServiceImpl implements ReferenceDataService {
 	@Override
 	public List<String> getStateList() {
 		
-		// TODO remove this
-		if(stateRepository.count() == 0) {
-			State s1 = new State();
-			s1.setAbbreviation("NJ");
-			s1.setName("New Jersey");
-			stateRepository.save(s1);
-			State s2 = new State();
-			s2.setAbbreviation("NY");
-			s2.setName("New York");
-			stateRepository.save(s2);
-		}
-		
 		List<String> stateList = new ArrayList<String>();
 		List<State> states = stateRepository.findAll(sortByAbbreviationAsc());
 		stateList.add("");

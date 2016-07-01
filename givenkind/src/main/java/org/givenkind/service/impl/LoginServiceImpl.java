@@ -10,7 +10,6 @@ import org.givenkind.model.PasswordReset;
 import org.givenkind.model.UserLogon;
 import org.givenkind.repository.PasswordResetRepository;
 import org.givenkind.repository.UserLogonRepository;
-import org.givenkind.service.EmailService;
 import org.givenkind.service.LoginService;
 import org.givenkind.service.NoSuchPasswordResetAuthorizationException;
 import org.givenkind.service.NoSuchUserException;
@@ -54,8 +53,8 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private PasswordResetRepository passwordResetRepo; 
 	
-	@Autowired
-	private EmailService emailService;
+	//@Autowired
+	//private EmailService emailService;
 	
 	@Override
 	@Transactional
@@ -79,7 +78,7 @@ public class LoginServiceImpl implements LoginService {
 			prDTO.setPasswordResetLink(passwordResetLink);
 			
 			
-			emailService.forgotPasswordEmail(prDTO);
+			//emailService.forgotPasswordEmail(prDTO);
 		} else {
 			log.error("no such user "+emailAddress);
 		}
