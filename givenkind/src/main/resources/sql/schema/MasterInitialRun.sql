@@ -56,6 +56,51 @@ USE `givenkind`;
 	alter table tblDonorListItem
 		drop
         foreign key FK_TblItemCategory_ItemCategory;
+        
+	alter table tblActiveTransactions
+		drop
+        foreign key FK_activeTrans_ItemCategory;
+        
+	alter table tblActiveTransactions
+		drop
+        foreign key FK_activeTrans_DonorProfileId;
+        
+	alter table tblActiveTransactions
+		drop
+        foreign key FK_activeTrans_NpProfileId;
+        
+	alter table tblActiveTransactions
+		drop
+        foreign key FK_activeTrans_StatusCategoryId;
+        
+	alter table tblActiveTransactions
+		drop
+        foreign key FK_activeTrans_donorItemId;
+        
+	alter table tblActiveTransactions
+		drop
+        foreign key FK_activeTrans_npItemId;
+        
+	alter table tblCompletedTransactions
+		drop
+        foreign key FK_completeTrans_ItemCategory;
+        
+	alter table tblCompletedTransactions
+		drop
+        foreign key FK_completeTrans_DonorProfileId;
+
+	alter table tblCompletedTransactions
+		drop
+        foreign key FK_completeTrans_NpProfileId;
+        
+	alter table tblCompletedTransactions
+		drop
+        foreign key FK_completeTrans_donorItemId;
+        
+	alter table tblCompletedTransactions
+		drop
+        foreign key FK_completeTrans_wishlistItemId;
+
 
     /*Dropping tables*/
 
@@ -227,22 +272,32 @@ USE `givenkind`;
 
 	create table if not exists tblActiveTransactions (
 		ActiveTransactionId bigint not null auto_increment,
+        ItemName varchar(255),
         Quantity integer,
-		DonorProfileId bigint,
-		NpProfileId bigint,
-        StatusCategory bigint,
-        DonorItemId bigint,
-        WishlistItemId bigint,
+        ItemCondition text(511),
+        FairMarketValue DOUBLE(10,2),
+		Description text(511),
+		TblProfile_DonorProfileId bigint,
+		TblProfile_NpProfileId bigint,
+        TblItemCategory_ItemCategory bigint,
+        TblStatusCategory_StatusCategory bigint,
+        TblDonorListItem_DonorListItemId bigint,
+        TblWishistItem_WishlistItemId bigint,
         primary key (ActiveTransactionId)
     );
     
 	create table if not exists tblCompletedTransactions (
         CompletedTransactionId bigint not null auto_increment,
+        ItemName varchar(255),
         Quantity integer,
-		DonorProfileId bigint,
-		NpProfileId bigint,
-		DonorListItemId bigint,
-        WishlistItemId bigint,
+        ItemCondition text(511),
+        FairMarketValue DOUBLE(10,2),
+        Description text(511),
+		TblProfile_DonorProfileId bigint,
+		TblProfile_NpProfileId bigint,
+        TblItemCategory_ItemCategory bigint,
+		TblDonorListItem_DonorListItemId bigint,
+        TblWishistItem_WishlistItemId bigint,
         primary key (CompletedTransactionId)
     );
     
@@ -326,6 +381,72 @@ USE `givenkind`;
         add constraint FK_78bahvj0h03nmtbskn4wshwua 
         foreign key (TblItemCategory_ItemCategory) 
         references tblItemCategory (CategoryId);
+        
+	alter table tblActiveTransactions
+		add index FK_activeTrans_ItemCategory (tblItemCategory_ItemCategory), 
+        add constraint FK_activeTrans_ItemCategory
+        foreign key (TblItemCategory_ItemCategory)
+        references tblItemCategory (CategoryId);
+        
+	alter table tblActiveTransactions
+		add index FK_activeTrans_DonorProfileId (tblProfile_ProfileId), 
+        add constraint FK_activeTrans_DonorProfileId
+        foreign key (TblProfile_ProfileId)
+        references tblProfile (ProfileId);
+
+	alter table tblActiveTransactions
+		add index FK_activeTrans_NpProfileId (tblProfile_ProfileId), 
+        add constraint FK_activeTrans_NpProfileId
+        foreign key (TblProfile_ProfileId)
+        references tblProfile (ProfileId); 
+        
+	alter table tblActiveTransactions
+		add index FK_activeTrans_StatusCategoryId (tblStatusCategory_StatusCategoryId), 
+        add constraint FK_activeTrans_StatusCategoryId
+        foreign key (tblStatusCategory_StatusCategoryId)
+        references tblStatusCategory (StatusCategoryId); 
+        
+	alter table tblActiveTransactions
+		add index FK_activeTrans_donorItemId (tblDonorListItem_DonorListItemId), 
+        add constraint FK_activeTrans_donorItemId 
+        foreign key (tblDonorListItem_DonorListItemId)
+        references tblDonorListItem (DonorListItemId); 
+        
+	alter table tblActiveTransactions
+		add index FK_activeTrans_npItemId (tblWishlistItem_WishlistItemId), 
+        add constraint FK_activeTrans_npItemId
+        foreign key (tblWishlistItem_WishlistItemId)
+        references tblWishlistItem (WishlistItemId); 
+        
+	alter table tblCompletedTransactions
+		add index FK_completeTrans_ItemCategory (tblItemCategory_ItemCategory), 
+        add constraint FK_completeTrans_ItemCategory 
+        foreign key (TblItemCategory_ItemCategory)
+        references tblItemCategory (CategoryId);
+        
+	alter table tblCompletedTransactions
+		add index FK_completeTrans_DonorProfileId (tblProfile_ProfileId), 
+        add constraint FK_completeTrans_DonorProfileId
+        foreign key (TblProfile_ProfileId)
+        references tblProfile (ProfileId);
+
+	alter table tblCompletedTransactions
+		add index FK_completeTrans_NpProfileId (tblProfile_ProfileId), 
+        add constraint FK_completeTrans_NpProfileId
+        foreign key (TblProfile_ProfileId)
+        references tblProfile (ProfileId); 
+        
+	alter table tblCompletedTransactions
+		add index FK_completeTrans_donorItemId (tblDonorListItem_DonorListItemId), 
+        add constraint FK_completeTrans_donorItemId 
+        foreign key (tblDonorListItem_DonorListItemId)
+        references tblDonorListItem (DonorListItemId); 
+        
+	alter table tblCompletedTransactions
+		add index FK_completeTrans_wishlistItemId (tblWishlistItem_WishlistItemId), 
+        add constraint FK_completeTrans_wishlistItemId
+        foreign key (tblWishlistItem_WishlistItemId)
+        references tblWishlistItem (WishlistItemId); 
 
 COMMIT;
 

@@ -22,7 +22,7 @@ import org.givenkind.repository.ProfileRepository;
 import org.givenkind.repository.StateRepository;
 import org.givenkind.repository.UserLogonRepository;
 import org.givenkind.repository.UserRoleRepository;
-//import org.givenkind.service.EmailService;
+import org.givenkind.service.EmailService;
 import org.givenkind.service.RegistrationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,8 +59,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Inject
 	UserRoleRepository userRoleRepository;
 	
-	//@Inject
-	//EmailService emailService;
+	@Inject
+	EmailService emailService;
 	
 	@Override
 	public RegistrationDTO prepareRegistrationPage() {
@@ -114,7 +114,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		
 		//TODO: Move this to after the wishlist is submitted
 		//emailService.adminRegistrationEmail("INSERT THE PROFILE URL HERE");
-		//emailService.ngoRegistrationEmail(registrationDTO.getEmail());
+		emailService.ngoRegistrationEmail(registrationDTO.getEmail());
 		// TODO: restore usage of email service here
 		return profile.getId();	
 	}
