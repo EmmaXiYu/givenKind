@@ -15,7 +15,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class captchaValidator{
 	public static final String url = "https://www.google.com/recaptcha/api/siteverify";
 
-	public static final String secretKey = "6Leh3BATAAAAAEK79i63S38y3mKK53llXzbX1mQP";
+	public static final String secretKey = "6Ld1FicTAAAAAB0c7zqVo8yFEH84dBhiZRfGgeTa";
 
 	private final static String USER_AGENT = "Mozilla/5.0";
 	
