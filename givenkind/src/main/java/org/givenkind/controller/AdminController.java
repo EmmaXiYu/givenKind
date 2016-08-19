@@ -55,7 +55,7 @@ public class AdminController extends AbstractProfileController{
 		dto.setItemCategories(populateItemCategoryList());
 		dto.setItemName("");
 		dto.setQuantity(1);
-		dto.setUserId(new Long(18));
+		dto.setUserId(new Long(18));//need to be updated
 		model.addAttribute("donorlistDTO", dto);
 		List<DonorlistDTO> items= donorlistService.getListOfAllDonatedItems();
 		model.addAttribute("donatedItems", items);

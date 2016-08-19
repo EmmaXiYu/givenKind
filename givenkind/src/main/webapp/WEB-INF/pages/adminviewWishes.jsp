@@ -25,7 +25,6 @@
 			<div class='col-sm-12'>
 				<h1>Create Wish List Item</h1>
 				<h4>(all fields required)</h4>
-				<a href="<c:url var="addUrl" value="/nonprofit"/>">Go to Profile</a>
 				<input type='hidden' id='userId' name='userId' value='${userId}' />
 				<table class='table'>
 					<thead>
@@ -38,7 +37,7 @@
 							<th class='col-sm-2'>Community Impact</th>
 						</tr>
 					</thead>
-					<c:url var="addUrl" value="/addWish" />
+					<c:url var="addUrl" value="/adminAddWish" />
 					<form:form role="form" modelAttribute='wishlistDTO' name="addWish"
 						action="${addUrl}" method='POST' id="addWish">
 						<tbody>
@@ -73,7 +72,7 @@
 
 				</table>
 
-				<h1>Your Wish List</h1>
+				<h1>All Wish List</h1>
 
 				<table class='table'>
 					<thead>
@@ -98,8 +97,8 @@
 								<td><c:out value="${wishlist.note}" escapeXml='true' /></td>
 								<td><c:out value="${wishlist.impact}" escapeXml='true' /></td>
 								<td><a
-									href="<c:url value="/deleteWish?wishId=${wishlist.id}" />">Delete</a>
-									| <a href="<c:url value="/editWish?wishId=${wishlist.id}" />">Edit</a></td>
+									href="<c:url value="/adminDeleteWish?wishId=${wishlist.id}" />">Delete</a>
+									| <a href="<c:url value="/adminEditWish?wishId=${wishlist.id}" />">Edit</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

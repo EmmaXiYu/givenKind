@@ -37,7 +37,7 @@
 						</tr>
 					</thead>
 					
-					<c:url var="editUrl" value="/adminAddWish?wishId=${wishlistDTO.id}"/>
+					<c:url var="editUrl" value="/adminEditWish?wishId=${wishlistDTO.id}"/>
 						<form:form role="form" modelAttribute='wishlistDTO' name="editWish" action="${editUrl}" method='POST' id="editWish">
 						<tbody>
 							<tr>

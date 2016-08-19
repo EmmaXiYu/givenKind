@@ -12,9 +12,11 @@ import org.givenkind.model.Profile;
 import org.givenkind.model.StatusCategory;
 import org.givenkind.model.WishlistItem;
 import org.givenkind.model.ActiveTransactionItems;
+import org.givenkind.model.AdminUserLogon;
 import org.givenkind.model.ItemCategory;
 import org.givenkind.model.NonProfitUserLogon;
 import org.givenkind.repository.ProfileRepository;
+import org.givenkind.repository.AdminUserLogonRepository;
 import org.givenkind.repository.ItemCategoryRepository;
 import org.givenkind.repository.NonProfitUserLogonRepository;
 import org.givenkind.repository.WishlistItemRepository;
@@ -47,6 +49,9 @@ public class WishlistServiceImpl implements WishlistService {
 
 	@Inject
 	private NonProfitUserLogonRepository nonProfitUserRepository;	
+	
+	@Inject 
+	private AdminUserLogonRepository adminUserLogonRepository;
 	
 	@Override
 	public void deleteWish(Long wishId) {
@@ -87,6 +92,32 @@ public class WishlistServiceImpl implements WishlistService {
 		wishItem.setWishlistItemCategories(categories);
 		wishlistItemRepository.save(wishItem);
 	}
+	
+	
+	
+	@Override
+	public void adminAddWish(WishlistDTO wishlistDTO) {
+		WishlistItem wishItem = new WishlistItem();
+		AdminUserLogon user = adminUserLogonRepository.findByLoginId("admin@gmail.com");
+		if(user==null) System.out.println("admin is null");
+		else System.out.println(user.getLoginId());
+		
+		List<ItemCategory> categories = new ArrayList<ItemCategory>();
+		for(String s : wishlistDTO.getWishlistItemCategories()) {
+			ItemCategory category = ItemCategoryRepository.findByCategoryName(s);
+			categories.add(category);
+		}
+		
+		wishItem.setItemName(wishlistDTO.getItemName());
+		wishItem.setDateExpires(wishlistDTO.getDateExpires());
+		wishItem.setQuantityDesired(wishlistDTO.getQuantityDesired());
+		wishItem.setNotes(wishlistDTO.getNote());
+		wishItem.setImpact(wishlistDTO.getImpact());
+		wishItem.setNonProfitUserLogon(user);
+		wishItem.setWishlistItemCategories(categories);
+		wishlistItemRepository.save(wishItem);
+		
+	}	
 	
 	private WishlistDTO convertWishlistItemToWishlistDTO(WishlistItem item) {
 		WishlistDTO dto = new WishlistDTO();
@@ -163,8 +194,6 @@ public class WishlistServiceImpl implements WishlistService {
 	@Override
 	public List<WishlistDTO> getAllWishes() {
 		List<WishlistItem> items = wishlistItemRepository.findAll();
-		if(items==null||items.size()==0)
-		System.out.println("Empty");
 		List<WishlistDTO> dtos = new ArrayList<WishlistDTO>(items.size());
 		for(WishlistItem item : items) {
 			WishlistDTO dto = convertWishlistItemToWishlistDTO(item);
@@ -172,5 +201,7 @@ public class WishlistServiceImpl implements WishlistService {
 		}
 		return dtos;
 		
-	}	
+	}
+
+	
 }

@@ -20,7 +20,7 @@ public class WishlistItem {
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	private NonProfitUserLogon nonProfitUserLogon;
+	private UserLogon nonProfitUserLogon;
 	
 	@Column(name="ItemName")
 	private String itemName;
@@ -48,11 +48,11 @@ public class WishlistItem {
 		this.id = id;
 	}
 
-	public NonProfitUserLogon getNonProfitUserLogon() {
+	public UserLogon getNonProfitUserLogon() {
 		return nonProfitUserLogon;
 	}
 
-	public void setNonProfitUserLogon(NonProfitUserLogon nonProfit) {
+	public void setNonProfitUserLogon(UserLogon nonProfit) {
 		this.nonProfitUserLogon = nonProfit;
 	}
 
