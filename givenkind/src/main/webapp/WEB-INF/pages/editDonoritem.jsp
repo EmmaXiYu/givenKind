@@ -37,13 +37,14 @@
 							<th class='col-sm-3'>Description</th>
 						</tr>
 					</thead>
-					<c:url var="addUrl" value="/completeEditDonor?donorId=${donorlistDTO.id}&dateExpires=${donorlistDTO.dateExpires}"/>
+					<c:url var="addUrl" value="/completeEditDonor?donorId=${donorlistDTO.id}"/>
 						<form:form role="form" modelAttribute='donorlistDTO' name="editDonoritem" action="${addUrl}" method='POST' id="editDonoritem">
 						<tbody>
 							<tr>
 								<td><form:input id='itemName' class='form-control' path="itemName" value="${donorlistDTO.itemName}"/></td>
 								<td><form:input class='form-control datepicker'
-										path="dateExpires" id="dateExpires" value="${donorlistDTO.dateExpires}"></form:input></td>
+										path="dateExpires" id="dateExpires" value="${donorlistDTO.dateExpires}"
+										></form:input></td>
 								<td><form:input id='quantityAvailable' type='number' class='form-control'
 										step='1' min='1' path="quantity" value="${donorlistDTO.quantity}"></form:input></td>
 								<td><form:select class='form-control'

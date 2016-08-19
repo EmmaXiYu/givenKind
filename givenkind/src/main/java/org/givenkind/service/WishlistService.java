@@ -14,4 +14,5 @@ public interface WishlistService {
 	void editWish(Long wishId, WishlistDTO editedItem);
 	
 	List<WishlistDTO> getWishesForUser(Long userId);
+	List<WishlistDTO> getAllWishes();
 }

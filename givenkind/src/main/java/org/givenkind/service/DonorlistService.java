@@ -12,6 +12,7 @@ import java.util.List;
 public interface DonorlistService {
 
 	List<DonorlistDTO> getListOfDonatedItems(Long userId);
+	List<DonorlistDTO> getListOfAllDonatedItems();
 	
 	void deleteDonatedItem(Long id);
 	
@@ -20,4 +21,5 @@ public interface DonorlistService {
 	void editDonatedItem(Long id, DonorlistDTO editedItem);
 	
 	DonorlistDTO getItemById(Long id);
+	void adminAddDonatedItem(DonorlistDTO donorlistDTO);
 }

@@ -79,10 +79,32 @@ public class WishListController extends AbstractProfileController {
 		return "wishlist";
 	}
 
+
+	@RequestMapping(value="/adminAddWish",method = RequestMethod.POST)
+	public String adminAddWish(@Valid @ModelAttribute("wishlistDTO") WishlistDTO wishlistDTO, BindingResult result, Model model,
+			@RequestParam(value="userId", required=false) Long userId) {
+
+		if (userId == null) {
+			userId = getMyUserId();
+			wishlistDTO.setUserId(userId);
+		}
+		
+		if (result.hasErrors()) {
+			return "adminviewWishes";
+		}
+		
+		wishlistService.addWish(wishlistDTO);
+		List<WishlistDTO> items = wishlistService.getWishesForUser(userId);
+
+		model.addAttribute("wishlistItems", items);
+		return "adminviewWishes";
+	}
+
 	@ModelAttribute("ItemCategoryList")
 	public List<String> populateItemCategoryList() {
 		return referenceDataService.getItemCategoryList();
 	}
+
 
 	//Handline request to delete wish
 	@RequestMapping(value = "/deleteWish", method = RequestMethod.GET)

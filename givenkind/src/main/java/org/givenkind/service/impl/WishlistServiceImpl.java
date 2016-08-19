@@ -158,5 +158,19 @@ public class WishlistServiceImpl implements WishlistService {
 		transaction.commit();
 		session.close();*/
 		
+	}
+
+	@Override
+	public List<WishlistDTO> getAllWishes() {
+		List<WishlistItem> items = wishlistItemRepository.findAll();
+		if(items==null||items.size()==0)
+		System.out.println("Empty");
+		List<WishlistDTO> dtos = new ArrayList<WishlistDTO>(items.size());
+		for(WishlistItem item : items) {
+			WishlistDTO dto = convertWishlistItemToWishlistDTO(item);
+			dtos.add(dto);
+		}
+		return dtos;
+		
 	}	
 }

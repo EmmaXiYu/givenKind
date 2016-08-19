@@ -1,5 +1,7 @@
 package org.givenkind.dto;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -19,9 +21,10 @@ public class DonorlistDTO {
 	private String itemName;
 	
 	@NotNull
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date dateExpires;
 	
+
 	@NotNull
 	private Integer quantity;
 	
@@ -90,7 +93,10 @@ public class DonorlistDTO {
 	 *@param dateExpires the dateExpires to set 
 	 */
 	public void setDateExpires(Date dateExpires){
+	
+	
 		this.dateExpires = dateExpires;
+		
 	}
 	
 	/**
@@ -165,5 +171,5 @@ public class DonorlistDTO {
 	}
 	
 	
-
+   
 }
