@@ -165,7 +165,7 @@ function checkEmail(){
 			<div class='form-group required'>
 				<label for='reCAPTCHA' class='control-label col-sm-4'>reCAPTCHA</label>
 				<div class='col-sm-8'>
-					<div class="g-recaptcha" data-sitekey="6LfpqCgTAAAAAHvErIIP7Mqts3qmvNOjz394_V9i"></div>
+					<div class="g-recaptcha" data-sitekey="6Ld1FicTAAAAAJ2ArxAlDYXjC18u4rdrousxUb_V"></div>
 				</div>
 			</div>
 
