@@ -27,12 +27,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `givenkind`;
-INSERT INTO `givenkind`.`tblRole` (`RoleId`, `RoleName`, `RoleDescription`) VALUES (1, 'Admin', 'N/A');
-INSERT INTO `givenkind`.`tblRole` (`RoleId`, `RoleName`, `RoleDescription`) VALUES (2, 'NonProfit', 'N/A');
-INSERT INTO `givenkind`.`tblRole` (`RoleId`, `RoleName`, `RoleDescription`) VALUES (3, 'Donor', 'N/A');
-INSERT INTO `givenkind`.`tblRole` (`RoleId`, `RoleName`, `RoleDescription`) VALUES (4, 'Volunteer', 'N/A');
+INSERT INTO `givenkind`.`tblRole` (`RoleId`, `RoleDescription`, `RoleName`) VALUES (1, 'Admin', 'ROLE_ADMIN');
+INSERT INTO `givenkind`.`tblRole` (`RoleId`, `RoleDescription`, `RoleName`) VALUES (2, 'NonProfit', 'ROLE_NONPROFIT');
+INSERT INTO `givenkind`.`tblRole` (`RoleId`, `RoleDescription`, `RoleName`) VALUES (3, 'Donor', 'ROLE_DONOR');
+INSERT INTO `givenkind`.`tblRole` (`RoleId`, `RoleDescription`, `RoleName`) VALUES (4, 'Volunteer', 'ROLE_VOLUNTEER');
 
 COMMIT;
+
 
 
 -- -----------------------------------------------------

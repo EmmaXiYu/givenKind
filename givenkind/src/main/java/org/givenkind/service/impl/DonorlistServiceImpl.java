@@ -3,9 +3,13 @@
  */
 package org.givenkind.service.impl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -80,6 +84,7 @@ public class DonorlistServiceImpl implements DonorlistService {
 		DonorlistDTO dto = new DonorlistDTO();
 		dto.setCondition(item.getCondition());
 		dto.setDateExpires(item.getDateExpires());
+		System.out.println("DTO Data:"+dto.getDateExpires());
 		dto.setDescription(item.getDescription());
 		dto.setFairMarketValue(item.getFairMarketValue());
 		dto.setId(item.getId());
@@ -101,6 +106,33 @@ public class DonorlistServiceImpl implements DonorlistService {
 	
 	@Inject 
 	org.givenkind.repository.DonorUserLogonRepository donorUserLogonRepository;
+    @Inject 
+    UserLogonRepository userLogonRepository;
+	
+	
+	
+	@Override
+	@Transactional
+	public void adminAddDonatedItem(DonorlistDTO donorlistDTO) {
+		DonorlistItem donorItem = new DonorlistItem();
+		List<ItemCategory> categories = new ArrayList<ItemCategory>();
+		UserLogon user = userLogonRepository.findByLoginId("admin@gmail.com");
+		
+		for(String c : donorlistDTO.getItemCategories()) {
+			ItemCategory category = ItemCategoryRepository.findByCategoryName(c);
+			categories.add(category);
+		}
+		
+		donorItem.setItemName(donorlistDTO.getItemName());
+		donorItem.setDateExpires(donorlistDTO.getDateExpires());
+		donorItem.setQuantity(donorlistDTO.getQuantity());
+		donorItem.setCondition(donorlistDTO.getCondition());
+		donorItem.setFairMarketValue(donorlistDTO.getFairMarketValue());
+		donorItem.setDescription(donorlistDTO.getDescription());
+		donorItem.setUser(user);
+		donorItem.setItemCategories(categories);
+		donorlistItemRepository.save(donorItem);
+	}
 
 	@Override
 	@Transactional
@@ -150,6 +182,17 @@ public class DonorlistServiceImpl implements DonorlistService {
 		}
 		itemToChange.setItemCategories(itemCategories);
 		donorlistItemRepository.save(itemToChange);
+	}
+
+	@Override
+	public List<DonorlistDTO> getListOfAllDonatedItems() {
+		ArrayList<DonorlistDTO> list = new ArrayList<DonorlistDTO>();
+		List<DonorlistItem> donorlistItems=donorlistItemRepository.findAll();
+		for (DonorlistItem di : donorlistItems) {
+			System.out.println("list");
+			list.add(convertToDTO(di));
+		}
+		return list;
 	}
 
 }

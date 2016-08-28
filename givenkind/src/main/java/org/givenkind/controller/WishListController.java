@@ -79,10 +79,33 @@ public class WishListController extends AbstractProfileController {
 		return "wishlist";
 	}
 
+	
+
+	@RequestMapping(value="/adminAddWish",method = RequestMethod.POST)
+	public String adminAddWish(@Valid @ModelAttribute("wishlistDTO") WishlistDTO wishlistDTO, BindingResult result, Model model,
+			@RequestParam(value="userId", required=false) Long userId) {
+
+		if (userId == null) {
+			userId = getMyUserId();
+			wishlistDTO.setUserId(new Long(18));
+		}
+		
+		if (result.hasErrors()) {
+			return "adminviewWishes";
+		}
+		
+		wishlistService.adminAddWish(wishlistDTO);
+		List<WishlistDTO> items = wishlistService.getAllWishes();
+
+		model.addAttribute("wishlistItems", items);
+		return "adminviewWishes";
+	}
+
 	@ModelAttribute("ItemCategoryList")
 	public List<String> populateItemCategoryList() {
 		return referenceDataService.getItemCategoryList();
 	}
+
 
 	//Handline request to delete wish
 	@RequestMapping(value = "/deleteWish", method = RequestMethod.GET)
@@ -95,6 +118,46 @@ public class WishListController extends AbstractProfileController {
 		wishlistService.deleteWish(id);
 		
 		return "redirect:wishlist?userId=" + userId;
+	}
+	
+	//Handling request when user navigates to wishlist page
+			@RequestMapping(value = "/adminWishlist", method = RequestMethod.GET)
+			public String adminWishList(Model model,
+					@RequestParam(value="userId", required=false) Long userId, HttpSession session) {
+
+				if (userId == null) {
+					userId = getMyUserId();
+				}
+				
+				WishlistDTO dto=new WishlistDTO();
+				dto.setdateExpires(new Date());
+				dto.setId(null);
+				dto.setImpact("");
+				dto.setItemName("");
+				dto.setNote("");
+				dto.setQuantityDesired(0);
+				dto.setUserId(new Long(18));
+				dto.setWishlistItemCategories(populateItemCategoryList());
+				List<WishlistDTO> items = wishlistService.getAllWishes();
+				model.addAttribute("wishlistDTO", dto);
+				model.addAttribute("wishlistItems", items);
+				return "adminviewWishes";
+	
+			}
+
+	
+
+	//Handline request to delete wish
+	@RequestMapping(value = "/adminDeleteWish", method = RequestMethod.GET)
+	public String adminDeleteWish(@RequestParam("wishId") Long id,
+			@RequestParam(value="userId", required=false) Long userId, HttpServletRequest request) {
+		if (userId == null) {
+			userId = getMyUserId();
+		}
+		
+		wishlistService.deleteWish(id);
+		
+		return "redirect:adminWishlist?userId=" + 18;
 	}
 	
 	@Inject org.givenkind.repository.WishlistItemRepository wishlistItemRepo;
@@ -114,6 +177,25 @@ public class WishListController extends AbstractProfileController {
 		
 		model.addAttribute("wishlistDTO", dto);
 		return "editWish";
+	}
+	
+	
+	
+	//Handling when user clicks link to edit a wishlist item 
+	@RequestMapping(value = "/adminEditWish", method = RequestMethod.GET)
+	@Transactional
+	public String adminEditWish(Model model, @RequestParam("wishId") Long id,
+			@RequestParam(value="userId", required=false) Long userId, HttpServletRequest request){
+		if (userId == null) {
+			userId = getMyUserId();
+		}
+		
+		
+		WishlistItem item = wishlistItemRepo.findOne(id);
+		WishlistDTO dto = convertWishlistItemToWishlistDTO(item);
+		System.out.println("userid:"+ dto.getUserId());
+		model.addAttribute("wishlistDTO", dto);
+		return "admineditwish";
 	}
 	
 	private WishlistDTO convertWishlistItemToWishlistDTO(WishlistItem item) {
@@ -179,4 +261,53 @@ public class WishListController extends AbstractProfileController {
 		
 		return "redirect:wishlist";
 	}
+	
+	
+	//Completing edit request
+		@RequestMapping(value = "/adminEditWish" , method = RequestMethod.POST)
+		@Transactional
+		public String completeAdminEditWish(@ModelAttribute("wishlistDTO") WishlistDTO wishlistDTO, BindingResult result, Model model, 
+				@RequestParam("wishId") Long id,
+				@RequestParam(value="userId", required=false) Long userId, 
+				HttpServletRequest request){
+			
+			log.info("reached completeEditWish");
+			
+			if (userId == null) {
+				userId = getMyUserId();
+				wishlistDTO.setUserId(new Long(18));
+			}
+			
+			if (result.hasErrors()) {
+				
+				for(ObjectError e : result.getAllErrors()) {
+					log.error("error when editing wish: "+e);
+				}
+				
+				return "wishlist";
+			}
+			
+			wishlistDTO.setId(id);		
+			
+			log.info("saving new wishlist item");
+			
+			wishlistService.editWish(id, wishlistDTO);
+			
+			
+			WishlistDTO dto=new WishlistDTO();
+			dto.setdateExpires(new Date());
+			dto.setId(null);
+			dto.setImpact("");
+			dto.setItemName("");
+			dto.setNote("");
+			dto.setQuantityDesired(0);
+			dto.setUserId(new Long(18));
+			dto.setWishlistItemCategories(populateItemCategoryList());
+			List<WishlistDTO> items = wishlistService.getAllWishes();
+			model.addAttribute("wishlistDTO", dto);
+			model.addAttribute("wishlistItems", items);
+			return "adminviewWishes";
+			
+		}
+	
 }

@@ -44,7 +44,18 @@
                 <li><a href="<c:url value="/donorlist"/>">My Donation List</a></li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                <li><a href="<c:url value="/admin/view"/>">Admin</a></li>
+                <li>  <sec:authorize access="hasRole('ROLE_ADMIN')">
+               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" >Admin
+      </a>
+        <ul class="dropdown-menu">
+            <li><a href="<c:url value="/admin/view/donatedItem"/>">Donated Items</a></li>
+            <li><a href="<c:url value="/admin/view/wishList"/>">Wish List</a></li>
+            <li><a href="">Transaction</a></li>
+            <li><a href="<c:url value="/admin/view/status"/>">User status</a></li>
+            <li><a href="">User's profile</a></li>
+        </ul>
+    </li>
+                </sec:authorize></li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_NONPROFIT')">
                 <li><a href="<c:url value="/nonprofit"/>">My Profile</a></li>

@@ -137,7 +137,7 @@ public class SearchController extends AbstractProfileController {
 		long id = item.getId();
 
 		String itemName = item.getItemName();
-		NonProfitUserLogon user = item.getNonProfitUserLogon();
+	UserLogon user = item.getNonProfitUserLogon();
 
 		List<String> itemCategories = this.itemCategoryNames(item.getWishlistItemCategories());
 
