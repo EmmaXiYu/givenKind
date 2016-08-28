@@ -12,6 +12,11 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
 
+/**
+ * CaptchaValidator verifies the captcha with a service provided by Google that helps protect websites from spam and abuse.
+ * A “CAPTCHA” is a test to tell human and bots apart.
+ *
+ */
 public class captchaValidator{
 	public static final String url = "https://www.google.com/recaptcha/api/siteverify";
 
