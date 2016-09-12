@@ -59,6 +59,7 @@ public class DonorTransactionController extends AbstractProfileController{
 			WishlistDTO wishDTO = new WishlistDTO();
 			wishDTO.setItemName(item.getItemName());
 			wishDTO.setId(item.getId());
+			wishDTO.setQuantityDesired(item.getQuantityDesired());
 			mav.addObject("wishDTO", wishDTO);
 			
 			ProfileDTO donorDTO = new ProfileDTO();
