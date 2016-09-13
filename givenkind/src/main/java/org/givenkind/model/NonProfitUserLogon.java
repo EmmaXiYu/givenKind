@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @DiscriminatorValue("N")
 @Table(name="tblNonProfitUserLogon")
+
 public class NonProfitUserLogon extends UserLogon {
 	
 	public NonProfitUserLogon() {}

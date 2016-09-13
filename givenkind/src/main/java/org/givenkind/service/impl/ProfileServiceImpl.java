@@ -112,6 +112,7 @@ public class ProfileServiceImpl implements ProfileService {
 		
 		return profileDTO;
 	}
+	
 
 	@Override
 	public void editProfilePage(String alphanumId, ProfileDTO profileDTO) {

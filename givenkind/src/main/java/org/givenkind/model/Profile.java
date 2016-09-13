@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tblProfile")
+
 public class Profile {
 	
 	@Id @GeneratedValue @Column(name="ProfileId")
