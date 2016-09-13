@@ -4,13 +4,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/bootstrap-theme.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
-<title>Nonprofit Profile</title>
+<title>NonProfit Profile</title>
 </head>
 	<body>
 <%@ include file="nav.jsp" %>
@@ -43,12 +44,16 @@
 				<p class='form-control-static col-sm-8'><c:out value="${profileDTO.pickupService}" escapeXml='true'/></p>
 			</div>
 			<div class='form-group'>
+				<label class='control-label col-sm-4'>Pickup Distance</label>
+				<p class='form-control-static col-sm-8'><c:out value="${profileDTO.pickupDistance}" escapeXml='true'/></p>
+			</div>
+			<div class='form-group'>
 				<label for='employerIdentificationNumber' class='control-label col-sm-4'>EIN</label>
 				<p class='form-control-static col-sm-8'><c:out value="${profileDTO.employerIdentificationNumber}" escapeXml='true'/></p>
 			</div>
 			<div class='form-group'>
-				<label for='nonprofitCategories' class='control-label col-sm-4'>Nonprofit Categories<br />(up to three)</label>
-				<p class='form-control-static col-sm-8'></p>
+				<label for='nonprofitCategories' class='control-label col-sm-4'>NonProfit Categories<br />(up to three)</label>
+				<p class='form-control-static col-sm-8'><c:forEach items="${profileDTO.nonprofitCategories}" var="nonprofitCategories" varStatus="loop">${nonprofitCategories}<c:if test="${!loop.last}">,</c:if></c:forEach></p>
 			</div>
 			<div class='form-group'>
 				<label for='contactPerson' class='control-label col-sm-4'>Contact Person</label>
