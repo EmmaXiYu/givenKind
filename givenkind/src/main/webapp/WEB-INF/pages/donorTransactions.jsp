@@ -29,6 +29,7 @@
 						<tr>
 							<th class='col-sm-2'>Item Name (Requests to Confirm)</th>
 							<th class='col-sm-2'>Item Name (Your Requests)</th>
+							<th class='col-sm-2'>Quantity </th>
 							<th class='col-sm-2'>Status </th>
 							<th class='col-sm-2'>Donor Email</th>
 							<th class='col-sm-2'>Nonprofit Email</th>
@@ -40,6 +41,7 @@
 							<tr>
 								<td><c:out value="${trans.donorItem.itemName}" escapeXml='true'/></td>
 								<td><c:out value="${trans.npItem.itemName}" escapeXml='true'/></td>
+								<td><c:out value="${trans.quantity}" escapeXml='true'/></td>
 								<td><c:out value="${trans.statusCategory.statusCategoryName}" escapeXml='true'/></td>
 								<td><c:out value="${trans.donorProfile.user.loginId}" escapeXml='true'/></td>
 								<td><c:out value="${trans.npProfile.user.loginId}" escapeXml='true'/></td>
