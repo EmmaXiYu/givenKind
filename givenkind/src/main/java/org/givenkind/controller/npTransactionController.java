@@ -86,7 +86,7 @@ public class npTransactionController extends AbstractProfileController{
 		}		
 		
 		transDTO.setNpProfile(profileRepository.findById(getMyUserId()));
-		transDTO.setStatusCategory(statusCategoryRepository.findByStatusCategoryName("Nonprofit Requested"));
+		transDTO.setStatusCategory(statusCategoryRepository.findByStatusCategoryName("NP Requested"));
 		transactionService.startTransaction(transDTO,true);
 		
 		

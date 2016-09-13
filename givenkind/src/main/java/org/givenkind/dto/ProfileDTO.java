@@ -7,6 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.givenkind.model.NonProfitCategory;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -175,7 +176,7 @@ public class ProfileDTO implements Serializable {
 	public List<String> getNonprofitCategories() {
 		return nonprofitCategories;
 	}
-	public void setNonprofitCategories(List<String> nonprofitCategories) {
+	public void setNonprofitCategories(List<String> nonprofitCategories ) {
 		this.nonprofitCategories = nonprofitCategories;
 	}
 	public String getConfirmPassword() {

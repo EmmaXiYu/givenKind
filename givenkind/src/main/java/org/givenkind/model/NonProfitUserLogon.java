@@ -15,7 +15,7 @@ public class NonProfitUserLogon extends UserLogon {
 	
 	public NonProfitUserLogon() {}
 	
-	@OneToMany
+	/*@OneToMany
 	private Set<NonProfitCategory> categories;
 
 	public Set<NonProfitCategory> getCategories() {
@@ -24,7 +24,7 @@ public class NonProfitUserLogon extends UserLogon {
 
 	public void setCategories(Set<NonProfitCategory> categories) {
 		this.categories = categories;
-	}
+	}*/
  	
 	
 }
