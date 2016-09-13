@@ -46,7 +46,8 @@
 						<form:form role="form" modelAttribute='transDTO' name="finishAddingDonorTransaction" action="${startTrans}" method='POST' id="finishAddingDonorTransaction">
 							<td>Enter number of items to donate:</td>
 								<td><form:input type='number' class='form-control'
-									step='1' min='1' path="quantity" id="quantity" value="${transDTO.quantity}"></form:input>
+									step='1' min='1' max ="${wishDTO.quantityDesired}"  path="quantity" id="quantity" value="${transDTO.quantity}"></form:input>									
+									
 								</td>
 					</tr>
 					<tr>
@@ -74,6 +75,8 @@
 			$("#addItemForm").on("submit", function(event) {
 				event.preventDefault();
 			});
-		});
+		}); 
+		
+		 
 	</script>
 </body>

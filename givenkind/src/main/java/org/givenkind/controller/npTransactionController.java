@@ -57,6 +57,7 @@ public class npTransactionController extends AbstractProfileController{
 			DonorlistDTO donorItemDTO = new DonorlistDTO();
 			donorItemDTO.setItemName(item.getItemName());
 			donorItemDTO.setId(item.getId());
+			donorItemDTO.setQuantity(item.getQuantity());
 			mav.addObject("donorItemDTO", donorItemDTO);
 			
 			ProfileDTO npDTO = new ProfileDTO();
@@ -86,7 +87,7 @@ public class npTransactionController extends AbstractProfileController{
 		}		
 		
 		transDTO.setNpProfile(profileRepository.findById(getMyUserId()));
-		transDTO.setStatusCategory(statusCategoryRepository.findByStatusCategoryName("Nonprofit Requested"));
+		transDTO.setStatusCategory(statusCategoryRepository.findByStatusCategoryName("NP Requested"));
 		transactionService.startTransaction(transDTO,true);
 		
 		

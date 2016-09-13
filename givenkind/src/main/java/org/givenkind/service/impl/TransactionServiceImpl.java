@@ -147,6 +147,32 @@ public class TransactionServiceImpl implements TransactionService{
 		
 		completedTransactionRepository.save(completedTransaction);
 		activeTransactionItemsRepository.delete(transactionID);
+		
+		if(completedItem.getDonorItemId() == null && completedItem.getWishItemId() != null){		
+			WishlistItem wItem = wishlistItemRepository.findById(completedItem.getWishItemId());		
+			
+			if(wItem.getQuantityDesired()> completedItem.getQuantity()){
+				wItem.setQuantityDesired(wItem.getQuantityDesired()-completedItem.getQuantity());
+				wishlistItemRepository.save(wItem);				
+			}
+			else if(wItem.getQuantityDesired()== completedItem.getQuantity()){
+				wishlistItemRepository.delete(wItem);			
+				
+			}
+		}
+		else if(completedItem.getDonorItemId() != null && completedItem.getWishItemId() == null){
+			DonorlistItem dItem = donorlistItemRepository.findById(completedItem.getDonorItemId());
+			
+			if(dItem.getQuantity() > completedItem.getQuantity()){
+				dItem.setQuantity(dItem.getQuantity() - completedItem.getQuantity());
+				donorlistItemRepository.save(dItem);				
+			}
+			else if(dItem.getQuantity() == completedItem.getQuantity()){
+				donorlistItemRepository.delete(dItem);			
+				
+			}
+		
+		}
 	}
 	
 }
