@@ -1,11 +1,14 @@
 package org.givenkind.model;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="tblProfile")
+
 public class Profile {
 	
 	@Id @GeneratedValue @Column(name="ProfileId")
@@ -29,6 +32,9 @@ public class Profile {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private State state;
 	
+	@OneToMany
+	private List<NonProfitCategory> categories;
+
 	@Column(name="City")
 	private String city;
 	
@@ -223,6 +229,16 @@ public class Profile {
 	 */
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	
+	//return the categories to set
+	
+	public List<NonProfitCategory> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<NonProfitCategory> categories) {
+		this.categories = categories;
 	}
 
 	/**

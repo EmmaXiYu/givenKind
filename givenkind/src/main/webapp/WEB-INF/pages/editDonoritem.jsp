@@ -42,9 +42,9 @@
 						<tbody>
 							<tr>
 								<td><form:input id='itemName' class='form-control' path="itemName" value="${donorlistDTO.itemName}"/></td>
-								<td><form:input class='form-control datepicker'
-										path="dateExpires" id="dateExpires" value="${donorlistDTO.dateExpires}"
-										></form:input></td>
+								<fmt:parseDate pattern="yyyy-MM-dd" value="${donorlistDTO.dateExpires}" var="parsedStatusDate" />
+								<fmt:formatDate pattern="MM/dd/yyyy" value="${parsedStatusDate}" var="formattedStatusDate" />
+								<td><form:input class='form-control datepicker' path="dateExpires" id="dateExpires" value="${formattedStatusDate}" /></td>
 								<td><form:input id='quantityAvailable' type='number' class='form-control'
 										step='1' min='1' path="quantity" value="${donorlistDTO.quantity}"></form:input></td>
 								<td><form:select class='form-control'
@@ -59,8 +59,8 @@
 								</td>
 							</tr>
 							<tr>
-								<td><input type="submit" id="submitBtn" class="formbutton"
-									value="Edit Donor Item"/></td>
+								<td><input id="submitBtn" type="submit" class="formbutton" 
+									value="Update Donor Item"/></td>
 							</tr>
 						</tbody>
 						<a href='<c:url value="/donorlist"/>' role='button' class='button'>Return to Donorlist</a>
@@ -75,7 +75,7 @@
 	<script src="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.js" />"></script>
 	<script src="<c:url value="/js/bootstrap.min.js" />"></script>
 	<script>
-		document.getElementById("submitBtn").disabled=true;
+		document.getElementById("submitBtn").disabled=false;
 		$(function() {
 			$(".datepicker").datepicker();
 
@@ -83,16 +83,17 @@
 				event.preventDefault();
 			});
 		});
-		document.getElementById("submitBtn").disabled=true;
+		document.getElementById("submitBtn").disabled=false;
 		$(":input").keyup(function() {
 			var itemName = document.getElementById('itemName').value;
+			var dateExpires = document.getElementById(dateExpires).value;
 			var quantityAvailable = document.getElementById('quantityAvailable').value;
 			var itemCategories = document.getElementById('itemCategories').value;
 			var fairMarketValue = document.getElementById('fairMarketValue').value;
 			var description = document.getElementById('description').value;
 			if(!itemName || !dateExpires || !quantityAvailable || !itemCategories || !fairMarketValue || !description)
 			{
-				document.getElementById("submitBtn").disabled=true;
+				document.getElementById("submitBtn").disabled=false;
 			}
 			else{
 				document.getElementById("submitBtn").disabled=false;

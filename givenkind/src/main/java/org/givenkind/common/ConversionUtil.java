@@ -12,4 +12,6 @@ public class ConversionUtil {
 		return Long.toString(numeric, RADIX).toUpperCase();
 	}
 	
+	
+	
 }
