@@ -1,8 +1,10 @@
 package org.givenkind.service.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -91,20 +93,20 @@ public class RegistrationServiceImpl implements RegistrationService {
 		profile.setModifiedDate(new Date(Calendar.getInstance().getTimeInMillis()));
 		profile.setUser(userLogon);
 		
-		Set<NonProfitCategory> nonProfitCategories = new HashSet<NonProfitCategory>();
+		/*List<NonProfitCategory> nonProfitCategories = new ArrayList<NonProfitCategory>();
 		for(String s : registrationDTO.getNonprofitCategories()) {
 			NonProfitCategory category = this.nonprofitCategoryRepository.findByName(s);
 			if(category != null) {
 				nonProfitCategories.add(category);
 			}
 		}
-		
+		*/
 		
 		log.info("saving profile to repository");
 		profile = profileRepository.save(profile);
 		
 		userLogon.setProfile(profile);
-		userLogon.setCategories(nonProfitCategories);
+		//profile.setCategories(nonProfitCategories);
 		userLogon = userLogonRepository.save(userLogon);
 		
 		log.info("saved profile to repository");
@@ -125,6 +127,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 		profile.setAddressLine2(registrationDTO.getAddress2());
 		profile.setCity(registrationDTO.getCity());
 		profile.setContactEmail(registrationDTO.getContactEmail());
+		List<NonProfitCategory> itemCategories = new ArrayList<NonProfitCategory>();
+		List<String> itemCategoriesStr = registrationDTO.getNonprofitCategories();
+		for(String item : itemCategoriesStr){
+			itemCategories.add(nonprofitCategoryRepository.findByName(item));
+		}
+		profile.setCategories(itemCategories);
 		//profile.setCountry(registrationDTO.getCountry());
 		profile.setEIN(registrationDTO.getEmployerIdentificationNumber());
 		profile.setFullName(registrationDTO.getContactPerson());
