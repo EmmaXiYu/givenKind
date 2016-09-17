@@ -114,6 +114,18 @@ public class DonorlistController extends AbstractProfileController {
 		List<DonorlistDTO> items = donorlistService.getListOfDonatedItems(userId);
 		
 		model.addAttribute("donatedItems", items);
+		
+		DonorlistDTO dto = new DonorlistDTO();
+		dto.setCondition("");
+		dto.setDateExpires(new Date());
+		dto.setDescription("");
+		dto.setFairMarketValue(0.0);
+		dto.setId(null);
+		dto.setItemCategories(populateItemCategoryList());
+		dto.setItemName("");
+		dto.setQuantity(1);
+		dto.setUserId(userId);
+		model.addAttribute("donorlistDTO", dto);
 		return "donorlist";
 	}
 	

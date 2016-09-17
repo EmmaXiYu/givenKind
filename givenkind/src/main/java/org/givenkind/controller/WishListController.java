@@ -74,7 +74,7 @@ public class WishListController extends AbstractProfileController {
 		
 		wishlistService.addWish(wishlistDTO);
 		List<WishlistDTO> items = wishlistService.getWishesForUser(userId);
-
+		model.addAttribute("wishlistDTO", new WishlistDTO());
 		model.addAttribute("wishlistItems", items);
 		return "wishlist";
 	}

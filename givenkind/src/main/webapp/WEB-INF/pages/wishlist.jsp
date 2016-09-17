@@ -115,13 +115,16 @@
 	<script src="<c:url value="/js/bootstrap.min.js" />"></script>
 	<script>
 	document.getElementById("submitBtn").disabled=true;
-		$(function() {
-			$(".datepicker").datepicker();
+	var dateToday = new Date();
+		 $(function() {
+			$(".datepicker").datepicker({
+				minDate: dateToday,
+			});
 
 			$("#addItemForm").on("submit", function(event) {
 				event.preventDefault();
 			});
-		});
+		}); 
 		$(":input").keyup(function() {
 			var itemName = document.getElementById('itemName').value;
 			var dateExpires = document.getElementById('dateExpires').value;
