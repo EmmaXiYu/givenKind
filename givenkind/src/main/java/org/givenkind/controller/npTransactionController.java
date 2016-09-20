@@ -57,6 +57,7 @@ public class npTransactionController extends AbstractProfileController{
 			DonorlistDTO donorItemDTO = new DonorlistDTO();
 			donorItemDTO.setItemName(item.getItemName());
 			donorItemDTO.setId(item.getId());
+			donorItemDTO.setQuantity(item.getQuantity());
 			mav.addObject("donorItemDTO", donorItemDTO);
 			
 			ProfileDTO npDTO = new ProfileDTO();

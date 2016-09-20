@@ -40,7 +40,7 @@
 						<form:form role="form" modelAttribute='transDTO' name="finishAddingNpTransaction" action="${startTrans}" method='POST' id="finishAddingNpTransaction">
 							<td>Enter number of items to donate:</td>
 								<td><form:input type='number' class='form-control'
-									step='1' min='1' path="quantity" id="quantity" value="${transDTO.quantity}"></form:input>
+									step='1' min='1' max="${donorItemDTO.quantity}"  path="quantity" id="quantity" value="${transDTO.quantity}"></form:input>
 								</td>
 					</tr>
 					<tr>

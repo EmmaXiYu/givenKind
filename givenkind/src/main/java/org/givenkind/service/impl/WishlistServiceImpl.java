@@ -151,7 +151,7 @@ public class WishlistServiceImpl implements WishlistService {
 	@Transactional
 	public List<WishlistDTO> getWishesForUser(Long userId) {
 		NonProfitUserLogon user = nonProfitUserRepository.findById(userId);
-		List<WishlistItem> items = wishlistItemRepository.findByNonProfitUserLogon(user);
+		List<WishlistItem> items = wishlistItemRepository.findByDateExpiresAndNonProfitUserLogon(new Date(),user);		
 		List<WishlistDTO> dtos = new ArrayList<WishlistDTO>(items.size());
 		for(WishlistItem item : items) {
 			WishlistDTO dto = convertWishlistItemToWishlistDTO(item);

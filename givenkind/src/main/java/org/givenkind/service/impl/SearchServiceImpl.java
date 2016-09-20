@@ -3,6 +3,7 @@ package org.givenkind.service.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -114,7 +115,7 @@ public class SearchServiceImpl implements SearchService {
 				"id");
 
 		Specification<DonorlistItem> distanceSpec, itemCategoriesSpec, nonProfitCategoriesSpec, keywordSpec,
-				pickUpServiceSpec, zipCodeSpec;
+				pickUpServiceSpec, zipCodeSpec,dateExpiresSpec;
 
 		distanceSpec = (createDonorlistItemDistanceSpecification(searchDTO.getDistance()));
 		itemCategoriesSpec = (withDonorItemCategories(searchDTO.getItemCategories()));
@@ -123,9 +124,10 @@ public class SearchServiceImpl implements SearchService {
 		keywordSpec = (createDonorlistItemKeywordSpecification(searchDTO.getKeyword()));
 		pickUpServiceSpec = (createDonorlistItemPickupServiceSpecification(searchDTO.getPickUpService()));
 		zipCodeSpec = (createDonorlistItemZipcodeSpecification(searchDTO.getZipCode()));
+		dateExpiresSpec = (createDonorlistItemDateExpiresSpecification(new Date()));
 
 		List<Specification<DonorlistItem>> lst = Arrays.asList(distanceSpec, itemCategoriesSpec,
-				nonProfitCategoriesSpec, keywordSpec, pickUpServiceSpec, zipCodeSpec);
+				nonProfitCategoriesSpec, keywordSpec, pickUpServiceSpec, zipCodeSpec,dateExpiresSpec );
 
 		return donorItemRepository.findAll(this.joinSpecifications(lst), p);
 	}
@@ -146,7 +148,22 @@ public class SearchServiceImpl implements SearchService {
 			}
 		};
 	}
+	private Specification<DonorlistItem> createDonorlistItemDateExpiresSpecification(final Date date) {
+		return new Specification<DonorlistItem>() {
 
+			@Override
+			public Predicate toPredicate(Root<DonorlistItem> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				
+				if(date == null) {
+					return cb.equal(cb.literal(1), cb.literal(1));
+				} else {
+					
+					return cb.greaterThanOrEqualTo(root.get("dateExpires").as(Date.class), cb.literal(date));
+
+				}
+			}
+		};
+	}
 	private Specification<DonorlistItem> createDonorlistItemPickupServiceSpecification(final Boolean pickUpService) {
 		// TODO Auto-generated method stub
 		return new Specification<DonorlistItem>() {
@@ -279,7 +296,7 @@ public class SearchServiceImpl implements SearchService {
 				"id");
 
 		Specification<WishlistItem> distanceSpec, itemCategoriesSpec, nonProfitCategoriesSpec, keywordSpec,
-				pickUpServiceSpec, zipCodeSpec;
+				pickUpServiceSpec, zipCodeSpec,dateExpiresSpec;
 
 		distanceSpec = (createWishlistItemDistanceSpecification(searchDTO.getDistance()));
 		itemCategoriesSpec = (createWishlistItemItemCategoriesSpecification(searchDTO.getItemCategories()));
@@ -288,14 +305,30 @@ public class SearchServiceImpl implements SearchService {
 		keywordSpec = (createWishlistItemKeywordSpecification(searchDTO.getKeyword()));
 		pickUpServiceSpec = (createWishlistItemPickupServiceSpecification(searchDTO.getPickUpService()));
 		zipCodeSpec = (createWishlistItemZipcodeSpecification(searchDTO.getZipCode()));
-
+		dateExpiresSpec =(createWishlistItemDateExpiresSpecification(new Date()));
 		List<Specification<WishlistItem>> lst = Arrays.asList(distanceSpec, itemCategoriesSpec, nonProfitCategoriesSpec,
-				keywordSpec, pickUpServiceSpec, zipCodeSpec);
-
+				keywordSpec, pickUpServiceSpec, zipCodeSpec,dateExpiresSpec);
 		return wishlistItemRepository.findAll(this.joinSpecifications(lst), p);
+
+		
 	}
 
-	
+	private Specification<WishlistItem> createWishlistItemDateExpiresSpecification(final Date date) {
+		return new Specification<WishlistItem>() {
+
+			@Override
+			public Predicate toPredicate(Root<WishlistItem> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				
+				if(date == null) {
+					return cb.equal(cb.literal(1), cb.literal(1));
+				} else {
+					
+					return cb.greaterThanOrEqualTo(root.get("dateExpires").as(Date.class), cb.literal(date));
+
+				}
+			}
+		};
+	}
 	private Specification<WishlistItem> createWishlistItemZipcodeSpecification(final String zipCode) {
 
 		return new Specification<WishlistItem>() {

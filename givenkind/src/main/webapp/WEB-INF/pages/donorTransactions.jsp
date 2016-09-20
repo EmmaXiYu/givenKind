@@ -47,7 +47,7 @@
 								<td><c:out value="${trans.npProfile.user.loginId}" escapeXml='true'/></td>
 								<td>
 									<c:choose>
-										<c:when test="${trans.statusCategory.statusCategoryName eq 'Nonprofit Requested'}">
+										<c:when test="${trans.statusCategory.statusCategoryName eq 'NP Requested'}">
 										<a href="<c:url value="/confirmDonorTransaction?transactionId=${trans.id}" />">Accept</a> | <a href="<c:url value="/cancelDonorTransaction?transactionId=${trans.id}" />">Cancel</a>
 										</c:when>
 										<c:when test="${trans.statusCategory.statusCategoryName eq 'Accepted'}">
