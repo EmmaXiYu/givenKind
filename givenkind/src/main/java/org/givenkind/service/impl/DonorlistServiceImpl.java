@@ -116,7 +116,7 @@ public class DonorlistServiceImpl implements DonorlistService {
 	public void adminAddDonatedItem(DonorlistDTO donorlistDTO) {
 		DonorlistItem donorItem = new DonorlistItem();
 		List<ItemCategory> categories = new ArrayList<ItemCategory>();
-		UserLogon user = userLogonRepository.findByLoginId("admin@gmail.com");
+		UserLogon user = userLogonRepository.findByLoginId("admin@admin.com");
 		
 		for(String c : donorlistDTO.getItemCategories()) {
 			ItemCategory category = ItemCategoryRepository.findByCategoryName(c);

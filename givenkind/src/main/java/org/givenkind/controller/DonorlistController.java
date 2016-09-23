@@ -86,7 +86,7 @@ public class DonorlistController extends AbstractProfileController {
 		dto.setItemCategories(populateItemCategoryList());
 		dto.setItemName("");
 		dto.setQuantity(1);
-		dto.setUserId(new Long(18));
+		dto.setUserId(new Long(34));
 		model.addAttribute("donorlistDTO", dto);
 		List<DonorlistDTO> items= donorlistService.getListOfAllDonatedItems();
 		model.addAttribute("donatedItems", items);
@@ -137,7 +137,6 @@ public class DonorlistController extends AbstractProfileController {
 		
 		if (userId == null) {
 			userId = getMyUserId();
-			donorlistDTO.setUserId(new Long(18));
 		}
 		
 		if (result.hasErrors()){
@@ -159,7 +158,7 @@ public class DonorlistController extends AbstractProfileController {
 		dto.setItemCategories(populateItemCategoryList());
 		dto.setItemName("");
 		dto.setQuantity(1);
-		dto.setUserId(new Long(18));
+		dto.setUserId(new Long(34));
 		model.addAttribute("donorlistDTO", dto);
 		List<DonorlistDTO> items= donorlistService.getListOfAllDonatedItems();
 		model.addAttribute("donatedItems", items);
@@ -190,7 +189,7 @@ public class DonorlistController extends AbstractProfileController {
 		}
 		donorlistService.deleteDonatedItem(id);
 		
-		return "redirect:adminDonorlist?userId=" + 18;
+		return "redirect:adminDonorlist?userId=" + 34;
 	}
 	
 	
@@ -289,7 +288,7 @@ public class DonorlistController extends AbstractProfileController {
 			dto.setItemCategories(populateItemCategoryList());
 			dto.setItemName("");
 			dto.setQuantity(1);
-			dto.setUserId(new Long(18));
+			dto.setUserId(new Long(34));
 			model.addAttribute("donorlistDTO", dto);
 			List<DonorlistDTO> items= donorlistService.getListOfAllDonatedItems();
 			model.addAttribute("donatedItems", items);
