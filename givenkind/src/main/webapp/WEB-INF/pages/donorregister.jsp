@@ -27,71 +27,76 @@ function checkEmail(){
 	<div class='row'>
 		<div class='col-sm-offset-2 col-sm-8'>
 		<h1>Donor Register</h1>
-		<form:form role='form' class='form-horizontal' action='registerDonor' method='post' commandName='donorRegistrationDTO'>
+		<form:form role='form' class='form-horizontal' id='registerform ' action='registerDonor' method='post' commandName='donorRegistrationDTO'>
 			<div class='form-group required'>
 				<label for='email' class='control-label col-sm-4'>Email (User ID)</label>
 				<div class='col-sm-8'>
 				
-					<form:input type='email' id='email' class='form-control' path='email' onblur='checkEmail()'></form:input>
+					<form:input type='email' id='email' class='form-control' maxlength='100' path='email' required="true" ></form:input>
 					<form:errors path='email' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='password' class='control-label col-sm-4'>Password</label>
 				<div class='col-sm-8'>
-					<form:input type='password' id='password' class='form-control' path='password'></form:input>
-					<form:errors path='password' class='error'></form:errors>
+					<form:input type='password' id='password' class='form-control' maxlength='20'  path='password'  required="true" ></form:input>
+					<form:errors path='password' class='error'></form:errors>	
+					<span id="passwordError" class="error hidden">Password must be minimum 8 characters</span>
+									
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='confirmPassword' class='control-label col-sm-4'>Confirm Password</label>
 				<div class='col-sm-8'>
-					<form:input type='password' id='confirmPassword' class='form-control' path='confirmPassword'></form:input>
+					<form:input type='password' id='confirmPassword' class='form-control'  maxlength='20'  path='confirmPassword'  required="true" ></form:input>
 					<form:errors path='confirmPassword' class='error'></form:errors>
+					<span id="confirmPasswordError" class="error hidden">Passwords do not match</span>					
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='name' class='control-label col-sm-4'>Name</label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='name' class='form-control' path='name'></form:input>
+					<form:input type='text' id='name' class='form-control' maxlength='100' path='name' required="true" ></form:input>
 					<form:errors path='name' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='contactPhone' class='control-label col-sm-4'>Phone</label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='name' class='form-control' path='contactPhone'></form:input>
+					<form:input type='text' id='contactPhone' class='form-control'  maxlength='20' onkeypress="return isNumeric(event)" path='contactPhone' required="true" ></form:input>
 					<h4>*Enter number using following format: ZZZYYYYYYY <br /> ZZZ = Area Code, YYYYYYY = Phone Number </h4>
 					<form:errors path='contactPhone' class='error'></form:errors>
+					<span id="phoneError" class="error hidden">Phone number must be minimum 10 digits</span>
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='address1' class='control-label col-sm-4'>Address</label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='address1' class='form-control' path='address1'></form:input>
+					<form:input type='text' id='address1' class='form-control' maxlength='100' path='address1' required="true" ></form:input>
 					<form:errors path='address1' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group'>
 				<label for='address2' class='control-label col-sm-4'></label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='address2' class='form-control' path='address2'></form:input>
+					<form:input type='text' id='address2' class='form-control' maxlength='100' path='address2'></form:input>
 					<form:errors path='address2' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group required'>
 			    <label for='city' class='control-label col-sm-4'>City/State/Zip</label>
-			    <div class='col-sm-4'>
-					<form:input type='text' id='city' class='form-control' path='city'></form:input>
+			    <div class='col-sm-3'>
+					<form:input type='text' id='city' class='form-control' maxlength='100' path='city' required="true" ></form:input>
 					<form:errors path='city' class='error'></form:errors>
 				</div>
 				<div class='col-sm-2'>
-	                 <form:select id='state' class='form-control' path='state' items="${stateList}"></form:select>
+	                 <form:select id='state' class='form-control' path='state' items="${stateList}" required="true" ></form:select>
                      <form:errors path='state' class='error'></form:errors>
 				</div>
 				<div class='col-sm-2'>
-                     <form:input type='text' id='zip' class='form-control' path='zip'></form:input>
+                     <form:input type='text' id='zip' class='form-control zipMask' maxlength='10' onkeypress="return isNumeric(event)" path='zip' required="true" ></form:input>
                      <form:errors path='zip' class='error'></form:errors>
+                     <span id="zipError" class="error hidden">ZIP codes must contain 5 or 9 digits</span>
 				</div>
 			</div>
 			<div class='form-group required'>
@@ -99,7 +104,7 @@ function checkEmail(){
 				<div class='col-sm-8'>
 					<div class="g-recaptcha" data-sitekey="6Ld1FicTAAAAAJ2ArxAlDYXjC18u4rdrousxUb_V"></div>
 				</div>
-			</div>
+			</div> 
 
 			<div class='form-group'>
 				<div class='col-sm-offset-4 col-sm-8'>
@@ -113,3 +118,20 @@ function checkEmail(){
 </div>
 <%@ include file="footer.jsp" %>
 </body>
+
+<script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
+<script src="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.js" />"></script>
+<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
+<script src="<c:url value="/js/register.js" />"></script>
+
+<script>
+function isNumeric(evt)
+	{
+		var charCode = (evt.which) ? evt.which : event.keyCode;
+		if( !( charCode > 47 && charCode < 58)) 
+			return false;		
+		return true;
+	}
+	
+</script>

@@ -24,61 +24,67 @@
 			<div class='form-group required'>
 				<label for='missionStatement' class='control-label col-sm-4'>Mission Statement</label>
 				<div class='col-sm-8'>
-					<form:textarea id='missionStatement' class='form-control' path='missionStatement'></form:textarea>
+					<form:textarea id='missionStatement' class='form-control' path='missionStatement' maxlength='100' required="true"></form:textarea>
 					<form:errors path='missionStatement' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='website' class='control-label col-sm-4'>Website</label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='website' class='form-control' path='website'></form:input>
+					<form:input type='text' id='website' class='form-control' path='website' maxlength='200'></form:input>
 					<form:errors path='website' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='address1' class='control-label col-sm-4'>Address</label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='address1' class='form-control' path='address1'></form:input>
+					<form:input type='text' id='address1' class='form-control' path='address1' maxlength='100' required="true"></form:input>
 					<form:errors path='address1' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group'>
 				<div class='col-sm-offset-4 col-sm-8'>
-					<form:input type='text' id='address2' class='form-control' path='address2'></form:input>
+					<form:input type='text' id='address2' class='form-control' path='address2' maxlength='100'></form:input>
 					<form:errors path='address2' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group'>
 				<div class='col-sm-offset-4 col-sm-4 required'>
 					<label for='city' class='control-label'>City</label>
-					<form:input type='text' id='city' class='form-control' path='city'></form:input>
+					<form:input type='text' id='city' class='form-control' path='city' maxlength='100' required="true"></form:input>
 					<form:errors path='city' class='error'></form:errors>
 				</div>
 				<div class='col-sm-2 required'>
 					<label for='state' class='control-label'>State</label>
-					<form:select id='state' class='form-control' path='state' items="${stateList}">${profileDTO.state}</form:select>
+					<form:select id='state' class='form-control' path='state' required="true" items="${stateList}">${profileDTO.state}</form:select>
 					<form:errors path='state' class='error'></form:errors>
 				</div>
 				<div class='col-sm-2 required'>
 					<label for='zip' class='control-label'>Zip</label>
-					<form:input type='text' id='zip' class='form-control' path='zip'></form:input>
+					<form:input type='text' id='zip' class='form-control zipMask' path='zip' maxlength='10' onkeypress="return isNumeric(event)" required="true"></form:input>
 					<form:errors path='zip' class='error'></form:errors>
+					<span id="zipError" class="error hidden">ZIP codes must contain 5 or 9 digits</span>
 				</div>
 			</div>
 			<div class='form-group'>
 				<label class='control-label col-sm-4'>Pickup Service</label>
 				<div class='col-sm-4'>
 					<div class='checkbox'>
-						<label for='pickupService'>
+						<label for='pickupService'>							
 							<form:radiobutton value='Yes' id='pickupServiceY' path='pickupService'/>Yes
-							<form:radiobutton value='No' id='pickupServiceN' path='pickupService'/>No
+							<form:radiobutton value='No' id='pickupServiceN' path='pickupService'/>No 
 							<form:errors path='pickupService' class='error'></form:errors>
 						</label>
 					</div>
 				</div>
 				<div class='col-sm-4'>
 					<label for='pickupDistance' class='control-label'>Distance Willing To Travel</label>
-					<form:input type='number' step='any' min='1' id='pickupDistance' class='form-control' path='pickupDistance'></form:input>
+					<c:if test="${profileDTO.pickupService=='Yes'}">
+						<form:input type='text'  min='1' id='pickupDistance' class='form-control' maxlength='9' path='pickupDistance' onkeypress="return isNumeric(event)"></form:input>
+					</c:if>
+					<c:if test="${profileDTO.pickupService=='No'}">
+						<form:input type='text'  min='1' id='pickupDistance' class='form-control' maxlength='9' path='pickupDistance' disabled="true" onkeypress="return isNumeric(event)"></form:input>
+					</c:if>
 					<form:errors path='pickupDistance' class='error'></form:errors>
 				</div>
 			</div>
@@ -92,29 +98,31 @@
 			<div class='form-group required'>
 				<label for='nonprofitCategories' class='control-label col-sm-4'>Nonprofit Categories<br />(up to three)</label>
 				<div class='col-sm-8'>
-					<form:select multiple='true' class='form-control' items="${nonprofitCategoryList}" id='nonprofitCategories' path='nonprofitCategories'></form:select>
+					<form:select multiple='true' class='form-control' items="${nonprofitCategoryList}" id='nonprofitCategories' path='nonprofitCategories' required="true"></form:select>
 					<form:errors path='nonprofitCategories' class='error'></form:errors>
+					<span id="selectError" class="error hidden">Only three categories can be selected</span>
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='contactPerson' class='control-label col-sm-4'>Contact Person</label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='contactPerson' class='form-control' path='contactPerson'></form:input>
+					<form:input type='text' id='contactPerson' class='form-control' path='contactPerson' maxlength='100' required="true"></form:input>
 					<form:errors path='contactPerson' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='contactEmail' class='control-label col-sm-4'>Contact Email</label>
 				<div class='col-sm-8'>
-					<form:input type='email' id='contactEmail' class='form-control' path='contactEmail'></form:input>
+					<form:input type='email' id='contactEmail' class='form-control' path='contactEmail' maxlength='100' required="true"></form:input>
 					<form:errors path='contactEmail' class='error'></form:errors>
 				</div>
 			</div>
 			<div class='form-group required'>
 				<label for='contactPhone' class='control-label col-sm-4'>Contact Phone</label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='contactPhone' class='form-control' path='contactPhone'></form:input>
+					<form:input type='text' id='contactPhone' class='form-control' path='contactPhone' maxlength='20' required="true" onkeypress="return isNumeric(event)"></form:input>
 					<form:errors path='contactPhone' class='error'></form:errors>
+					<span id="phoneError" class="error hidden">Phone number must be minimum 10 digits</span>
 				</div>
 			</div>
 	
@@ -131,5 +139,17 @@
 <%@ include file="footer.jsp" %>
 <script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
 <script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/register.js" />"></script>
+<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 </body>
+<script>
+function isNumeric(evt)
+	{
+		var charCode = (evt.which) ? evt.which : event.keyCode;
+		if( !( charCode > 47 && charCode < 58)) 
+			return false;		
+		return true;
+	}
+	
+</script>
 </html>

@@ -63,8 +63,7 @@ public class ProfileServiceImpl implements ProfileService {
 		
 		Profile profile = profileRepository.findById(ConversionUtil.alphanumToNumeric(alphanumId));
 		
-		if (profile != null) {
-			profile.setWebSiteUrl(profileDTO.getWebsite());
+		if (profile != null) {			
 			profile.setAddressLine1(profileDTO.getAddress1());
 			profile.setAddressLine2(profileDTO.getAddress2());
 			profile.setCity(profileDTO.getCity());		
