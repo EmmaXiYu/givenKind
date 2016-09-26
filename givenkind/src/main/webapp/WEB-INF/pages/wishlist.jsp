@@ -24,23 +24,27 @@
 		<div class='row'>
 			<div class='col-sm-12'>
 				<h1>Create Wish List Item</h1>
-				<h4>(all fields required)</h4>
 				<a href="<c:url var="addUrl" value="/nonprofit"/>">Go to Profile</a>
 				<input type='hidden' id='userId' name='userId' value='${userId}' />
+				<c:url var="addUrl" value="/addWish" />
+				 <form:form role="form" modelAttribute='wishlistDTO' name="addWish"
+						action="${addUrl}" method='POST' id="addWish">  
 				<table class='table'>
 					<thead>
 						<tr>
 							<th class='col-sm-2'>Item Name</th>
 							<th class='col-sm-2'>Expiration Date</th>
 							<th class='col-sm-1'>Quantity</th>
-							<th class='col-sm-3'>Category</th>
+							<th class='col-sm-3'>Category
+							<label style="font-size: 11px;font-weight: bold;">(Limit to 3 categories)</label>
+							</th>
 							<th class='col-sm-3'>Description</th>
 							<th class='col-sm-2'>Community Impact</th>
 						</tr>
 					</thead>
-					<c:url var="addUrl" value="/addWish" />
-					<form:form role="form" modelAttribute='wishlistDTO' name="addWish"
-						action="${addUrl}" method='POST' id="addWish">
+					<%--<c:url var="addUrl" value="/addWish" />
+					 <form:form role="form" modelAttribute='wishlistDTO' name="addWish"
+						action="${addUrl}" method='POST' id="addWish"> --%>
 						<tbody>
 							<tr>
 								<td><form:input class='form-control' path="itemName"
@@ -60,19 +64,40 @@
 								<td><form:input id='note' type='textarea'
 										class='form-control' path='note' placeholder="Description"></form:input>
 									<form:errors path="note" class="error" /></td>
-								<td><form:input id='impact' type='textarea'
+								<%-- <td><form:input id='impact' type='textarea'
 										class='form-control' path='impact' placeholder="Impact" /> <form:errors
-										path="impact" class="error" /></td>
+										path="impact" class="error" /></td> --%>
+										 
+										 <td><form:select id='impact' style="width:250px;"
+										class='form-control' path='impact' selected='selected' placeholder="Impact" >
+										<option value="Support general operations">Support community operations</option>
+										<option value="Support community programs">Support general programs</option>
+										</form:select> 
+										<form:errors path="impact" class="error" />
+										</td> 
+										
 							</tr>
-							<tr>
-								<td><input type="submit" id="submitBtn" class="formbutton"
-									value="Add Wish" /></td>
-							</tr>
+														
 						</tbody>
-					</form:form>
-
+									
 				</table>
 
+				
+				<div style="width:864px;">
+				<label style="font-size: 15px;font-weight: bold;"> Please tell us how donations to your wish list will impact your organization and/or community.</label>
+				</div>
+				<form:textarea style="width:650px;" id='comments' type='textarea' rows ="5" maxlength="255"
+										 path='comments' placeholder="Comments"></form:textarea>
+				<form:errors path="comments" class="error" /> 
+					
+				<div style="width:864px;">
+				<label style="font-size: 11px;font-weight: bold;"> (all fields required)</label>
+				</div>
+				<input type="submit" id="submitBtn" class="formbutton"
+									value="Add Wish" />	 
+									
+				 </form:form> 
+											
 				<h1>Your Wish List</h1>
 
 				<table class='table'>
