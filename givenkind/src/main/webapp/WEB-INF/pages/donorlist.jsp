@@ -26,25 +26,30 @@
 		<div class='row'>
 			<div class='col-sm-12'>
 				<h1>Create Donation List Item</h1>
-				<h4>(all fields required)</h4> 
+				
 				<a href="<c:url var="addUrl" value="/donor"/>">Go to Profile</a> 
 <!-- 				<input -->
 <!-- 					type='hidden' id='profileId' name='profileId' -->
 <%-- 					value='${donorlistDTO.profileId}' /> --%>
+					<c:url var="addUrl" value="/addToDonorlist"/>
+					<form:form role="form" modelAttribute='donorlistDTO' name="addToDonorlist" action="${addUrl}" method='POST' id="addToDonorlist">
 				<table class='table'>
 					<thead>
 						<tr>
 							<th class='col-sm-2'>Item Name</th>
 							<th class='col-sm-2'>Expiration Date</th>
 							<th class='col-sm-1'>Quantity</th>
-							<th class='col-sm-3'>Category</th>
+							<th class='col-sm-3'>Category
+							<span>&nbsp;</span>
+							<span style="font-size: 11px;font-weight: bold;">(Limit to 3 categories)</span>
+							</th>
 							<th class='col-sm-1'>Condition</th>
 							<th class='col-sm-1'>Fair Market Value</th>
 							<th class='col-sm-3'>Description</th>
 						<tr>
 					</thead>
-					<c:url var="addUrl" value="/addToDonorlist"/>
-					<form:form role="form" modelAttribute='donorlistDTO' name="addToDonorlist" action="${addUrl}" method='POST' id="addToDonorlist">
+					<%-- <c:url var="addUrl" value="/addToDonorlist"/>
+					<form:form role="form" modelAttribute='donorlistDTO' name="addToDonorlist" action="${addUrl}" method='POST' id="addToDonorlist"> --%>
 						<tbody>
 							<tr>
 								<td><form:input id='itemName' class='form-control' path="itemName" placeholder="Item Name"/></td>
@@ -62,15 +67,23 @@
 								<td><form:input id='description' type='textarea'
 										class='form-control' path='description' placeholder="Description"></form:input>
 								</td>
-							</tr><tr>
+							</tr>
+							<!-- <tr>
 								<td><input type="submit" id="submitBtn" class="formbutton"
 									value="Add Donation Item"/></td>
-							</tr>
+							</tr> -->
 						</tbody>
-					</form:form>
+					
 
 				</table>
-
+				<div style="width:864px;">
+				<label style="font-size: 11px;font-weight: bold;"> (all fields required)</label>
+				</div>
+				<input type="submit" id="submitBtn" class="formbutton"
+									value="Add Donation Item" />
+									
+				</form:form>
+									
 				<h1>Your Donation List</h1>
 
 				<table class='table'>
