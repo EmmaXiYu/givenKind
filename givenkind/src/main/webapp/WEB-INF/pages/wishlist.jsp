@@ -165,6 +165,14 @@
 				document.getElementById("submitBtn").disabled=false;
 			}
 		});
+		$("#itemCategories").click(function(){
+			if ($("#itemCategories :selected").length > 3) {
+		        alert('You can select upto 3 options only');
+		        $("#itemCategories :selected").removeAttr("selected");
+		    }
+			
+		});
+		
 	</script>
 </body>
 </html>
