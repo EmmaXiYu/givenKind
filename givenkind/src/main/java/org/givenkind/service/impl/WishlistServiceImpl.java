@@ -86,6 +86,7 @@ public class WishlistServiceImpl implements WishlistService {
 		wishItem.setDateExpires(wishlistDTO.getDateExpires());
 		wishItem.setQuantityDesired(wishlistDTO.getQuantityDesired());
 		wishItem.setNotes(wishlistDTO.getNote());
+		wishItem.setComments(wishlistDTO.getComments());
 		wishItem.setImpact(wishlistDTO.getImpact());
 		wishItem.setNonProfitUserLogon(user);
 		

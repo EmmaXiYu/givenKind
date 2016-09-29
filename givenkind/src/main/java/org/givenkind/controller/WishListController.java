@@ -87,7 +87,7 @@ public class WishListController extends AbstractProfileController {
 
 		if (userId == null) {
 			userId = getMyUserId();
-			wishlistDTO.setUserId(new Long(18));
+			wishlistDTO.setUserId(new Long(34));
 		}
 		
 		if (result.hasErrors()) {
@@ -136,7 +136,7 @@ public class WishListController extends AbstractProfileController {
 				dto.setItemName("");
 				dto.setNote("");
 				dto.setQuantityDesired(0);
-				dto.setUserId(new Long(18));
+				dto.setUserId(new Long(34));
 				dto.setWishlistItemCategories(populateItemCategoryList());
 				List<WishlistDTO> items = wishlistService.getAllWishes();
 				model.addAttribute("wishlistDTO", dto);
@@ -157,7 +157,7 @@ public class WishListController extends AbstractProfileController {
 		
 		wishlistService.deleteWish(id);
 		
-		return "redirect:adminWishlist?userId=" + 18;
+		return "redirect:adminWishlist?userId=" + 34;
 	}
 	
 	@Inject org.givenkind.repository.WishlistItemRepository wishlistItemRepo;
@@ -275,7 +275,7 @@ public class WishListController extends AbstractProfileController {
 			
 			if (userId == null) {
 				userId = getMyUserId();
-				wishlistDTO.setUserId(new Long(18));
+				wishlistDTO.setUserId(new Long(34));
 			}
 			
 			if (result.hasErrors()) {
@@ -301,7 +301,7 @@ public class WishListController extends AbstractProfileController {
 			dto.setItemName("");
 			dto.setNote("");
 			dto.setQuantityDesired(0);
-			dto.setUserId(new Long(18));
+			dto.setUserId(new Long(34));
 			dto.setWishlistItemCategories(populateItemCategoryList());
 			List<WishlistDTO> items = wishlistService.getAllWishes();
 			model.addAttribute("wishlistDTO", dto);

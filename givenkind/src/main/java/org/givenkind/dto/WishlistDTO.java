@@ -27,6 +27,8 @@ public class WishlistDTO {
 
 	@NotEmpty
 	private String note;
+	
+	private String comments;
 
 	private String impact;
 
@@ -70,6 +72,14 @@ public class WishlistDTO {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+	
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	
 	public String getImpact() {

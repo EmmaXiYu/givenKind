@@ -34,6 +34,9 @@ public class WishlistItem {
 	@Column(name="Notes")
 	private String notes;
 	
+	@Column(name="Comments")
+	private String comments;
+	
 	@Column(name="DateExpires")
 	private Date dateExpires;
 
@@ -86,6 +89,15 @@ public class WishlistItem {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+		
+	}
+	
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 
 	public Date getDateExpires() {
