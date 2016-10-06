@@ -24,7 +24,7 @@
 		<div class='row'>
 			<div class='col-sm-12'>
 				<h1>Create Wish List Item</h1>
-				<a href="<c:url var="addUrl" value="/nonprofit"/>">Go to Profile</a>
+				<a href="<c:url value="/nonprofit"/>">Go to Profile</a>
 				<input type='hidden' id='userId' name='userId' value='${userId}' />
 				<c:url var="addUrl" value="/addWish" />
 				 <form:form role="form" modelAttribute='wishlistDTO' name="addWish"
