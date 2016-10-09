@@ -34,7 +34,7 @@
 			<a href='<c:url value="/wishlist"/>' role='button' class='btnNonprofit'>Add/Edit Wishlist</a>
 		</sec:authorize>
 		<sec:authorize access="hasRole('ROLE_DONOR')">
-			<a href='<c:url value="/donorlist"/>' role='button' class='btnNonprofit'>Edit Items to Donate</a>
+			<a href='<c:url value="/donorlist"/>' role='button' class='btnNonprofit'>Add/Edit Items to Donate</a>
 		</sec:authorize>
 	</div>
 	
