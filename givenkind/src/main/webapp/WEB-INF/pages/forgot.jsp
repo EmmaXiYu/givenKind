@@ -19,12 +19,13 @@
         <div class='col-sm-offset-3 col-sm-6'>
         <div class='col-sm-offset-4 col-sm-8'>
             <h1>Forgot Password</h1>
-        </div>
+        </div>       
         <c:if test="${not empty msg}">
             <div class="msg col-sm-12">${msg}</div>
         </c:if>
         <c:if test="${empty msg}">
-        	<form:form role='form' class='form-horizontal' action="<c:url value='/forgot' />" method='post' commandName='forgotPasswordDTO'>
+        <c:url var="addUrl" value="/forgot" />
+        	<form:form role='form' class='form-horizontal' action="${addUrl}" method='post' commandName='forgotPasswordDTO'>
 	            <div class='form-group'>
 	                <label for='email' class='control-label col-sm-4'>Email address</label>
 	                <div class='col-sm-8'>

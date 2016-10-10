@@ -10,5 +10,5 @@ public interface EmailService {
 	public Boolean adminRegistrationEmail(String profileURL);
 	public Boolean donorRegistrationEmail(String email);
 	public Boolean donorItemEmail(CompletedTransactions completedTransactions, String email);
-	public Boolean forgotPasswordEmail(PasswordResetAuthorizationDTO pr);
+	public Boolean forgotPasswordEmail(PasswordResetAuthorizationDTO pr,String httpURL);
 }

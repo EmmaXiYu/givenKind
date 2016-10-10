@@ -1,8 +1,10 @@
 package org.givenkind.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.givenkind.dto.ForgotPasswordDTO;
+import org.givenkind.dto.PasswordResetAuthorizationDTO;
 import org.givenkind.dto.PasswordResetDTO;
 import org.givenkind.repository.PasswordResetRepository;
 import org.givenkind.repository.UserLogonRepository;
@@ -11,6 +13,7 @@ import org.givenkind.service.NoSuchPasswordResetAuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ForgotPasswordController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ForgotPasswordController.class);
-	
+		
 	@Autowired
 	LoginService loginService;
 	
@@ -47,14 +50,14 @@ public class ForgotPasswordController {
 	PasswordEncoder passwordEncoder;
 	
 	@Transactional
-	@RequestMapping(value="resetPassword", method=RequestMethod.POST)
+	@RequestMapping(value="/resetPassword", method=RequestMethod.POST)
 	public String submitNewPassword(ModelAndView mav, @Valid @ModelAttribute("passwordResetDTO") PasswordResetDTO dto, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
 			return "resetPassword";
 		}
 		
-		try {
+		try {			
 			loginService.resetPassword(dto);
 		} catch (NoSuchPasswordResetAuthorizationException ex) {
 			mav.addObject("error", "invalid password reset request link");
@@ -62,10 +65,10 @@ public class ForgotPasswordController {
 		
 		mav.addObject("msg", "password reset successfully");
 		
-		return "resetPassword";
+		return "login";
 	}
 	
-	@RequestMapping(value="resetPassword", method=RequestMethod.GET)
+	@RequestMapping(value="/resetPassword", method=RequestMethod.GET)
 	public ModelAndView  launchEnterNewPassword(@RequestParam(value = "id", required = false, defaultValue="0") long passwordResetAuthorizationId,
 			@RequestParam(value = "uniqueResetKey", required = false, defaultValue="") String uniqueResetKey) {
 		
@@ -81,22 +84,36 @@ public class ForgotPasswordController {
 	}
 	
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
-	public String processForgotPassword(ModelAndView mav, @Valid @ModelAttribute("forgotPasswordDTO") ForgotPasswordDTO dto, BindingResult bindingResult) {
+	public ModelAndView processForgotPassword(ModelAndView mav, @Valid @ModelAttribute("forgotPasswordDTO") ForgotPasswordDTO dto, BindingResult bindingResult,HttpServletRequest req) {
+		
+		boolean status=false;
+		mav.setViewName("forgot");
 		
 		if(bindingResult.hasErrors()) {
-			return "forgot";
+			return mav;
 		}
 		
-		try {
-			loginService.forgotPassword(dto);
+		try {			
+			String httpURL = "http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+"/";
+			System.out.println("http url:"+httpURL );
+			status=loginService.forgotPassword(dto,httpURL);
 		} catch (Exception ex) {
+			logger.info("exception thrown");
 			// silently ignore exception - no need to tell user that no such user exists
 		}
 		
 		logger.info("password reset requested for "+dto.getEmail());
 		
-		mav.addObject("msg", "Password reset email sent");
 		
-		return "forgot";
+		if(status){
+			logger.info("Reset link sent");				
+			mav.addObject("msg", "Reset password link is sent to your registered Email address");
+			
+		}else{	
+			logger.info("Reset link  not sent");
+			mav.addObject("msg", "Not a Registered Email address");
+		
+		}
+		return mav;
 	}
 }

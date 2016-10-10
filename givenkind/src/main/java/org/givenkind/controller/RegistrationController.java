@@ -92,7 +92,7 @@ public class RegistrationController {
 				status.setComplete();
 				model.asMap().clear();
 		
-				return "login";		
+				return "loginRegisterSuccessful";		
 			}
 			else{
 				return "register";
