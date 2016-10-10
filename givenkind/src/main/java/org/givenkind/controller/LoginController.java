@@ -26,7 +26,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView launchLoginPage(@RequestParam(value="error", required=false) String error) {
-		logger.debug("launchLoginPage::BEGIN");
+		System.out.println("launchLoginPage::BEGIN");
 		ModelAndView mav = new ModelAndView();
 		LoginDTO loginDTO = new LoginDTO();
 		loginDTO.setValid(false);
@@ -34,10 +34,11 @@ public class LoginController {
 		mav.setViewName("login");
 		
 		if(error != null) {
-			mav.addObject("error", error);
-		}
+			mav.addObject("error", "Invalid username and password!");
 		
-		logger.debug("launchLoginPage::END");
+		}
+		logger.info("error msg "+error);
+		logger.info("launchLoginPage::END");
 		return mav;
 	}
 	

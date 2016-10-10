@@ -27,7 +27,8 @@
             <div class="msg col-sm-12">${message}</div>
         </c:if>
         <c:if test="${empty msg}">
-	        <form:form role='form' commandName="passwordResetDTO" class='form-horizontal' action="<c:url value='/resetPassword' />" method='post'>
+         <c:url var="addUrl" value="/resetPassword" />
+	        <form:form role='form' commandName="passwordResetDTO" class='form-horizontal' action="${addUrl}" method='post'>
 	            <div class='form-group'>
 	                <label for='email' class='control-label col-sm-4'>New Password</label>
 	                <div class='col-sm-8'>

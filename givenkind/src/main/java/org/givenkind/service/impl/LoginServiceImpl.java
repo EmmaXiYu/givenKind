@@ -59,15 +59,17 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	@Transactional
-	public void forgotPassword(ForgotPasswordDTO dto) throws NoSuchUserException {
+	public boolean forgotPassword(ForgotPasswordDTO dto,String httpURL ) throws NoSuchUserException {
+		boolean status=false;
+		PasswordResetAuthorizationDTO prDTO = new PasswordResetAuthorizationDTO();
 		String emailAddress = dto.getEmail();
 		UserLogon userLogon = userLogonRepository.findByLoginId(emailAddress);
 		if(userLogon != null) {
+			log.info("user exist");
 			PasswordReset pr = new PasswordReset();
 			pr.setUser(userLogon);
-			pr = passwordResetRepo.save(pr);
+			pr = passwordResetRepo.save(pr);			
 			
-			PasswordResetAuthorizationDTO prDTO = new PasswordResetAuthorizationDTO();
 			prDTO.setCreatedAt(pr.getCreatedAt());
 			prDTO.setId(pr.getId());
 			prDTO.setUniqueResetKey(pr.getUniqueResetKey());
@@ -75,14 +77,17 @@ public class LoginServiceImpl implements LoginService {
 			MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 			map.add("id", String.valueOf(pr.getId()));
 			map.add("uniqueResetKey", pr.getUniqueResetKey());
-			String passwordResetLink=UriComponentsBuilder.fromPath("/resetPassword").queryParams(map).build().toUriString();
+			String passwordResetLink=UriComponentsBuilder.fromPath("resetPassword").queryParams(map).build().toUriString();
 			prDTO.setPasswordResetLink(passwordResetLink);
+			log.info(passwordResetLink);				
 			
-			
-			emailService.forgotPasswordEmail(prDTO);
+			emailService.forgotPasswordEmail(prDTO,httpURL);
+			status =true;
 		} else {
-			log.error("no such user "+emailAddress);
+			log.info("no such user "+emailAddress);
+			status =false;
 		}
+		return status;
 	}
 	
 	@Override
