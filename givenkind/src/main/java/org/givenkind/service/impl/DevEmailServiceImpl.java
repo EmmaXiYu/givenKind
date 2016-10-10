@@ -91,7 +91,7 @@ public class DevEmailServiceImpl implements EmailService {
 		generateMailMessage = new MimeMessage(getMailSession);
 		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailid));
 		//generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(emailid));
-		generateMailMessage.setSubject("Greetings from Crunchify..");		
+		generateMailMessage.setSubject("Greetings from giveNkind..");		
 		generateMailMessage.setContent(emailBody, "text/html");
 		System.out.println("Mail Session has been created successfully..");
  
