@@ -185,8 +185,7 @@ public class SearchController extends AbstractProfileController {
 		List<SearchResultDTO> searchResults = new ArrayList<SearchResultDTO>();
 		boolean hasPreviousPage = false;
 		boolean hasNextPage = false;
-		boolean nonprofituser = false;
-		boolean formPost = false;
+		boolean nonprofituser = false;		
 		
 		if(this.isUserANonProfit()) {
 			nonprofituser =true;					
@@ -217,7 +216,6 @@ public class SearchController extends AbstractProfileController {
 		
 		mav.addObject("userId" , this.getMyUserId());
 		mav.addObject("booleanNPuser" , nonprofituser);
-		mav.addObject("booleanFormPost" , formPost);
 		
 		log.info("search info is "+generateQueryParams(searchCriteriaDTO));
 		
@@ -261,7 +259,7 @@ public class SearchController extends AbstractProfileController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView getSearchResults(@ModelAttribute("searchCriteriaDTO") SearchCriteriaDTO searchCriteriaDTO,
 			BindingResult result, SessionStatus status, Model model) {
-		ModelAndView mav = new ModelAndView();		
+		ModelAndView mav = new ModelAndView();
 		
 		searchCriteriaDTO.setDistance(Math.max(searchCriteriaDTO.getDistance(), 0));
 		if(searchCriteriaDTO.getItemCategories() == null)
@@ -280,11 +278,8 @@ public class SearchController extends AbstractProfileController {
 		List<SearchResultDTO> searchResults = new ArrayList<SearchResultDTO>();
 		boolean hasPreviousPage = false;
 		boolean hasNextPage = false;
-		boolean formPost = true;
-		boolean nonprofituser = false;
 		
 		if(this.isUserANonProfit()) {
-			nonprofituser =true;
 			Page<DonorlistItem> pagedSearchResults = searchService.processSearchForNonProfit(searchCriteriaDTO);
 			hasPreviousPage = pagedSearchResults.hasPrevious();
 			hasNextPage = pagedSearchResults.hasNext();
@@ -292,7 +287,6 @@ public class SearchController extends AbstractProfileController {
 				searchResults.add(convert(i));
 			}
 		} else {
-			nonprofituser =false;
 			Page<WishlistItem> pagedSearchResults = searchService.processSearchForDonor(searchCriteriaDTO);
 			hasPreviousPage = pagedSearchResults.hasPrevious();
 			hasNextPage = pagedSearchResults.hasNext();
@@ -313,11 +307,8 @@ public class SearchController extends AbstractProfileController {
 		mav.addObject("itemCategories", this.populateItemCategories());
 		
 		mav.addObject("userId" , this.getMyUserId());
-		mav.addObject("booleanFormPost" , formPost);
-		mav.addObject("booleanNPuser" , nonprofituser);
 		
 		log.info("search info is "+generateQueryParams(searchCriteriaDTO));
-		
 		
 		return mav;
 	}

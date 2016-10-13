@@ -52,14 +52,10 @@
 						<td>Impact:</td>
 						<td><c:out value="${wishlistDTO.impact}" escapeXml='true'/></td>
 					</tr>
-						</table>
-				
-					<a href="startDonorTransaction?itemId=${wishlistDTO.id}">
-	   					<button>Start a Transaction</button></a>
-				  
-				  	<button id="back"  type="button">Cancel</button>
-				
-			
+				</table>
+				<a href="startDonorTransaction?itemId=${wishlistDTO.id}">
+   					<button>Start a Transaction</button>
+				</a>
 				</c:if>
 				
 				<c:if test="${not empty donorlistDTO }">
@@ -89,15 +85,10 @@
 						<td>Fair market value:</td>
 						<td><c:out value="${donorlistDTO.fairMarketValue}" escapeXml='true'/></td>
 					</tr>
-					</table>
-				
-						<a href="startNpTransaction?itemId=${donorlistDTO.id}">
-   						<button>Start a Transaction</button>
-						</a>
-					
-				   <button id="back" type="button">Cancel</button>
-				
-				
+				</table>
+				<a href="startNpTransaction?itemId=${donorlistDTO.id}">
+   					<button>Start a Transaction</button>
+				</a>
 				</c:if>
 
 			</c:if>
@@ -108,5 +99,4 @@
 	<%@ include file="footer.jsp" %>
 <script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
 <script src="<c:url value="/js/bootstrap.min.js" />"></script>
-<script src="<c:url value="/js/validation.js" />"></script>
 </body>

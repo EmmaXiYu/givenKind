@@ -27,7 +27,7 @@
 			<div class='col-sm-12'>
 				<h1>Create Donation List Item</h1>
 				
-				<a href="<c:url value="/donor"/>">Go to Profile</a> 
+				<a href="<c:url var="addUrl" value="/donor"/>">Go to Profile</a> 
 <!-- 				<input -->
 <!-- 					type='hidden' id='profileId' name='profileId' -->
 <%-- 					value='${donorlistDTO.profileId}' /> --%>
@@ -44,7 +44,7 @@
 							<span style="font-size: 11px;font-weight: bold;">(Limit to 3 categories)</span>
 							</th>
 							<th class='col-sm-1'>Condition</th>
-							<th class='col-sm-1'>Fair Market Value</th>
+							<th class='col-sm-1'>Fair Market Value (USD)</th>
 							<th class='col-sm-3'>Description</th>
 						<tr>
 					</thead>
@@ -62,11 +62,21 @@
 										path='itemCategories' multiple = "true" selected='selected'></form:select>
 								</td>
 								<td><form:input id='condition' class='form-control' path="condition" placeholder="Condition"/></td>
-								<td><form:input id='fairMarketValue' type='number' class='form-control'
-										 path="fairMarketValue" min='0' step='0.01'></form:input></td>
-								<td><form:input id='description' type='textarea'
-										class='form-control' path='description' placeholder="Description"></form:input>
+								<td>
+									<form:input id='fairMarketValue' type='textarea' style="width:50px;" class='form-control'
+										 path="fairMarketValue" ></form:input>
 								</td>
+								
+								<td><form:select id='description' style="width:200px;"
+										class='form-control' path='description' selected='selected' placeholder="Description" >
+										<option value="Excellent">Excellent</option>
+										<option value="Very Good">Very Good</option>
+										<option value="Good">Good</option>
+										<option value="Fair">Fair</option>
+										<option value="Poor">Poor</option>
+									</form:select> 
+										<form:errors path="description" class="error" />
+								</td> 
 							</tr>
 							<!-- <tr>
 								<td><input type="submit" id="submitBtn" class="formbutton"
