@@ -84,10 +84,7 @@ public class RegistrationValidator implements Validator {
 		}
 		
 		//check website
-		if(StringUtils.isNullOrEmpty(registrationDTO.getWebsite())) {
-			e.rejectValue("website", FIELDS_REQUIRED_CODE);
-		}
-		else if(registrationDTO.getWebsite().length()>200) {
+		if(registrationDTO.getWebsite().length()>200) {
 			e.rejectValue("website", FIELD_LENGTH_CODE);
 		}
 		

@@ -88,7 +88,8 @@
 							<form:select id='itemCategories' class='form-control' path='itemCategories' items="${itemCategories}" multi="true"></form:select>
 							<form:errors path='itemCategories' class='error'></form:errors>
 						</div>
-					</div>
+					</div>					
+					<c:if test="${booleanNPuser==false}">
 					<div class='form-group'>
 						<label for='nonprofitCategories' class='control-label col-sm-4'>Non-profit Categories</label>
 						<div class='col-sm-8'>
@@ -105,6 +106,8 @@
 							</label>
 						</div>
 					</div>
+					</c:if>
+					
 					<input type="hidden" name="pageNumber" value="0">
 					<div class='form-group'>
 						<div class='col-sm-offset-4 col-sm-8'>

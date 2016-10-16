@@ -185,6 +185,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 		profile.setApprovalStatus("Approved");
 		profile.setState(state);
 		profile.setZipCode(donorRegistrationDTO.getZip());
+		profile.setContactEmail(donorRegistrationDTO.getEmail());
+		profile.setPhone1(donorRegistrationDTO.getContactPhone());
 		profile.setModifiedDate(new Date(Calendar.getInstance().getTimeInMillis()));
 		profile.setModifiedBy(donorRegistrationDTO.getEmail());
 		profile = profileRepository.save(profile);

@@ -42,7 +42,7 @@
 					<button class='btn btn-default' type="submit">Go!</button>
 				</div>
 			</div>
-			<div>Forgot Password? <a href="/givenkind/forgot">Reset Password</a></div>
+			<div>Forgot Password? <a href="<c:url value="/forgot"/>">Reset Password</a></div>
 			<br/>
 			<br/>
 			<p>Need an account? Register here: <a href="register">Non-profits</a> or <a href="registerDonor">Donors</a></p>
