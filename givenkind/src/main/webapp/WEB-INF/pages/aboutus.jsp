@@ -36,7 +36,7 @@
 			<p>At giveNkind, our mission is to make giving more personal and purposeful.  We do this by providing a searchable, online 
 			database that creates opportunities for individuals with items to donate to find, and directly connect with, registered 
 			nonprofits that can re-purpose those items for good within their community.
-			giveNkind is a registered 501(c)(3) organization.  View our IRS determination letter here.  For a quick overview of 
+			giveNkind is a registered 501(c)(3) organization.  View our <a href="<c:url value="/pdf/501c3_determination_letter.pdf"/>" target="_blank">IRS determination letter here</a>.  For a quick overview of 
 			giveNkind, our mission and board member contact information, download our giveNkind Summary information page.  
 			Please contact us at info@givenkind.org or (847) 802-8799 for more information.</p>
 

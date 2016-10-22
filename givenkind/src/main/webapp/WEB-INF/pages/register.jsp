@@ -114,17 +114,20 @@ function checkEmail(){
 			</div>
 			<div class='form-group'>
 				<label class='control-label col-sm-4'>Pickup Service</label>
-				<div class='col-sm-4'>
+				
+					<div class='col-sm-4'>
 					<div class='checkbox'>
-						<label for='pickupService'>
-							<form:checkbox id='pickupService' path='pickupService'></form:checkbox> Yes
+						<label for='pickupService'>							
+							<form:radiobutton value='Yes' id='pickupServiceY' path='pickupService' checked="checked"/>Yes
+							<form:radiobutton value='No' id='pickupServiceN' path='pickupService'/>No 
 							<form:errors path='pickupService' class='error'></form:errors>
 						</label>
 					</div>
 				</div>
+				
 				<div class='col-sm-4'>
 					<label for='pickupDistance' class='control-label'>Distance Willing To Travel(in Miles)</label>
-					<form:input type='text'  min='1' id='pickupDistance' class='form-control'  path='pickupDistance' maxlength='9' disabled="true" onkeypress="return isNumeric(event)"></form:input>
+					<form:input type='text'  min='1' id='pickupDistance' class='form-control'  path='pickupDistance' maxlength='9' onkeypress="return isNumeric(event)"></form:input>
 					<form:errors path='pickupDistance' class='error'></form:errors>
 				</div>
 			</div>

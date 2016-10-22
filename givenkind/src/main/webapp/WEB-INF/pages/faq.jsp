@@ -41,7 +41,7 @@
 		<p>Fair Market Value (FMV) is what you can claim on your tax return for the donation of your item.  The FMV is what a 
 		buyer would currently pay for your item if you were to resell it.  For example, if you paid $1,000 for a brand new 
 		computer several years ago, your deduction would not be $1000 for the donated item, but its estimated current value.  
-		For more information on FMV, please visit the IRS page <a href="http://www.irs.gov/pub/irs-pdf/p561.pdf">http://www.irs.gov/pub/irs-pdf/p561.pdf</a></p>
+		For more information on FMV, please visit the IRS page <a href="http://www.irs.gov/pub/irs-pdf/p561.pdf" target="_blank">http://www.irs.gov/pub/irs-pdf/p561.pdf</a></p>
 		
 		<h3>Why haven’t I heard from a nonprofit or donor I contacted? </h3>
 		<p>Please give your nonprofit or donor some time to respond.  If you don’t hear from them in a timely manner, please 
@@ -94,7 +94,7 @@
 		
 		<h3>What kind of items can I request?</h3>
 		<p>All types of items!  To truly understand what we mean, take the site for a test drive. Use the search function to see 
-		what kids of items are needed in your area.  You may find that what nonprofits need is something you already have!</p>
+		what kinds of items are needed in your area.  You may find that what nonprofits need is something you already have!</p>
 		
 		<h3>Can nonprofits request a service through this site?</h3>
 		<p>We currently only allow postings for material donation needs.</p>
@@ -110,7 +110,7 @@
 		<h3>How do I register to donate items through giveNkind?</h3>
 		<p>Membership is completely free and you can register here.</p>
 		
-		<h3>Can I receive a tax receipt for my donation?</h3>
+		<h3><a id="taxline">Can I receive a tax receipt for my donation?</a></h3>
 		<p>Yes! Only 501(c)(3) nonprofits can register with giveNkind, which means that every donation you make with us can get a 
 		tax receipt.Please ask for a receipt when you make a donation!</p>
 		
