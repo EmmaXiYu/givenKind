@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.givenkind.dto.DonorlistDTO;
+import org.givenkind.dto.WishlistDTO;
 import org.givenkind.service.DonorlistService;
 import org.givenkind.service.ReferenceDataService;
 import org.slf4j.Logger;
@@ -55,7 +56,7 @@ public class DonorlistController extends AbstractProfileController {
 			userId = getMyUserId();
 		}
 		
-		DonorlistDTO dto = new DonorlistDTO();
+		/*DonorlistDTO dto = new DonorlistDTO();
 		dto.setCondition("");
 		dto.setDateExpires(new Date());
 		dto.setDescription("");
@@ -65,9 +66,10 @@ public class DonorlistController extends AbstractProfileController {
 		dto.setItemName("");
 		dto.setQuantity(1);
 		dto.setUserId(userId);
-		model.addAttribute("donorlistDTO", dto);
-		List<DonorlistDTO> items = donorlistService.getListOfDonatedItems(userId);
+		//model.addAttribute("donorlistDTO", dto);
+*/		List<DonorlistDTO> items = donorlistService.getListOfDonatedItems(userId);
 		model.addAttribute("donatedItems", items);
+		model.addAttribute("donorlistDTO", new DonorlistDTO());
 		return "donorlist";
 	}
 	
@@ -115,7 +117,7 @@ public class DonorlistController extends AbstractProfileController {
 		
 		model.addAttribute("donatedItems", items);
 		
-		DonorlistDTO dto = new DonorlistDTO();
+		/*DonorlistDTO dto = new DonorlistDTO();
 		dto.setCondition("");
 		dto.setDateExpires(new Date());
 		dto.setDescription("");
@@ -124,8 +126,9 @@ public class DonorlistController extends AbstractProfileController {
 		dto.setItemCategories(populateItemCategoryList());
 		dto.setItemName("");
 		dto.setQuantity(1);
-		dto.setUserId(userId);
-		model.addAttribute("donorlistDTO", dto);
+		dto.setUserId(userId);*/
+		model.addAttribute("donorlistDTO", new DonorlistDTO());
+		
 		return "donorlist";
 	}
 	
