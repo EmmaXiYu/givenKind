@@ -74,7 +74,7 @@
 			<h3>5. Update your Donation List.</h3>
 			
 			<p>Our services are intended for more than just one-time use.  After donating an item to a nonprofit, make sure 
-			you remove the item</a> from your profile so other nonprofits using the site know that your item is no longer 
+			you remove the item from your profile so other nonprofits using the site know that your item is no longer 
 			available. You can also post more items that you have to give to keep nonprofits up-to-date on you can help 
 			them continue to do good in their communities.</p>
 			
