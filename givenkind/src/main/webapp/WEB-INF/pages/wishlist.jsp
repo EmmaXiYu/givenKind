@@ -157,7 +157,8 @@
 			var itemCategories = document.getElementById('itemCategories').value;
 			var note = document.getElementById('note').value;
 			var impact = document.getElementById('impact').value;
-			if(!itemName || !dateExpires || !quantityDesired || !itemCategories || !note || !impact)
+			var comments = document.getElementById('comments').value;
+			if(!itemName || !dateExpires || !quantityDesired || !itemCategories || !note || !impact || !comments)
 			{
 				document.getElementById("submitBtn").disabled=true;
 			} 

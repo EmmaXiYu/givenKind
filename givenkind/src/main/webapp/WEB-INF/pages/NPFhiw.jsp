@@ -34,14 +34,14 @@
 			
 			<h3>1. Register with us.</h3>
 			
-			<em>To use our services, your charitable organization must be a <a href="http://www.irs.gov/Charities-&-Non-Profits/Charitable-Organizations/Exemption-Requirements-Section-501%28c%29%283%29-Organizations">501(c)(3) registered nonprofit.</a></em>
+			<em>To use our services, your charitable organization must be a <a href="http://www.irs.gov/Charities-&-Non-Profits/Charitable-Organizations/Exemption-Requirements-Section-501%28c%29%283%29-Organizations" target="_blank">501(c)(3) registered nonprofit.</a></em>
 			<br/>
 			<br/>
-			<p>Register your organization <a href='register'>here</a> using your <a href="http://www.irs.gov/Charities-&amp;-Non-Profits/Employer-Identification-Number">Employer Identification Number (EIN)</a> and we'll verify your
-			registration and send you a confirmation email within 1 business day.</p>
+			<p>Register your organization <a href='register'>here</a> using your <a href="http://www.irs.gov/Charities-&amp;-Non-Profits/Employer-Identification-Number" target="_blank">Employer Identification Number (EIN)</a> and we'll verify your
+			registration and send you a confirmation email within 1 business day.</p> 
 			
 			<h3>2. Post your wish list.</h3>
-			<p>Click the link in your confirmation email and follow the instructions provided to post your <a href="/wishlist">wishlist</a> on givenkind.org.  By posting your wish list, your organization becomes part of our searchable database of nonprofits in need, and will be visible to all donors who visit our site.</p>  
+			<p>Click the link in your confirmation email and follow the instructions provided to post your wishlist</a> on givenkind.org.  By posting your wish list, your organization becomes part of our searchable database of nonprofits in need, and will be visible to all donors who visit our site.</p>  
 			 
 			<h3>3. Connect with a donor.</h3>
 			<p>At giveNkind, we believe in creating direct connections between donors with items to give and the nonprofits that need them.  Once a potential match is identified, contact information is provided so the two parties can communicate directly with one another without a middle man.  There are two ways this connection can happen:</p>
@@ -51,10 +51,10 @@
 			</ol> 
 						
 			<h3>4. Receive a donation.</h3>
-			<p>Once initial email contact is established, you will need to determine how, when and where you will meet the donor to exchange the donated goods for a <a href="/faq">tax receipt</a>.  After the exchange, you are free to use the new item(s) you receive to impact the community you serve and the donor gets to claim their charitable donation on this year's taxes.  <em>Win-win</em>.</p>
+			<p>Once initial email contact is established, you will need to determine how, when and where you will meet the donor to exchange the donated goods for a <a href="faq#taxline">tax receipt</a>.  After the exchange, you are free to use the new item(s) you receive to impact the community you serve and the donor gets to claim their charitable donation on this year's taxes.  <em>Win-win</em>.</p>
 			 	 
 			<h3>5. Update your wish list.</h3>
-			<p>Our services are intended for more than just one-time use.  After receiving an item from a donor, make sure you update your <a href="/faq">wishlist</a> to reflect receipt of the donation so other donors using the site know that you no longer need to item.  You can also post more items that you need to keep donors up-to-date on how they can help you!</p>
+			<p>Our services are intended for more than just one-time use.  After receiving an item from a donor, make sure you update your wishlist</a> to reflect receipt of the donation so other donors using the site know that you no longer need to item.  You can also post more items that you need to keep donors up-to-date on how they can help you!</p>
 			 
 		</div>
 	</div>
