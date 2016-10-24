@@ -28,7 +28,7 @@
 					<form:errors path='missionStatement' class='error'></form:errors>
 				</div>
 			</div>
-			<div class='form-group required'>
+			<div class='form-group'>
 				<label for='website' class='control-label col-sm-4'>Website</label>
 				<div class='col-sm-8'>
 					<form:input type='text' id='website' class='form-control' path='website' maxlength='200'></form:input>

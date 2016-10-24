@@ -120,10 +120,8 @@ public class RegistrationController {
 	}
 
 	@ModelAttribute("nonprofitCategoryList")
-	public List<String> populateNonprofitCategoryList() {
-		List<String> nonprofitCategories = referenceDataService.getNonprofitCategoryList();
-		nonprofitCategories.remove("");
-		return nonprofitCategories;
+	public List<String> populateNonprofitCategoryList() {	
+		return referenceDataService.getNonprofitCategoryList();
 	}
 
 }

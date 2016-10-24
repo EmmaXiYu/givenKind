@@ -313,7 +313,7 @@ public class SearchController extends AbstractProfileController {
 		return mav;
 	}
 	
-	public List<String> populateNonprofitCategories() {
+	public List<String> populateNonprofitCategories() {		
 		return referenceDataService.getNonprofitCategoryList();
 	}
 	
