@@ -50,23 +50,35 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<c:choose>
-					<c:when test="${hasPreviousPage}">
-						<a href="<c:url value="${previousPageQueryParams}"/>" > Previous </a>
-					</c:when>
-					<c:when test="${not hasPreviousPage}"> Previous </c:when>
-				</c:choose>
-				|
-				<c:choose>
-					<c:when test="${hasNextPage}">
-						<a href="<c:url value="${nextPageQueryParams}"/>" > Next </a>
-					</c:when>
-					<c:when test="${not hasNextPage}"> Next </c:when>
-				</c:choose>
+				<table>
+					<tr>
+						<td class='col-sm-3'>
+							<c:choose>
+								<c:when test="${hasPreviousPage}">
+									<a href="<c:url value="${previousPageQueryParams}"/>" > Previous </a>
+								</c:when>
+								<c:when test="${not hasPreviousPage}"> Previous </c:when>
+							</c:choose>
+							|
+							<c:choose>
+								<c:when test="${hasNextPage}">
+									<a href="<c:url value="${nextPageQueryParams}"/>" > Next </a>
+								</c:when>
+								<c:when test="${not hasNextPage}"> Next </c:when>
+							</c:choose>
+							</td>
+						<td class='col-sm-3'>					
+							<c:if test="${booleanFormPost}">
+							<a href="search">Back to All Items </a>
+							</c:if>
+						</td>
+						
+					</tr>
+				</table>	
 			</div>
 			<div class=' col-sm-3'>
 				<h1>Search Criteria</h1>
-				<form:form role='form' class='form-horizontal' action='search' method='get' commandName='searchCriteriaDTO'> 
+				<form:form role='form' class='form-horizontal' action='search' method='post' commandName='searchCriteriaDTO'> 
 		    		<div class='form-group'>
 						<label for='keyword' class='control-label col-sm-4'>Keyword</label>
 						<div class='col-sm-8'>
