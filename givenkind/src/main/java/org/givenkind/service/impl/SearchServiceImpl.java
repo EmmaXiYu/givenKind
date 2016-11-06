@@ -99,11 +99,26 @@ public class SearchServiceImpl implements SearchService {
 			});
 		}
 		
-		// ///(Keyword spec or item spec)and zipcode, item category, NP category)
+		
 		Specifications<T> spec = Specifications.where(lst.get(0));
-		spec = spec.or(lst.get(1));
-		for (int i = 2; i < lst.size(); i++) {
+		//For Donor Search
+		// (Keyword spec or item spec or NP name Spec)and zipcode, item category, NP category,distance,pickupservice, date)
+		if(lst.size()== 10){
+		for (int i = 1; i <=2; i++) {
+			spec = spec.or(lst.get(i));
+		}
+		
+		for (int i = 3; i < lst.size(); i++) {
 			spec = spec.and(lst.get(i));
+		}
+		}//For NP Search
+		// (Keyword spec or item spec)and zipcode, item category,distance, date)
+		else{
+			spec = spec.or(lst.get(1));
+			for (int i = 2; i < lst.size(); i++) {
+				spec = spec.and(lst.get(i));
+			}
+			
 		}
 		
 		return spec;
@@ -117,19 +132,18 @@ public class SearchServiceImpl implements SearchService {
 				"id");
 
 		Specification<DonorlistItem> distanceSpec, itemCategoriesSpec, keywordSpec,
-				 zipCodeSpec,dateExpiresSpec, itemDespSpec;
+				 zipCodeSpec,dateExpiresSpec, itemDespSpec,quantitySpec;
 
 		distanceSpec = (createDonorlistItemDistanceSpecification(searchDTO.getDistance()));
-		itemCategoriesSpec = (withDonorItemCategories(searchDTO.getItemCategories()));
-		//nonProfitCategoriesSpec = (withDonorNonProfitCategories(searchDTO.getNonprofitCategories()));
+		itemCategoriesSpec = (withDonorItemCategories(searchDTO.getItemCategories()));		
 		keywordSpec = (createDonorlistItemKeywordSpecification(searchDTO.getKeyword()));
-		itemDespSpec = (createDonorlistItemDescriptionSpecification(searchDTO.getKeyword()));
-		//pickUpServiceSpec = (createDonorlistItemPickupServiceSpecification(searchDTO.getPickUpService()));
+		itemDespSpec = (createDonorlistItemDescriptionSpecification(searchDTO.getKeyword()));		
 		zipCodeSpec = (createDonorlistItemZipcodeSpecification(searchDTO.getZipCode()));
 		dateExpiresSpec = (createDonorlistItemDateExpiresSpecification(new Date()));
+		quantitySpec = (createDonorlistItemQuantitySpecification(0));
 
 		List<Specification<DonorlistItem>> lst = Arrays.asList(itemDespSpec,keywordSpec,distanceSpec, itemCategoriesSpec,
-				 zipCodeSpec,dateExpiresSpec );
+				 zipCodeSpec,dateExpiresSpec,quantitySpec );
 
 		return donorItemRepository.findAll(this.joinSpecifications(lst), p);
 	}
@@ -166,17 +180,18 @@ public class SearchServiceImpl implements SearchService {
 			}
 		};
 	}
-	/*private Specification<DonorlistItem> createDonorlistItemPickupServiceSpecification(final Boolean pickUpService) {
-		// TODO Auto-generated method stub
+	private Specification<DonorlistItem> createDonorlistItemQuantitySpecification(final Integer qty) {
 		return new Specification<DonorlistItem>() {
 
 			@Override
 			public Predicate toPredicate(Root<DonorlistItem> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				// TODO Auto-generated method stub
-				return cb.equal(cb.literal(1), cb.literal(1));
-			}
+					
+					return cb.greaterThan(root.get("quantity").as(Integer.class),qty);
+				}
+			
 		};
-	}*/
+	}
+
 
 	private Specification<DonorlistItem> createDonorlistItemDescriptionSpecification(final String keyword) {
 		return new Specification<DonorlistItem>() {
@@ -313,7 +328,7 @@ public class SearchServiceImpl implements SearchService {
 				"id");
 
 		Specification<WishlistItem> distanceSpec, itemCategoriesSpec, nonProfitCategoriesSpec, keywordSpec,
-				pickUpServiceSpec, zipCodeSpec,dateExpiresSpec,itemDespSpec;
+				pickUpServiceSpec, zipCodeSpec,dateExpiresSpec,itemDespSpec,nonProfitNameSpec,quantitySpec;
 
 		distanceSpec = (createWishlistItemDistanceSpecification(searchDTO.getDistance()));
 		itemCategoriesSpec = (createWishlistItemItemCategoriesSpecification(searchDTO.getItemCategories()));
@@ -321,11 +336,13 @@ public class SearchServiceImpl implements SearchService {
 				searchDTO.getNonprofitCategories()));
 		keywordSpec = (createWishlistItemKeywordSpecification(searchDTO.getKeyword()));
 		itemDespSpec = (createWishlistItemItemDespSpecification(searchDTO.getKeyword()));
+		nonProfitNameSpec = (createWishlistNonProfitNameSpecification(searchDTO.getKeyword()));
 		pickUpServiceSpec = (createWishlistItemPickupServiceSpecification(searchDTO.getPickUpService()));
 		zipCodeSpec = (createWishlistItemZipcodeSpecification(searchDTO.getZipCode()));
 		dateExpiresSpec =(createWishlistItemDateExpiresSpecification(new Date()));
-		List<Specification<WishlistItem>> lst = Arrays.asList(keywordSpec,itemDespSpec,distanceSpec, itemCategoriesSpec, nonProfitCategoriesSpec,
-				pickUpServiceSpec, zipCodeSpec,dateExpiresSpec);
+		quantitySpec =(createWishlistItemQuantitySpecification(0));
+		List<Specification<WishlistItem>> lst = Arrays.asList(keywordSpec,itemDespSpec,nonProfitNameSpec,distanceSpec, itemCategoriesSpec, nonProfitCategoriesSpec,
+				pickUpServiceSpec, zipCodeSpec,dateExpiresSpec,quantitySpec);
 		return wishlistItemRepository.findAll(this.joinSpecifications(lst), p);
 
 		
@@ -344,6 +361,16 @@ public class SearchServiceImpl implements SearchService {
 					return cb.greaterThanOrEqualTo(root.get("dateExpires").as(Date.class), cb.literal(date));
 
 				}
+			}
+		};
+	}
+	private Specification<WishlistItem> createWishlistItemQuantitySpecification(final Integer qty) {
+		return new Specification<WishlistItem>() {
+
+			@Override
+			public Predicate toPredicate(Root<WishlistItem> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				
+				return cb.greaterThan(root.get("quantityDesired").as(Integer.class),qty);
 			}
 		};
 	}
@@ -395,6 +422,23 @@ public class SearchServiceImpl implements SearchService {
 		};
 	}
 
+	private Specification<WishlistItem> createWishlistNonProfitNameSpecification(final String keyword) {
+		return new Specification<WishlistItem>() {
+
+			@Override
+			public Predicate toPredicate(Root<WishlistItem> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				
+				if(keyword == null || keyword.isEmpty()) {
+					return cb.equal(cb.literal(1), cb.literal(1));
+				}else{									
+					Join<WishlistItem, UserLogon> j1 = root.join("nonProfitUserLogon");
+					Join<UserLogon, Profile> j2 = j1.join("profile");								
+					return j2.get("organizationName").as(String.class).in(keyword);
+					
+				}
+			}
+		};
+	}
 	private Specification<WishlistItem> createWishlistItemItemDespSpecification(final String keyword) {
 		return new Specification<WishlistItem>() {
 

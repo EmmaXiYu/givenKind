@@ -23,7 +23,7 @@
 			<div class='col-sm-offset-3 col-sm-6'>
 			<c:if test="${empty error}">
 				<c:if test="${not empty wishlistDTO }">
-				<table>
+				<table  class='table'>
 					<tr>
 						<td>Item Name:</td>
 						<td><c:out value="${wishlistDTO.itemName}" escapeXml='true'/></td>
@@ -45,12 +45,16 @@
 						<td><fmt:formatDate value='${wishlistDTO.dateExpires}'></fmt:formatDate></td>
 					</tr>
 					<tr>
-						<td>Note:</td>
+						<td>Description:</td>
 						<td><c:out value="${wishlistDTO.note}" escapeXml='true'/></td>
 					</tr>
 					<tr>
 						<td>Impact:</td>
 						<td><c:out value="${wishlistDTO.impact}" escapeXml='true'/></td>
+					</tr>
+					<tr>
+						<td>Comments:</td>
+						<td><c:out value="${wishlistDTO.comments}" escapeXml='true'/></td>
 					</tr>
 				
 				<tr>
@@ -66,7 +70,7 @@
 				</c:if>
 				
 				<c:if test="${not empty donorlistDTO }">
-				<table>
+				<table class='table'>
 					<tr>
 						<td>Item Name:</td>
 						<td><c:out value="${donorlistDTO.itemName}" escapeXml='true'/></td>
@@ -91,6 +95,14 @@
 					<tr>
 						<td>Fair market value:</td>
 						<td><c:out value="${donorlistDTO.fairMarketValue}" escapeXml='true'/></td>
+					</tr>
+					<tr>
+						<td>Condition:</td>
+						<td><c:out value="${donorlistDTO.condition}" escapeXml='true'/></td>
+					</tr>
+					<tr>
+						<td>Description:</td>
+						<td><c:out value="${donorlistDTO.description}" escapeXml='true'/></td>
 					</tr>
 			
 				<tr>

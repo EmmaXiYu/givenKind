@@ -23,4 +23,8 @@ public interface DonorlistItemRepository extends JpaRepository<DonorlistItem, Lo
 	@Query("select di from DonorlistItem di " +
 	           "where di.dateExpires>=? and di.user=?")
 		List<DonorlistItem> findByDateExpiresAndUser(Date dateExpires, UserLogon user);
+	
+	@Query("select di from DonorlistItem di " +
+	           "where di.dateExpires>=? and di.user=? and di.quantity>'0'")
+		List<DonorlistItem> findByDateExpiresAndUserAndQuantity(Date dateExpires, UserLogon user);
 }

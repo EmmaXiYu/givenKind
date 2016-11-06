@@ -8,13 +8,16 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.givenkind.dto.ActiveTransactionItemsDTO;
+import org.givenkind.dto.CompletedTransactionsDTO;
 import org.givenkind.dto.DonorlistDTO;
 import org.givenkind.dto.ProfileDTO;
-import org.givenkind.dto.WishlistDTO;
+import org.givenkind.model.ActiveTransactionItems;
 import org.givenkind.model.DonorlistItem;
 import org.givenkind.model.WishlistItem;
+import org.givenkind.repository.ActiveTransactionItemsRepository;
 import org.givenkind.repository.ProfileRepository;
 import org.givenkind.repository.StatusCategoryRepository;
+import org.givenkind.repository.WishlistItemRepository;
 import org.givenkind.service.TransactionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class npTransactionController extends AbstractProfileController{
@@ -41,6 +45,12 @@ public class npTransactionController extends AbstractProfileController{
 	
 	@Inject
 	TransactionService transactionService;
+	
+	@Inject
+	ActiveTransactionItemsRepository activeTransactionItemsRepository;
+	
+	@Inject
+	WishlistItemRepository wishlistItemRepository;
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
@@ -76,6 +86,7 @@ public class npTransactionController extends AbstractProfileController{
 	@RequestMapping(value = "/itemDetails/finishAddingNpTransaction", method = RequestMethod.POST)
 	public String finishAddingDonorTransaction(@Valid @ModelAttribute("transDTO") ActiveTransactionItemsDTO transDTO
 				, Model model, @RequestParam(value="itemId", required=false) Long itemId){
+		
 				
 		DonorlistItem item = donorlistItemRepo.findById(itemId);
 		if(item == null) {
@@ -111,6 +122,23 @@ public class npTransactionController extends AbstractProfileController{
 		mav.setViewName("/npTransactions");
 		return mav;
 	}
+	@RequestMapping(value = "/completedNPtxn", method = RequestMethod.GET)
+	public ModelAndView launchCompletedTxnPage(Model model, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
+		Long userId = getMyUserId();
+		if (userId == null || userId == -1) {
+			log.info("no user found with id "+userId);
+			mav.addObject("error", "No user found");
+		}
+		
+		List<CompletedTransactionsDTO> transList = 
+				transactionService.getCompletedTransactions(userId,true);
+		model.addAttribute("transList", transList);
+		
+		mav.setViewName("/npCompletedTransactions");
+		return mav;
+	}
 	
 	@RequestMapping(value = "/cancelNpTransaction", method = RequestMethod.GET)
 	public String cancelNpTransaction(@RequestParam("transactionId") Long id,
@@ -120,11 +148,47 @@ public class npTransactionController extends AbstractProfileController{
 		return "redirect:npTransactions";
 	}
 	
+	@RequestMapping(value = "/cancelNpAcceptedTransaction", method = RequestMethod.GET)
+	public String cancelNPAcceptedTransaction(@RequestParam("transactionId") Long id,
+			 HttpServletRequest request){
+
+		transactionService.deleteAcceptedTransaction(id);	
+		return "redirect:npTransactions";
+	}
+	
 	@RequestMapping(value = "/confirmNpTransaction", method = RequestMethod.GET)
-	public String confirmNpTransaction(@RequestParam("transactionId") Long id,
-			HttpServletRequest request){
+	public String confirmNpTransaction(@RequestParam("transactionId") Long id,@RequestParam("qty") int qty,
+			HttpServletRequest request,RedirectAttributes redirectAttrs){
 		
-		transactionService.updateStatus(id, "Accepted");
+		log.info("inside confirmation ");
+		System.out.println("viji"+qty);
+		
+		ActiveTransactionItems itemToChange = activeTransactionItemsRepository.findById(id);
+		WishlistItem wItem = wishlistItemRepository.findById(itemToChange.getWishItemId());		
+		if(qty!=0){
+			if(wItem.getQuantityDesired()>= qty){
+				transactionService.updateStatus(id, "Accepted",qty);
+				log.info("Status accepted ");
+							
+			}
+			else if(wItem.getQuantityDesired()==0){
+				redirectAttrs.addFlashAttribute("msg","Your wishlist is already fulfilled. Please cancel the request.");
+				log.info("Status Not accepted ");
+				
+			}
+			else{
+				redirectAttrs.addFlashAttribute("msg","Not Allowed to accept more than required. Please edit to change the quantity");
+				log.info("Status Not accepted ");
+				
+			}
+		}
+		else{
+			redirectAttrs.addFlashAttribute("msg","Please enter valid Quantity");
+			log.info("Status Not accepted ");
+			
+		}
+		
+		
 		return "redirect:npTransactions";
 	}
 	

@@ -22,7 +22,7 @@
 		<div class='row'>
 			<div class='col-sm-offset-3 col-sm-6'>
 			<c:if test="${empty error}">
-				<table>
+				<table >
 					<tr>
 						<td>Donor Email:</td>
 						<td>

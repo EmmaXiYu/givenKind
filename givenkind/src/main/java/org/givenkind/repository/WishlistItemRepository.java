@@ -37,5 +37,8 @@ public interface WishlistItemRepository extends JpaRepository<WishlistItem, Long
 	           "where wi.dateExpires>=? and wi.nonProfitUserLogon=?")
 		List<WishlistItem> findByDateExpiresAndNonProfitUserLogon(Date dateExpires, NonProfitUserLogon logon);
 	
+	@Query("select wi from WishlistItem wi " +
+	           "where wi.dateExpires>=? and wi.nonProfitUserLogon=? and wi.quantityDesired>'0'")
+		List<WishlistItem> findByDateExpiresAndNonProfitUserLogonAndQuantity(Date dateExpires, NonProfitUserLogon logon);
 	
 }

@@ -21,7 +21,7 @@
 	<%@ include file="nav.jsp"%>
 	<div id='blankspace'></div>
 	<div id="mainContainer" class="container">
-		<div class='row'>
+		<div class='row'> 
 			<div class='col-sm-12'>
 				<h1>Create Wish List Item</h1>
 				<a href="<c:url value="/nonprofit"/>">Go to Profile</a>
@@ -122,9 +122,9 @@
 										escapeXml='true' /></td>
 								<td><c:out value="${wishlist.note}" escapeXml='true' /></td>
 								<td><c:out value="${wishlist.impact}" escapeXml='true' /></td>
-								<td><a
+								<td><%-- <a
 									href="<c:url value="/deleteWish?wishId=${wishlist.id}" />">Delete</a>
-									| <a href="<c:url value="/editWish?wishId=${wishlist.id}" />">Edit</a></td>
+									|  --%><a href="<c:url value="/editWish?wishId=${wishlist.id}" />">Edit</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -3,5 +3,4 @@ $(document).ready(function() {
 		parent.history.back();
 		return false;
 	});
-
 });
