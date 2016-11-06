@@ -1,16 +1,28 @@
 package org.givenkind.dto;
 
+import java.util.List;
+
+
+import org.givenkind.model.CompletedTransactions;
+import org.givenkind.model.DonorlistItem;
+import org.givenkind.model.Profile;
+import org.givenkind.model.WishlistItem;
+
 public class CompletedTransactionsDTO {
 	
 	private Long id;
 	
-	Long donorProfileId;
+	private Profile donorProfileId;
 	
-	private Long npProfileId;
+	private Profile npProfileId;
 
-	private Long donorItemId;
+	private DonorlistItem donorItemId;
 	
-	private Long npItemId;
+	private WishlistItem npItemId;
+	
+	private int quantity;
+	
+	private List<CompletedTransactions> completedTransactionItems;
 	
 	public long getId() {
 		return id;
@@ -20,35 +32,52 @@ public class CompletedTransactionsDTO {
 		this.id = id;
 	}
 
-	public long getDonorProfileId() {
+	public Profile getDonorProfileId() {
 		return donorProfileId;
 	}
 
-	public void setDonorProfileId(long donorProfileId) {
+	public void setDonorProfileId(Profile donorProfileId) {
 		this.donorProfileId = donorProfileId;
 	}
 
-	public long getNpProfileId() {
+	public Profile getNpProfileId() {
 		return npProfileId;
 	}
 
-	public void setNpProfileId(long npProfileId) {
+	public void setNpProfileId(Profile npProfileId) {
 		this.npProfileId = npProfileId;
 	}
 
-	public Long getDonorItemId() {
+	public DonorlistItem getDonorItemId() {
 		return donorItemId;
 	}
 
-	public void setDonorItemId(Long donorItemId) {
+	public void setDonorItemId(DonorlistItem donorItemId) {
 		this.donorItemId = donorItemId;
 	}
 
-	public Long getNpItemId() {
+	public WishlistItem getNpItemId() {
 		return npItemId;
 	}
 
-	public void setNpItemId(Long npItemId) {
+	public void setNpItemId(WishlistItem npItemId) {
 		this.npItemId = npItemId;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public List<CompletedTransactions> getCompletedTransactionItems() {
+		return completedTransactionItems;
+	}
+
+	public void setCompletedTransactionItems(
+			List<CompletedTransactions> completedTransactionItems) {
+		this.completedTransactionItems = completedTransactionItems;
 	}
 }

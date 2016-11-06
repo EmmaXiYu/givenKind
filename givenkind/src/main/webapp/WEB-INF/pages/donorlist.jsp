@@ -148,8 +148,9 @@
 			var quantityAvailable = document.getElementById('quantityAvailable').value;
 			var itemCategories = document.getElementById('itemCategories').value;
 			var fairMarketValue = document.getElementById('fairMarketValue').value;
-			var description = document.getElementById('description').value;
-			if(!itemName || !dateExpires || !quantityAvailable || !itemCategories || !fairMarketValue || !description)
+			var description = document.getElementById('description').value;		
+			var condition = document.getElementById('condition').value;
+			if(!itemName || !dateExpires || !quantityAvailable || !itemCategories || !fairMarketValue || !description ||!condition)
 			{
 				document.getElementById("submitBtn").disabled=true;
 			}

@@ -43,10 +43,12 @@
 				<label class='control-label col-sm-4'>Pickup Service</label>
 				<p class='form-control-static col-sm-8'><c:out value="${profileDTO.pickupService}" escapeXml='true'/></p>
 			</div>
-			<div class='form-group'>
-				<label class='control-label col-sm-4'>Pickup Distance</label>
-				<p class='form-control-static col-sm-8'><c:out value="${profileDTO.pickupDistance}" escapeXml='true'/></p>
-			</div>
+			<c:if test="${profileDTO.pickupService eq 'Yes'}">
+				<div class='form-group'>
+					<label class='control-label col-sm-4'>Pickup Distance</label>
+					<p class='form-control-static col-sm-8'><c:out value="${profileDTO.pickupDistance}" escapeXml='true'/></p>
+				</div>
+			</c:if>
 			<div class='form-group'>
 				<label for='employerIdentificationNumber' class='control-label col-sm-4'>EIN</label>
 				<p class='form-control-static col-sm-8'><c:out value="${profileDTO.employerIdentificationNumber}" escapeXml='true'/></p>

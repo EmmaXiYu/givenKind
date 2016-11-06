@@ -59,6 +59,19 @@
 		</sec:authorize>
 	</div>
 </div>
+
+<div class='row' id='gnk-home-btn2-row'>
+	<div class='col-sm-offset-4 col-sm-4 text-center'>
+		
+		<sec:authorize access="hasRole('ROLE_NONPROFIT')">
+			<a href='<c:url value="/completedNPtxn"/>' role='button' class='btnNonprofit'>View Completed Transactions</a>
+		</sec:authorize>
+		<sec:authorize access="hasRole('ROLE_DONOR')">
+			<a href='<c:url value="/completedDonortxn"/>' role='button' class='btnNonprofit'>View Completed Transactions</a>
+		</sec:authorize>
+	</div>
+	
+</div>
 			
 <%@ include file="footer.jsp" %>
 
