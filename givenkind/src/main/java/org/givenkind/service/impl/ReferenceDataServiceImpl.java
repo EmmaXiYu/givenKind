@@ -46,7 +46,7 @@ public class ReferenceDataServiceImpl implements ReferenceDataService {
 		
 		List<String> stateList = new ArrayList<String>();
 		List<State> states = stateRepository.findAll(sortByAbbreviationAsc());
-		stateList.add("");
+		//stateList.add("");
 		for (State state : states) {
 			stateList.add(state.getAbbreviation());
 		}
@@ -66,7 +66,7 @@ public class ReferenceDataServiceImpl implements ReferenceDataService {
 		}
 		List<NonProfitCategory> nonprofitCategories = nonprofitCategoryRepository.findAll(sortByIdAsc());
 		
-		nonprofitCategoryList.add("");
+		//nonprofitCategoryList.add("");
 		for (NonProfitCategory nonprofitCategory : nonprofitCategories) {
 			nonprofitCategoryList.add(nonprofitCategory.getName());
 		}

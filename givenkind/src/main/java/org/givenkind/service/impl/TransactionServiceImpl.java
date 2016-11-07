@@ -25,6 +25,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,6 +50,8 @@ public class TransactionServiceImpl implements TransactionService{
 	
 	@Inject
 	StatusCategoryRepository statusCategoryRepository;
+	
+	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Override
 	@Transactional
@@ -120,15 +124,39 @@ public class TransactionServiceImpl implements TransactionService{
 	@Override
 	public void deleteTransaction(Long transactionID) {
 		activeTransactionItemsRepository.delete(transactionID);
+		log.info("transaction deleted");
+		
 	}
 
 	@Override
 	@Transactional
-	public void updateStatus(Long transactionID, String newStatus) {
+	public void updateStatus(Long transactionID, String newStatus, int qty) {
 		ActiveTransactionItems itemToChange = activeTransactionItemsRepository.findById(transactionID);
 		StatusCategory category = statusCategoryRepository.findByStatusCategoryName(newStatus);
-		itemToChange.setStatusCategoryId(category.getId());
 		
+		if(qty!=itemToChange.getQuantity()){
+			itemToChange.setQuantity(qty);
+			activeTransactionItemsRepository.save(itemToChange);
+			log.info("Active txn quantity updated");			
+		}
+		if(itemToChange.getDonorItemId() == null && itemToChange.getWishItemId() != null){	
+			
+				WishlistItem wItem = wishlistItemRepository.findById(itemToChange.getWishItemId());	
+				wItem.setQuantityDesired(wItem.getQuantityDesired()-itemToChange.getQuantity());
+				wishlistItemRepository.save(wItem);		
+				log.info("wishlist qty updated ");
+			
+		}
+		else if(itemToChange.getDonorItemId() != null && itemToChange.getWishItemId() == null){
+			
+				DonorlistItem dItem = donorlistItemRepository.findById(itemToChange.getDonorItemId());	
+				dItem.setQuantity(dItem.getQuantity() - itemToChange.getQuantity());
+				donorlistItemRepository.save(dItem);
+				log.info("donorlist qty updated ");
+		
+		}
+		
+		itemToChange.setStatusCategoryId(category.getId());		
 		activeTransactionItemsRepository.save(itemToChange);
 	}
 	
@@ -147,32 +175,86 @@ public class TransactionServiceImpl implements TransactionService{
 		
 		completedTransactionRepository.save(completedTransaction);
 		activeTransactionItemsRepository.delete(transactionID);
+		log.info("Transaction complete");
+	
+	}
+
+	@Override
+	public void deleteAcceptedTransaction(Long transactionID) {
+		// TODO Auto-generated method stub
+		ActiveTransactionItems cancelledItem = activeTransactionItemsRepository.findById(transactionID);
+		if(cancelledItem.getDonorItemId() == null && cancelledItem.getWishItemId() != null){	
+			WishlistItem wItem = wishlistItemRepository.findById(cancelledItem.getWishItemId());
+			wItem.setQuantityDesired(wItem.getQuantityDesired() + cancelledItem.getQuantity());
+			wishlistItemRepository.save(wItem);	
+			log.info("Accepted wishlist withdrawn ");
+		}
+		else if(cancelledItem.getDonorItemId() != null && cancelledItem.getWishItemId() == null){
+			DonorlistItem dItem = donorlistItemRepository.findById(cancelledItem.getDonorItemId());
+			dItem.setQuantity(dItem.getQuantity() + cancelledItem.getQuantity());
+			donorlistItemRepository.save(dItem);
+			log.info("Accepted donorlist withdrawn ");
+		}
+		activeTransactionItemsRepository.delete(transactionID);
 		
-		if(completedItem.getDonorItemId() == null && completedItem.getWishItemId() != null){		
-			WishlistItem wItem = wishlistItemRepository.findById(completedItem.getWishItemId());		
-			
-			if(wItem.getQuantityDesired()> completedItem.getQuantity()){
-				wItem.setQuantityDesired(wItem.getQuantityDesired()-completedItem.getQuantity());
-				wishlistItemRepository.save(wItem);				
-			}
-			else if(wItem.getQuantityDesired()== completedItem.getQuantity()){
-				wishlistItemRepository.delete(wItem);			
+	}
+
+	@Override
+	public void updateTransitStatus(Long transactionID, String newStatus) {
+		// TODO Auto-generated method stub
+		ActiveTransactionItems itemToChange = activeTransactionItemsRepository.findById(transactionID);
+		StatusCategory category = statusCategoryRepository.findByStatusCategoryName(newStatus);
+		itemToChange.setStatusCategoryId(category.getId());		
+		activeTransactionItemsRepository.save(itemToChange);
+		
+	}
+
+	@Override
+	public List<CompletedTransactionsDTO> getCompletedTransactions(Long userId,
+			boolean isNP) {
+		List<CompletedTransactions> completedTransItems = new ArrayList<CompletedTransactions>();
+		List<CompletedTransactionsDTO> completedTransItemsDTO = new ArrayList<CompletedTransactionsDTO>();
+		Profile profile = profileRepository.findById(userId);
+		if(isNP){
+			completedTransItems = completedTransactionRepository.findByNpProfileId(userId);
+			for(CompletedTransactions completedTransItem : completedTransItems){
+				CompletedTransactionsDTO toList = new CompletedTransactionsDTO();
+				WishlistItem yourItem = wishlistItemRepository.findById(completedTransItem.getWishlistItemId());
+				DonorlistItem item = donorlistItemRepository.findById(completedTransItem.getDonorItemId());
 				
+				Profile donorProfile = profileRepository.findById(completedTransItem.getDonorProfileId());
+				Profile npProfile = profileRepository.findById(completedTransItem.getNpProfileId());
+				
+				toList.setId(completedTransItem.getId());
+				toList.setNpItemId(yourItem);
+				toList.setDonorItemId(item);
+				toList.setDonorProfileId(donorProfile);
+				toList.setNpProfileId(npProfile);
+				toList.setQuantity(completedTransItem.getQuantity());				
+				completedTransItemsDTO.add(toList);
 			}
 		}
-		else if(completedItem.getDonorItemId() != null && completedItem.getWishItemId() == null){
-			DonorlistItem dItem = donorlistItemRepository.findById(completedItem.getDonorItemId());
-			
-			if(dItem.getQuantity() > completedItem.getQuantity()){
-				dItem.setQuantity(dItem.getQuantity() - completedItem.getQuantity());
-				donorlistItemRepository.save(dItem);				
-			}
-			else if(dItem.getQuantity() == completedItem.getQuantity()){
-				donorlistItemRepository.delete(dItem);			
+		else{
+			completedTransItems = 
+					completedTransactionRepository.findByDonorProfileId(userId);
+			for(CompletedTransactions completedTransItem : completedTransItems){
+				CompletedTransactionsDTO toList = new CompletedTransactionsDTO();
+				DonorlistItem yourItem = donorlistItemRepository.findById(completedTransItem.getDonorItemId());
+				WishlistItem item = wishlistItemRepository.findById(completedTransItem.getWishlistItemId());								
+				Profile donorProfile = profileRepository.findById(completedTransItem.getDonorProfileId());
+				Profile npProfile = profileRepository.findById(completedTransItem.getNpProfileId());	
 				
+				toList.setId(completedTransItem.getId());
+				toList.setDonorItemId(yourItem);
+				toList.setNpItemId(item);
+				toList.setDonorProfileId(donorProfile);
+				toList.setNpProfileId(npProfile);
+				toList.setQuantity(completedTransItem.getQuantity());
+				
+				completedTransItemsDTO.add(toList);				
 			}
-		
 		}
+		return completedTransItemsDTO;
 	}
 	
 }

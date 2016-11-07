@@ -24,6 +24,9 @@
 		<div class='row'>
 			<div class='col-sm-12'>
 				<h1>Your Active Transactions</h1>
+				<c:if test="${not empty msg}">
+            		<div class="error col-sm-12">${msg}</div>
+       			 </c:if>
 				<table class='table'>
 					<thead>
 						<tr>
@@ -37,21 +40,31 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="trans" items="${transList}">
+						<form:form>
+						<c:forEach begin="1" var="trans" items="${transList}" end="${transList.size()}" varStatus="loop">
+						
 							<tr>
 								<td><c:out value="${trans.npItem.itemName}" escapeXml='true'/></td>
 								<td><c:out value="${trans.donorItem.itemName}" escapeXml='true'/></td>
-								<td><c:out value="${trans.quantity}" escapeXml='true'/></td>
+								
+								 <td><label for="name" class="control-label" id="text-info${loop.index}"><c:out value="${trans.quantity}" escapeXml='true'/></label></td>
+								
 								<td><c:out value="${trans.statusCategory.statusCategoryName}" escapeXml='true'/></td>
 								<td><c:out value="${trans.donorProfile.user.loginId}" escapeXml='true'/></td>
 								<td><c:out value="${trans.npProfile.user.loginId}" escapeXml='true'/></td>
 								<td>
 									<c:choose>
 										<c:when test="${trans.statusCategory.statusCategoryName eq 'Donor Requested'}">
-											<a href="<c:url value="/cancelNpTransaction?transactionId=${trans.id}" />">Cancel</a> | <a href="<c:url value="/confirmNpTransaction?transactionId=${trans.id}" />">Confirm</a>
+											 <a href="<c:url value="/confirmNpTransaction?transactionId=${trans.id}"/>" id="accept${loop.index}"  onclick="hlink(this,${loop.index})">Accept</a> | <a href="<c:url value="/cancelNpTransaction?transactionId=${trans.id}" />">Cancel</a> | <a href="#" id="edit" onclick="enableQty(${loop.index})"> Edit Quantity </a>
 										</c:when>
 										<c:when test="${trans.statusCategory.statusCategoryName eq 'In Transit'}">
-											<a href="<c:url value="/confirmNpRecipt?transactionId=${trans.id}" />">Confirm Recipt</a>
+											<a href="<c:url value="/confirmNpRecipt?transactionId=${trans.id}" />">Confirm Receipt</a>
+										</c:when>
+										<c:when test="${trans.statusCategory.statusCategoryName eq 'NP Requested'}">
+											 <a href="<c:url value="/cancelNpTransaction?transactionId=${trans.id}" />">Cancel</a>
+										</c:when>
+										<c:when test="${trans.statusCategory.statusCategoryName eq 'Accepted'}">
+											 <a href="<c:url value="/cancelNpAcceptedTransaction?transactionId=${trans.id}" />">Cancel</a>
 										</c:when>
 										<c:otherwise>
 
@@ -59,7 +72,9 @@
 									</c:choose>
 								</td>
 							</tr>
-					    </c:forEach>
+							</c:forEach>
+							</form:form>
+					
 					</tbody>
 				</table>
 			</div>
@@ -67,4 +82,52 @@
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>
+<script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
+<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/validation.js" />"></script>
+<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
+
+<script>
+function enableQty(x){
+	
+	 var text = $('#text-info'+x).text();		 
+	 var input = $('<input type="text" id="editQty" value="' + text + '" maxlength="5" onkeypress="return isNumeric(event)" class="form-control" />');		
+	 $('#text-info'+x).text('').append(input);
+	};
+
+function hlink(obj,x){
+	  window.alert("alerted");
+	  var  value;	  
+
+	  if(!document.getElementById('editQty')){
+			
+		 value = $('#text-info'+x).text();
+		 window.alert("no field");
+		 window.alert(value);
+		  
+	  }else{
+		  window.alert(document.getElementById('editQty').value);
+			 value=document.getElementById('editQty').value;
+		  
+		  
+	  }
+	  var url = obj.href;
+	    url = url + '&qty=' + value;
+   
+   $('#accept'+x).attr("href",url);
+   
+   window.alert(url);
+   return false;
+};
+	  
+function isNumeric(evt)
+		{
+			var charCode = (evt.which) ? evt.which : event.keyCode;
+			if( !( charCode > 47 && charCode < 58)) 
+				return false;		
+			return true;
+		};
+	
+
+</script>
 </html>

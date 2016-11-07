@@ -27,7 +27,7 @@
 			<div class='col-sm-12'>
 				<h1>Create Donation List Item</h1>
 				
-				<a href="<c:url var="addUrl" value="/donor"/>">Go to Profile</a> 
+				<a href="<c:url value="/donor"/>">Go to Profile</a> 
 <!-- 				<input -->
 <!-- 					type='hidden' id='profileId' name='profileId' -->
 <%-- 					value='${donorlistDTO.profileId}' /> --%>
@@ -148,8 +148,9 @@
 			var quantityAvailable = document.getElementById('quantityAvailable').value;
 			var itemCategories = document.getElementById('itemCategories').value;
 			var fairMarketValue = document.getElementById('fairMarketValue').value;
-			var description = document.getElementById('description').value;
-			if(!itemName || !dateExpires || !quantityAvailable || !itemCategories || !fairMarketValue || !description)
+			var description = document.getElementById('description').value;		
+			var condition = document.getElementById('condition').value;
+			if(!itemName || !dateExpires || !quantityAvailable || !itemCategories || !fairMarketValue || !description ||!condition)
 			{
 				document.getElementById("submitBtn").disabled=true;
 			}

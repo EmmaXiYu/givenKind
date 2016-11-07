@@ -46,8 +46,13 @@
 					<tr>
 						<td><input type="submit" id="submitBtn" class="formbutton"
 						value="Finish Editing Transaction Details"/></td>
-					</tr>
+						
+					
 					</form:form>
+					<td>
+							<a href='<c:url value="/search"/>'><button>Cancel</button></a>
+					</td>
+					</tr>
 				</table>
 				
 			</c:if>

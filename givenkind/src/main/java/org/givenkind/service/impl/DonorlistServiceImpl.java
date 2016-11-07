@@ -69,7 +69,7 @@ public class DonorlistServiceImpl implements DonorlistService {
 		List<DonorlistItem> donorlistItems = Collections.emptyList();
 		if (user != null) {
 			log.info("user not null");
-			donorlistItems = donorlistItemRepository.findByDateExpiresAndUser(new Date(),user);
+			donorlistItems = donorlistItemRepository.findByDateExpiresAndUserAndQuantity(new Date(),user);
 		} else {
 			log.info("user null");
 		}

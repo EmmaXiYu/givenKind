@@ -22,7 +22,7 @@
 		<div class='row'>
 			<div class='col-sm-offset-3 col-sm-6'>
 			<c:if test="${empty error}">
-				<table>
+				<table >
 					<tr>
 						<td>Donor Email:</td>
 						<td>
@@ -53,8 +53,13 @@
 					<tr>
 						<td><input type="submit" id="submitBtn" class="formbutton"
 						value="Finish Editing Transaction Details"/></td>
-					</tr>
+					
+					
 				</form:form>
+					<td>
+							<a href='<c:url value="/search"/>'><button>Cancel</button></a>
+						</td>
+						</tr>
 				</table>
 				</a>
 				

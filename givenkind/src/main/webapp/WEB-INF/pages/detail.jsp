@@ -23,7 +23,7 @@
 			<div class='col-sm-offset-3 col-sm-6'>
 			<c:if test="${empty error}">
 				<c:if test="${not empty wishlistDTO }">
-				<table>
+				<table  class='table'>
 					<tr>
 						<td>Item Name:</td>
 						<td><c:out value="${wishlistDTO.itemName}" escapeXml='true'/></td>
@@ -45,21 +45,32 @@
 						<td><fmt:formatDate value='${wishlistDTO.dateExpires}'></fmt:formatDate></td>
 					</tr>
 					<tr>
-						<td>Note:</td>
+						<td>Description:</td>
 						<td><c:out value="${wishlistDTO.note}" escapeXml='true'/></td>
 					</tr>
 					<tr>
 						<td>Impact:</td>
 						<td><c:out value="${wishlistDTO.impact}" escapeXml='true'/></td>
 					</tr>
-				</table>
-				<a href="startDonorTransaction?itemId=${wishlistDTO.id}">
-   					<button>Start a Transaction</button>
-				</a>
+					<tr>
+						<td>Comments:</td>
+						<td><c:out value="${wishlistDTO.comments}" escapeXml='true'/></td>
+					</tr>
+				
+				<tr>
+				<td>
+					<a href="startDonorTransaction?itemId=${wishlistDTO.id}">
+		   					<button>Start a Transaction</button></a>
+	   			</td>				  
+				 <td>
+							<a href='<c:url value="/search"/>'><button>Cancel</button></a>
+				</td>
+					</tr>
+					</table>
 				</c:if>
 				
 				<c:if test="${not empty donorlistDTO }">
-				<table>
+				<table class='table'>
 					<tr>
 						<td>Item Name:</td>
 						<td><c:out value="${donorlistDTO.itemName}" escapeXml='true'/></td>
@@ -85,10 +96,27 @@
 						<td>Fair market value:</td>
 						<td><c:out value="${donorlistDTO.fairMarketValue}" escapeXml='true'/></td>
 					</tr>
-				</table>
+					<tr>
+						<td>Condition:</td>
+						<td><c:out value="${donorlistDTO.condition}" escapeXml='true'/></td>
+					</tr>
+					<tr>
+						<td>Description:</td>
+						<td><c:out value="${donorlistDTO.description}" escapeXml='true'/></td>
+					</tr>
+			
+				<tr>
+				<td>
 				<a href="startNpTransaction?itemId=${donorlistDTO.id}">
-   					<button>Start a Transaction</button>
-				</a>
+   						<button>Start a Transaction</button>
+						</a>
+					
+				   </td>				  
+				 <td>
+							<a href='<c:url value="/search"/>'><button>Cancel</button></a>
+				</td>
+					</tr>
+						</table>
 				</c:if>
 
 			</c:if>
@@ -99,4 +127,5 @@
 	<%@ include file="footer.jsp" %>
 <script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
 <script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/validation.js" />"></script>
 </body>

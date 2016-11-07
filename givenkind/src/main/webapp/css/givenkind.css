@@ -141,6 +141,10 @@ p, li {
 #gnk-home-btn-row {
 	margin-top: 10px;
 }
+#gnk-home-btn2-row {
+	margin-top: 30px;
+}
+
 
 .socialLinks img {
 	height: 30px;
@@ -153,4 +157,5 @@ p, li {
     border: none;
     cursor: pointer;
 }
+.control-label .text-info { display:inline-block; }
 
