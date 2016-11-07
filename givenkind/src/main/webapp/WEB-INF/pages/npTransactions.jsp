@@ -96,19 +96,14 @@ function enableQty(x){
 	};
 
 function hlink(obj,x){
-	  window.alert("alerted");
+	 
 	  var  value;	  
 
-	  if(!document.getElementById('editQty')){
-			
-		 value = $('#text-info'+x).text();
-		 window.alert("no field");
-		 window.alert(value);
+	  if(!document.getElementById('editQty')){			
+		 value = $('#text-info'+x).text();		 
 		  
-	  }else{
-		  window.alert(document.getElementById('editQty').value);
-			 value=document.getElementById('editQty').value;
-		  
+	  }else{		  
+			 value=document.getElementById('editQty').value;	  
 		  
 	  }
 	  var url = obj.href;
@@ -116,7 +111,7 @@ function hlink(obj,x){
    
    $('#accept'+x).attr("href",url);
    
-   window.alert(url);
+  
    return false;
 };
 	  
