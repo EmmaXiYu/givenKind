@@ -61,7 +61,6 @@
 										items="${ItemCategoryList}" id='itemCategories'
 										path='itemCategories' multiple = "true" selected='selected'></form:select>
 								</td>
-								<%-- <td><form:input id='condition' class='form-control' path="condition" placeholder="Condition"/></td> --%>
 								
 								<td><form:select id='condition' style="width:125px;"
 										class='form-control' path='condition' selected='selected' placeholder="Condition" >
@@ -79,16 +78,7 @@
 								</td>
 								
 								<td><form:input id='description' class='form-control' path="description" placeholder="Description"/></td>
-								<%-- <td><form:select id='description' style="width:200px;"
-										class='form-control' path='description' selected='selected' placeholder="Description" >
-										<option value="Excellent">Excellent</option>
-										<option value="Very Good">Very Good</option>
-										<option value="Good">Good</option>
-										<option value="Fair">Fair</option>
-										<option value="Poor">Poor</option>
-									</form:select> 
-										<form:errors path="description" class="error" />
-								</td>  --%>
+								
 							</tr>
 							<!-- <tr>
 								<td><input type="submit" id="submitBtn" class="formbutton"
