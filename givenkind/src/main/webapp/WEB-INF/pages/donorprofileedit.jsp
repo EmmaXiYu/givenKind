@@ -33,6 +33,7 @@
 				<div class='col-sm-8'>
 					<label for='EmailDisplay' class='control-label col-sm-2'>${profileDTO.contactEmail}</label>
 					<form:errors path='contactEmail' class='error'></form:errors>
+					<span id="emailError" class="error hidden">Enter Valid email </span>
 				</div>
 			</div>
 			<div class='form-group required'>

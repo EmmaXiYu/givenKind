@@ -14,6 +14,10 @@
 <link rel="stylesheet"
 	href="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
+<script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
+<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/validation.js" />"></script>
+<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 <title>Donation List</title>
 <script type="text/javascript">
 	

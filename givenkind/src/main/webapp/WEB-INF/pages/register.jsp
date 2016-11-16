@@ -42,6 +42,7 @@ function checkEmail(){
 				<div class='col-sm-8'>
 					<form:input type='email' id='email' class='form-control' path='email' maxlength='100' required="true"></form:input>
 					<form:errors path='email' class='error'></form:errors>
+					<span id="emailError" class="error hidden">Enter Valid Email </span>
 				</div>
 			</div>
 			<div class='form-group required' >
@@ -171,12 +172,12 @@ function checkEmail(){
 				</div>
 			</div>
 
-			<div class='form-group required'>
+			 <div class='form-group required'>
 				<label for='reCAPTCHA' class='control-label col-sm-4'>reCAPTCHA</label>
 				<div class='col-sm-8'>
 					<div class="g-recaptcha" data-sitekey="6Ld1FicTAAAAAJ2ArxAlDYXjC18u4rdrousxUb_V"></div>
 				</div>
-			</div> 
+			</div>  
 
 			<div class='form-group'>
 				<div class='col-sm-offset-4 col-sm-8'>
