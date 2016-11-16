@@ -1,8 +1,9 @@
 $(document).ready(function() {	
+	
 		 $( "#email" ).blur(function() {
 		 var email = $('#email').val();
 		 var pattern=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
+		
 		 if (pattern.test(email))  
 		  {  
 			 $('#emailError').addClass("hidden");
@@ -78,6 +79,7 @@ $(document).ready(function() {
 	    $( "#contactPhone" ).blur(function() {
 	    	
 		    	var phone = $('#contactPhone').val();
+		    	
 		    	if(phone.length < 10)  {  	
 		    		$('#phoneError').removeClass("hidden");}
 		    	else{

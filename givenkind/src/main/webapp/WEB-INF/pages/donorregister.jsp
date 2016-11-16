@@ -34,6 +34,7 @@ function checkEmail(){
 				
 					<form:input type='email' id='email' class='form-control' maxlength='100' path='email' required="true" ></form:input>
 					<form:errors path='email' class='error'></form:errors>
+					<span id="emailError" class="error hidden">Enter Valid email </span>
 				</div>
 			</div>
 			<div class='form-group required'>

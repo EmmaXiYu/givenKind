@@ -115,6 +115,7 @@
 				<div class='col-sm-8'>
 					<form:input type='email' id='contactEmail' class='form-control' path='contactEmail' maxlength='100' required="true"></form:input>
 					<form:errors path='contactEmail' class='error'></form:errors>
+					<span id="emailError" class="error hidden">Enter Valid email </span>
 				</div>
 			</div>
 			<div class='form-group required'>
