@@ -39,9 +39,10 @@
 			<div class='form-group required'>
 				<label for='contactPhone' class='control-label col-sm-4'>Contact Phone</label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='contactPhone' class='form-control' maxlength='20' onkeypress="return isNumeric(event)" path='contactPhone' required="true"></form:input>
+					<form:input  type="tel"  pattern="^[0-9]{10}$"  id='contactPhone' class='form-control' maxlength='20'  onkeypress="return isNumeric(event)" path='contactPhone' required="true"></form:input>
+					<h4>*Enter number using following format: ZZZYYYYYYY <br /> ZZZ = Area Code, YYYYYYY = Phone Number </h4>
 					<form:errors path='contactPhone' class='error'></form:errors>
-					<span id="phoneError" class="error hidden">Phone number must be minimum 10 digits</span>
+					<span id="phoneError" class="error hidden">Phone number must be 10 digits</span>
 				</div>
 			</div>
 			<div class='form-group required'>
