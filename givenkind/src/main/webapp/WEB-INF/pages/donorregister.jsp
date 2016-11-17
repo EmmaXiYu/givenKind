@@ -31,8 +31,8 @@ function checkEmail(){
 			<div class='form-group required'>
 				<label for='email' class='control-label col-sm-4'>Email (User ID)</label>
 				<div class='col-sm-8'>
-				
-					<form:input type='email' id='email' class='form-control' maxlength='100' path='email' required="true" ></form:input>
+					<form:input type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id='email' class='form-control' maxlength='100' path='email' required="true" ></form:input>
+					<h4>*Enter valid format: For example, someone@domain.com or someone@domain.org </h4>
 					<form:errors path='email' class='error'></form:errors>
 					<span id="emailError" class="error hidden">Enter Valid email </span>
 				</div>
@@ -64,10 +64,10 @@ function checkEmail(){
 			<div class='form-group required'>
 				<label for='contactPhone' class='control-label col-sm-4'>Phone</label>
 				<div class='col-sm-8'>
-					<form:input type='text' id='contactPhone' class='form-control'  maxlength='20' onkeypress="return isNumeric(event)" path='contactPhone' required="true" ></form:input>
+					<form:input  type="tel" pattern="^[0-9]{10}$" id='contactPhone' class='form-control'  maxlength='20' onkeypress="return isNumeric(event)" path='contactPhone' required="true" ></form:input>
 					<h4>*Enter number using following format: ZZZYYYYYYY <br /> ZZZ = Area Code, YYYYYYY = Phone Number </h4>
 					<form:errors path='contactPhone' class='error'></form:errors>
-					<span id="phoneError" class="error hidden">Phone number must be minimum 10 digits</span>
+					<span id="phoneError" class="error hidden">Phone number must be 10 digits</span>
 				</div>
 			</div>
 			<div class='form-group required'>
