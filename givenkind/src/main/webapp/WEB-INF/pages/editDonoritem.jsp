@@ -15,6 +15,10 @@
 <link rel="stylesheet"
 	href="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
+<script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
+<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/validation.js" />"></script>
+<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 <title>Edit Wishlist Item</title>
 </head>
 <body>
@@ -31,7 +35,10 @@
 							<th class='col-sm-2'>Item Name </th>
 							<th class='col-sm-2'>Expiration Date </th>
 							<th class='col-sm-1'>Quantity </th>
-							<th class='col-sm-3'>Category </th>
+							<th class='col-sm-3'>Category 
+							<span>&nbsp;</span>
+							<span style="font-size: 11px;font-weight: bold;">(Limit to 3 categories)</span>
+							</th>
 							<th class='col-sm-1'>Condition </th>
 							<th class='col-sm-1'>Fair Market Value </th>
 							<th class='col-sm-3'>Description</th>
@@ -51,9 +58,9 @@
 										items="${ItemCategoryList}" id='itemCategories'
 										path='itemCategories' selected='selected' value="${donorlistDTO.itemCategories}"></form:select>
 								</td>
-								<td><form:input id='condition' class='form-control' path="condition" value="${donorlistDTO.condition}"/></td>
-								<td><form:input id='fairMarketValue' type='number' class='form-control'
-										 path="fairMarketValue" min='0' step='0.01' value = "${donorlistDTO.fairMarketValue}"></form:input></td>
+								<td><form:input id='condition' class='form-control' path="condition" style="width:110px;" value="${donorlistDTO.condition}"/></td>
+								<td><form:input id='fairMarketValue' type='textarea' style="width:50px;"
+										 path="fairMarketValue" value = "${donorlistDTO.fairMarketValue}"></form:input></td>
 								<td><form:input id='description' type='textarea'
 										class='form-control' path='description' value="${donorlistDTO.description}"></form:input>
 								</td>

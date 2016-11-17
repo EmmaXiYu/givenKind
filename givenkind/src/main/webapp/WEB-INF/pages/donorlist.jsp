@@ -14,6 +14,10 @@
 <link rel="stylesheet"
 	href="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
+<script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
+<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/validation.js" />"></script>
+<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 <title>Donation List</title>
 <script type="text/javascript">
 	
@@ -61,22 +65,24 @@
 										items="${ItemCategoryList}" id='itemCategories'
 										path='itemCategories' multiple = "true" selected='selected'></form:select>
 								</td>
-								<td><form:input id='condition' class='form-control' path="condition" placeholder="Condition"/></td>
-								<td>
-									<form:input id='fairMarketValue' type='textarea' style="width:50px;" class='form-control'
-										 path="fairMarketValue" ></form:input>
-								</td>
 								
-								<td><form:select id='description' style="width:200px;"
-										class='form-control' path='description' selected='selected' placeholder="Description" >
+								<td><form:select id='condition' style="width:125px;"
+										class='form-control' path='condition' selected='selected' placeholder="Condition" >
 										<option value="Excellent">Excellent</option>
 										<option value="Very Good">Very Good</option>
 										<option value="Good">Good</option>
 										<option value="Fair">Fair</option>
 										<option value="Poor">Poor</option>
 									</form:select> 
-										<form:errors path="description" class="error" />
-								</td> 
+										<form:errors path="condition" class="error" />
+								</td>
+								<td>
+									<form:input id='fairMarketValue' type='textarea' style="width:50px;" class='form-control'
+										 path="fairMarketValue" ></form:input>
+								</td>
+								
+								<td><form:input id='description' class='form-control' path="description" placeholder="Description"/></td>
+								
 							</tr>
 							<!-- <tr>
 								<td><input type="submit" id="submitBtn" class="formbutton"
