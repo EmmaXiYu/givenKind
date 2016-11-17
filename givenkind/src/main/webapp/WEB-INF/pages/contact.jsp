@@ -35,7 +35,7 @@
 		between potential donors and nonprofits, the estimated value of the items being donated, and the number of repeat donors that use the site.</p>
 		
 		<h2>Donate to giveNkind:</h2>
-		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 			<input type="hidden" name="cmd" value="_s-xclick">
 			<input type="hidden" name="hosted_button_id" value="NLUPF4SQBMSEL">
 			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" style="border:0" name="submit" width="20%" height="20%" alt="PayPal - the safer, easier way to pay online!">
