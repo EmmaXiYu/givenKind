@@ -66,12 +66,12 @@
 				</div>
 				<div class='col-sm-2 required'>
 					<label for='state' class='control-label'>State</label>
-					<form:select id='state' class='form-control' path='state' required="true" items="${stateList}">${profileDTO.state}</form:select>
+					<form:select id='state' class='form-control' path='state' required="true" items="${stateList}" style="width:auto;">${profileDTO.state}</form:select>
 					<form:errors path='state' class='error'></form:errors>
 				</div>
 				<div class='col-sm-2 required'>
 					<label for='zip' class='control-label'>Zip</label>
-					<form:input type='text' id='zip' class='form-control zipMask' maxlength='10' onkeypress="return isNumeric(event)" path='zip' required="true"></form:input>
+					<form:input type='text' id='zip' class='form-control zipMask' maxlength='10' onkeypress="return isNumeric(event)" path='zip' required="true" style="width:65px;"></form:input>
 					<form:errors path='zip' class='error'></form:errors>
 					<span id="zipError" class="error hidden">ZIP codes must contain 5 or 9 digits</span>
 				</div>
