@@ -15,6 +15,8 @@
 <link rel="stylesheet"
 	href="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>Edit Wishlist Item</title>
 </head>
 <body>
@@ -62,7 +64,7 @@
 									value="Edit Wish"/></td>
 							</tr>
 						</tbody>
-						<a href='<c:url value="/wishlist"/>' role='button' class='button'>Return to Wishlist</a>
+						<a href='<c:url value="/admin/view/wishlist"/>' role='button' class='button'>Return to Wishlist</a>
 					</form:form>
 				</table>
 			</div>
@@ -75,8 +77,11 @@
 	<script src="<c:url value="/js/bootstrap.min.js" />"></script>
 	<script>
 		//document.getElementById("submitBtn").disabled=true;
+			var dateToday = new Date();
 		$(function() {
-			$(".datepicker").datepicker();
+			$(".datepicker").datepicker({
+				minDate: dateToday,
+			});
 
 			$("#addItemForm").on("submit", function(event) {
 				event.preventDefault();
