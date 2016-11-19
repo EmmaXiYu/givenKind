@@ -15,6 +15,8 @@
 <link rel="stylesheet"
 	href="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>Wish List</title>
 </head>
 <body>
@@ -115,7 +117,9 @@
 	<script>
 	document.getElementById("submitBtn").disabled=true;
 		$(function() {
-			$(".datepicker").datepicker();
+			$(".datepicker").datepicker({
+				minDate: dateToday,
+			});
 
 			$("#addItemForm").on("submit", function(event) {
 				event.preventDefault();

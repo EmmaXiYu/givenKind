@@ -15,6 +15,8 @@
 <link rel="stylesheet"
 	href="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>Your Active Transactions</title>
 </head>
 <body>
@@ -34,14 +36,13 @@
 							<th class='col-sm-2'>Item Name (Your Requests)</th>
 							<th class='col-sm-2'>Quantity </th>
 							<th class='col-sm-2'>Status </th>
-							<th class='col-sm-2'>Donor Email</th>
-							<th class='col-sm-2'>Nonprofit Email</th>
+							<th class='col-sm-2'>Donor Email</th>							
 							<th class='col-sm-2'>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
 						<form:form>
-						<c:forEach begin="1" var="trans" items="${transList}" end="${transList.size()}" varStatus="loop">
+						<c:forEach begin="0" var="trans" items="${transList}" end="${transList.size()}" varStatus="loop">
 						
 							<tr>
 								<td><c:out value="${trans.npItem.itemName}" escapeXml='true'/></td>
@@ -51,7 +52,7 @@
 								
 								<td><c:out value="${trans.statusCategory.statusCategoryName}" escapeXml='true'/></td>
 								<td><c:out value="${trans.donorProfile.user.loginId}" escapeXml='true'/></td>
-								<td><c:out value="${trans.npProfile.user.loginId}" escapeXml='true'/></td>
+								
 								<td>
 									<c:choose>
 										<c:when test="${trans.statusCategory.statusCategoryName eq 'Donor Requested'}">

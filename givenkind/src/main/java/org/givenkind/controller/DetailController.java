@@ -100,6 +100,7 @@ public class DetailController extends AbstractProfileController{
 			dto.setQuantityDesired(item.getQuantityDesired());
 			dto.setUserId(item.getNonProfitUserLogon().getId());
 			dto.setWishlistItemCategories(this.itemCategoryNames(item.getWishlistItemCategories()));
+			dto.setComments(item.getComments());
 			mav.addObject("wishlistDTO", dto);
 			log.info("dto is "+dto);
 

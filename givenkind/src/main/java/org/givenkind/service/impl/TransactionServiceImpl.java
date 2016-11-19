@@ -180,6 +180,7 @@ public class TransactionServiceImpl implements TransactionService{
 	}
 
 	@Override
+	@Transactional
 	public void deleteAcceptedTransaction(Long transactionID) {
 		// TODO Auto-generated method stub
 		ActiveTransactionItems cancelledItem = activeTransactionItemsRepository.findById(transactionID);
@@ -200,6 +201,7 @@ public class TransactionServiceImpl implements TransactionService{
 	}
 
 	@Override
+	@Transactional
 	public void updateTransitStatus(Long transactionID, String newStatus) {
 		// TODO Auto-generated method stub
 		ActiveTransactionItems itemToChange = activeTransactionItemsRepository.findById(transactionID);
