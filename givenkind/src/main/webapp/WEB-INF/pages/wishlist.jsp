@@ -20,6 +20,8 @@
 <script src="<c:url value="/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/js/validation.js" />"></script>
 <script src="<c:url value="/js/jquery.mask.min.js" />"></script>
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>Wish List</title>
 </head>
 <body>
