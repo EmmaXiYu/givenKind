@@ -15,10 +15,14 @@
 <link rel="stylesheet"
 	href="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
 <script src="<c:url value="/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/js/validation.js" />"></script>
 <script src="<c:url value="/js/jquery.mask.min.js" />"></script>
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>Edit Wishlist Item</title>
 </head>
 <body>
@@ -83,8 +87,11 @@
 	<script src="<c:url value="/js/bootstrap.min.js" />"></script>
 	<script>
 		document.getElementById("submitBtn").disabled=false;
+		var dateToday = new Date();
 		$(function() {
-			$(".datepicker").datepicker();
+			$(".datepicker").datepicker({
+				minDate: dateToday,
+			});
 
 			$("#addItemForm").on("submit", function(event) {
 				event.preventDefault();

@@ -160,24 +160,30 @@ public class npTransactionController extends AbstractProfileController{
 	public String confirmNpTransaction(@RequestParam("transactionId") Long id,@RequestParam("qty") int qty,
 			HttpServletRequest request,RedirectAttributes redirectAttrs){
 		
-		log.info("inside confirmation ");
-		System.out.println("viji"+qty);
+	
+		System.out.println("changed qty"+qty);	
 		
 		ActiveTransactionItems itemToChange = activeTransactionItemsRepository.findById(id);
 		WishlistItem wItem = wishlistItemRepository.findById(itemToChange.getWishItemId());		
 		if(qty!=0){
-			if(wItem.getQuantityDesired()>= qty){
-				transactionService.updateStatus(id, "Accepted",qty);
-				log.info("Status accepted ");
-							
-			}
-			else if(wItem.getQuantityDesired()==0){
-				redirectAttrs.addFlashAttribute("msg","Your wishlist is already fulfilled. Please cancel the request.");
-				log.info("Status Not accepted ");
-				
-			}
+			if(qty<=itemToChange.getQuantity()){
+				if(wItem.getQuantityDesired()>= qty){
+					transactionService.updateStatus(id, "Accepted",qty);
+					log.info("Status accepted ");
+								
+				}
+				else if(wItem.getQuantityDesired()==0){
+					redirectAttrs.addFlashAttribute("msg","Your wishlist is already fulfilled. Please cancel the request.");
+					log.info("Status Not accepted ");
+					
+				}
+				else{
+					redirectAttrs.addFlashAttribute("msg","Not Allowed to accept more than required. Please edit to change the quantity");
+					log.info("Status Not accepted ");
+					
+				}}
 			else{
-				redirectAttrs.addFlashAttribute("msg","Not Allowed to accept more than required. Please edit to change the quantity");
+				redirectAttrs.addFlashAttribute("msg","Not Allowed to enter more than Donor requested. Please edit to change the quantity");
 				log.info("Status Not accepted ");
 				
 			}

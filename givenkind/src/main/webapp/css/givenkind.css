@@ -19,6 +19,8 @@ body {
 	padding-top: 70px;
 	max-width: 100%;
 	max-height: 100%;
+	font-family:Raleway;
+
 }
 
 #itemLink {
@@ -29,28 +31,21 @@ body {
 	-moz-box-shadow: inset 0px 1px 0px 0px #cf866c;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #cf866c;
 	box-shadow: inset 0px 1px 0px 0px #6cc5cf;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #008ded), color-stop(1, #1515bc));
-	background: -moz-linear-gradient(top, #008ded 5%, #1515bc 100%);
-	background: -webkit-linear-gradient(top, #008ded 5%, #1515bc 100%);
-	background: -o-linear-gradient(top, #008ded 5%, #1515bc 100%);
-	background: -ms-linear-gradient(top, #008ded 5%, #1515bc 100%);
-	background: linear-gradient(to bottom, #008ded 5%, #1515bc 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008ded', endColorstr='#1515bc',GradientType=0);
-	background-color: #008ded;
+	background-color: #83af11;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	border: 1px solid #231194;
+	border-radius: 50px;
+	border: 1px solid #ffffff;
 	display: inline-block;
 	cursor: pointer;
-	color: #ffffff;
-	font-family: Officina Sans;
+	color: white;
 	font-size: 16px;
-	padding: 6px;
+	padding-top:15px;
 	text-decoration: none;
-	text-shadow: 0px 1px 0px #854629;
 	font-weight: 900;
-	width: 136px;
+	width: 200px;
+	height: 70px;
+
 }
 .btnNonprofit: hover, .btnDonor: hover {
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #008ded), color-stop(1, #1515bc));
@@ -62,6 +57,7 @@ body {
 	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008ded', endColorstr='#1515bc',GradientType=0);
 	background-color: #008ded;
 }
+
 
 #ontop {
 	position: relative;
@@ -116,13 +112,14 @@ h2 {
 }
 
 h4 {
-	font-family: Officiana Sans Book;
+	font-family: Raleway;
 	font-size: 8pt;
 }
 
 p, li {
-	font-family: Officiana Sans Book;
-	font-size: 16pt;
+	font-family: raleway;
+	font-size: 12pt;
+	
 }
 
 
@@ -158,4 +155,3 @@ p, li {
     cursor: pointer;
 }
 .control-label .text-info { display:inline-block; }
-

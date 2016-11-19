@@ -149,18 +149,24 @@ public class DonorTransactionController extends AbstractProfileController{
 		ActiveTransactionItems itemToChange = activeTransactionItemsRepository.findById(id);
 		DonorlistItem dItem = donorlistItemRepository.findById(itemToChange.getDonorItemId());		
 		if(qty!=0){
-			if(dItem.getQuantity()>= qty){
-				transactionService.updateStatus(id, "Accepted",qty);
-				log.info("Status accepted ");
-							                   
-			}
-			else if(dItem.getQuantity()==0){
-				redirectAttrs.addFlashAttribute("msg","You have already donated all your items.");
-				log.info("Status Not accepted ");
-				
-			}
+			if(qty<=itemToChange.getQuantity()){
+				if(dItem.getQuantity()>= qty){
+					transactionService.updateStatus(id, "Accepted",qty);
+					log.info("Status accepted ");
+								                   
+				}
+				else if(dItem.getQuantity()==0){
+					redirectAttrs.addFlashAttribute("msg","You have already donated all your items.");
+					log.info("Status Not accepted ");
+					
+				}
+				else{
+					redirectAttrs.addFlashAttribute("msg","Not Allowed to accept more than you have. Please edit to change the quantity");
+					log.info("Status Not accepted ");
+					
+				}}
 			else{
-				redirectAttrs.addFlashAttribute("msg","Not Allowed to accept more than you have. Please edit to change the quantity");
+				redirectAttrs.addFlashAttribute("msg","Not Allowed to enter more than NonProfit requested. Please edit to change the quantity");
 				log.info("Status Not accepted ");
 				
 			}
