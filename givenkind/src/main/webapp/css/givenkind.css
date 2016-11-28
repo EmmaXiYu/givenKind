@@ -28,26 +28,20 @@ body {
 }
 
 .btnNonprofit, .btnDonor {
-	-moz-box-shadow: inset 0px 1px 0px 0px #cf866c;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #cf866c;
-	box-shadow: inset 0px 1px 0px 0px #6cc5cf;
-	background-color: #83af11;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 50px;
-	border: 1px solid #ffffff;
-	display: inline-block;
-	cursor: pointer;
-	color: white;
-	font-size: 16px;
-	padding-top:15px;
+    color:white;
+    display:inline-block;
+    background-color: #83af11;
+    font-size:16px;
+    text-align:center;
+    font-weight:bold;
+    height: 126px;
+    width: 126px;
+    border-radius: 50%;
+    padding-top:45px;
 	text-decoration: none;
-	font-weight: 900;
-	width: 200px;
-	height: 70px;
+ }
 
-}
-.btnNonprofit: hover, .btnDonor: hover {
+a.btnDonor:hover, a.btnNonprofit:hover  {
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #008ded), color-stop(1, #1515bc));
 	background: -moz-linear-gradient(top, #008ded 5%, #1515bc 100%);
 	background: -webkit-linear-gradient(top, #008ded 5%, #1515bc 100%);
@@ -56,6 +50,8 @@ body {
 	background: linear-gradient(to bottom, #008ded 5%, #1515bc 100%);
 	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008ded', endColorstr='#1515bc',GradientType=0);
 	background-color: #008ded;
+	color:white;
+	text-decoration:none;
 }
 
 
@@ -122,9 +118,8 @@ p, li {
 	
 }
 
-
 #gnk-slogan-row {
-	margin-top: 80px;
+    margin-top: 80px;	
 }
 
 .gnk-slogan {
@@ -137,6 +132,7 @@ p, li {
 
 #gnk-home-btn-row {
 	margin-top: 10px;
+	
 }
 #gnk-home-btn2-row {
 	margin-top: 30px;
@@ -155,3 +151,10 @@ p, li {
     cursor: pointer;
 }
 .control-label .text-info { display:inline-block; }
+
+/*a.btnDonor:hover, a.btnNonprofit:hover {
+	color:white;
+	text-decoration:none;
+	background-color: #008ded;
+}*/
+
