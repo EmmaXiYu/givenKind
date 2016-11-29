@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>Donor Registration</title>
 <script>
 function checkEmail(){
