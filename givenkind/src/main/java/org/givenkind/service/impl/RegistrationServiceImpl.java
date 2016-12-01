@@ -78,7 +78,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 		if(userExists){
 			return -1L;
 		}
-		
+		boolean einExists = einExists(registrationDTO.getEmployerIdentificationNumber());
+		log.info("ein "+registrationDTO.getEmployerIdentificationNumber()+" already exists? "+einExists);
+		if(einExists){
+			return -2L;
+		}
 		UserRole userRole = userRoleRepository.findByName(NONPROFIT_ROLE);
 		
 		log.info("converting from dto");
@@ -134,7 +138,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 		profile.setCategories(itemCategories);
 		//profile.setCountry(registrationDTO.getCountry());
-		profile.setEIN(registrationDTO.getEmployerIdentificationNumber());
+		profile.setEin(registrationDTO.getEmployerIdentificationNumber());
 		profile.setFullName(registrationDTO.getContactPerson());
 		profile.setIsPickupServiceAvailable(registrationDTO.getPickupService());
 		// TODO: add default profile approved
@@ -224,5 +228,15 @@ public class RegistrationServiceImpl implements RegistrationService {
 			userExists = true;
 		}
 		return userExists;
+	}
+	private boolean einExists(String ein) {
+		boolean einExists = false;
+		Profile user = profileRepository.findByEin(ein);
+		if(user != null)
+		{
+			einExists = true;
+		}
+		System.out.println("Ein checking");
+		return einExists;
 	}
 }

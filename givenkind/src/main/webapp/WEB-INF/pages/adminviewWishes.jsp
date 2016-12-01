@@ -28,53 +28,77 @@
 		<div class='row'>
 			<div class='col-sm-12'>
 				<h1>Create Wish List Item</h1>
-				<h4>(all fields required)</h4>
+				
 				<input type='hidden' id='userId' name='userId' value='${userId}' />
+				<c:url var="addUrl" value="/adminAddWish" />
+					<form:form role="form" modelAttribute='wishlistDTO' name="addWish"
+						action="${addUrl}" method='POST' id="addWish">
 				<table class='table'>
 					<thead>
 						<tr>
 							<th class='col-sm-2'>Item Name</th>
 							<th class='col-sm-2'>Expiration Date</th>
 							<th class='col-sm-1'>Quantity</th>
-							<th class='col-sm-3'>Category</th>
+							<th class='col-sm-3'>Category
+							<label style="font-size: 11px;font-weight: bold;">(Limit to 3 categories)</label>
+							</th>
 							<th class='col-sm-3'>Description</th>
-							<th class='col-sm-2'>Community Impact</th>
+							<th class='col-sm-2'>Impact</th>
 						</tr>
 					</thead>
-					<c:url var="addUrl" value="/adminAddWish" />
-					<form:form role="form" modelAttribute='wishlistDTO' name="addWish"
-						action="${addUrl}" method='POST' id="addWish">
+					
 						<tbody>
 							<tr>
 								<td><form:input class='form-control' path="itemName"
-										id="itemName" /> <form:errors class="error" path="itemName" /></td>
+										id="itemName" /> <form:errors class="error" path="itemName" maxlength='100'/></td>
 								<td><form:input class='form-control datepicker'
 										path="dateExpires" id="dateExpires"></form:input> <form:errors class="error"
 										path="dateExpires" /></td>
-								<td><form:input type='number' class='form-control'
-										step='any' min='1' path="quantityDesired" id="quantityDesired"></form:input>
+								<td><form:input  class='form-control'
+										step='any' min='1' path="quantityDesired" id="quantityDesired" maxlength='10'></form:input>
 									<form:errors class="error" path="quantityDesired" /></td>
 								<td><form:select class='form-control'
 										items="${ItemCategoryList}" id='itemCategories'
 										path='wishlistItemCategories' multiple="true"
 										selected='selected'></form:select> <form:errors
 										class="error"
-										path="wishlistItemCategories" /></td>
+										path="wishlistItemCategories" />
+										<span id="selectError" class="error hidden">Only three categories can be selected</span></td>
+										
 								<td><form:input id='note' type='textarea'
-										class='form-control' path='note' placeholder="Description"></form:input>
+										class='form-control' path='note' placeholder="Description" maxlength='100'></form:input>
 									<form:errors path="note" class="error" /></td>
-								<td><form:input id='impact' type='textarea'
-										class='form-control' path='impact' placeholder="Impact" /> <form:errors
-										path="impact" class="error" /></td>
-							</tr>
-							<tr>
-								<td><input type="submit" id="submitBtn" class="formbutton"
-									value="Add Wish" /></td>
-							</tr>
+								<td><form:select id='impact' style="width:250px;"
+										class='form-control' path='impact' selected='selected' placeholder="Impact" >										
+										<option value="Support community programs">Support community programs</option>
+										<option value="Support general operations">Support general operations</option>
+										</form:select> 
+										<form:errors path="impact" class="error" />
+										</td> 
+										</tr>
+														
 						</tbody>
-					</form:form>
-
+									
 				</table>
+
+				
+				<div style="width:864px;">
+				<label style="font-size: 15px;font-weight: bold;"> Please tell us how donations to your wish list will impact your organization and/or community.</label>
+				</div>
+				<form:textarea style="width:650px;" id='comments' type='textarea' rows ="5" maxlength="255"
+										 path='comments' placeholder="Comments"></form:textarea>
+				<form:errors path="comments" class="error" /> 
+					
+				<div style="width:864px;">
+				<label style="font-size: 11px;font-weight: bold;"> (all fields required)</label>
+				</div>
+				<input type="submit" id="submitBtn" class="formbutton"
+									value="Add Wish" />	 
+									
+				 </form:form> 
+							
+
+		
 
 				<h1>All Wish List</h1>
 
@@ -115,9 +139,12 @@
 	<%@ include file="footer.jsp"%>
 	<script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
 	<script src="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.js" />"></script>
-	<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/validation.js" />"></script>
+<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 	<script>
 	document.getElementById("submitBtn").disabled=true;
+	var dateToday = new Date();
 		$(function() {
 			$(".datepicker").datepicker({
 				minDate: dateToday,
@@ -134,7 +161,8 @@
 			var itemCategories = document.getElementById('itemCategories').value;
 			var note = document.getElementById('note').value;
 			var impact = document.getElementById('impact').value;
-			if(!itemName || !dateExpires || !quantityDesired || !itemCategories || !note || !impact)
+			var comments = document.getElementById('comments').value;
+			if(!itemName || !dateExpires || !quantityDesired || !itemCategories || !note || !impact || !comments)
 			{
 				document.getElementById("submitBtn").disabled=true;
 			} 
