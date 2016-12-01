@@ -62,7 +62,7 @@
 								
 								
 								
-								<td><c:out value="${trans.npProfileId.user.loginId}" escapeXml='true'/></td>
+								<td><c:out value="${trans.npProfileId.contactEmail}" escapeXml='true'/></td>
 								
 								
 							</tr>

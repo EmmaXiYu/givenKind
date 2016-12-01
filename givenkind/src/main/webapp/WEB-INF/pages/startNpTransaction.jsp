@@ -29,10 +29,10 @@
 						<td>Donor Email:</td>
 						<td><c:out value="${donorDTO.contactEmail}" escapeXml='true'/></td>
 					</tr>
-					<tr>
+					<%-- <tr>
 						<td>Nonprofit Email:</td>
 						<td><c:out value="${npDTO.contactEmail}" escapeXml='true'/></td>
-					</tr>
+					</tr> --%>
 					<tr>
 						<td>Donor Item Name:</td>
 						<td><c:out value="${donorItemDTO.itemName}" escapeXml='true'/></td>

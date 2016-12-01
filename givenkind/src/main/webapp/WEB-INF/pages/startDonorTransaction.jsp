@@ -25,12 +25,12 @@
 			<div class='col-sm-offset-3 col-sm-6'>
 			<c:if test="${empty error}">
 				<table >
-					<tr>
+					<%-- <tr>
 						<td>Donor Email:</td>
 						<td>
 							<c:out value="${donorDTO.contactEmail}" escapeXml='true'/>
 						</td>
-					</tr>
+					</tr> --%>
 					<tr>
 						<td>Nonprofit Email:</td>
 						<td>

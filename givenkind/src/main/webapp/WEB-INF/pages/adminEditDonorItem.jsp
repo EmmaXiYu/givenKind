@@ -77,9 +77,11 @@
 	<%@ include file="footer.jsp"%>
 	<script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
 	<script src="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.js" />"></script>
-	<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/validation.js" />"></script>
+<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 	<script>
-		document.getElementById("submitBtn").disabled=true;
+	//	document.getElementById("submitBtn").disabled=true;
 		var dateToday = new Date();
 		$(function() {
 			$(".datepicker").datepicker({
@@ -90,14 +92,16 @@
 				event.preventDefault();
 			});
 		});
-		document.getElementById("submitBtn").disabled=true;
+		
 		$(":input").keyup(function() {
 			var itemName = document.getElementById('itemName').value;
+			var dateExpires = document.getElementById('dateExpires').value;
 			var quantityAvailable = document.getElementById('quantityAvailable').value;
 			var itemCategories = document.getElementById('itemCategories').value;
 			var fairMarketValue = document.getElementById('fairMarketValue').value;
 			var description = document.getElementById('description').value;
-			if(!itemName || !dateExpires || !quantityAvailable || !itemCategories || !fairMarketValue || !description)
+			var condition = document.getElementById('condition').value;
+			if(!itemName || !dateExpires || !quantityAvailable || !itemCategories || !fairMarketValue || !description||!condition)
 			{
 				document.getElementById("submitBtn").disabled=true;
 			}
@@ -105,6 +109,9 @@
 				document.getElementById("submitBtn").disabled=false;
 			}
 		});
+		$(document).ready(function(){
+	           $("#condition").val("${donorlistDTO.condition}").attr('selected', 'selected');
+	     });
 	</script>
 
 </body>

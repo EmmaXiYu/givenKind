@@ -45,8 +45,12 @@ public class AdminController extends AbstractProfileController{
 	}
 	
 	@RequestMapping(value="/donatedItem", method = RequestMethod.GET)
-	public String adminViewDonatedItem(Model model) {
-		DonorlistDTO dto = new DonorlistDTO();
+	public String adminViewDonatedItem(Model model,@RequestParam(value="userId", required=false) Long userId) {
+		if (userId == null) {
+			userId = getMyUserId();
+		}
+		
+		/*DonorlistDTO dto = new DonorlistDTO();
 		dto.setCondition("");
 		dto.setDateExpires(new Date());
 		dto.setDescription("");
@@ -56,7 +60,7 @@ public class AdminController extends AbstractProfileController{
 		dto.setItemName("");
 		dto.setQuantity(1);
 		dto.setUserId(new Long(18));//need to be updated
-		model.addAttribute("donorlistDTO", dto);
+*/		model.addAttribute("donorlistDTO", new DonorlistDTO());
 		List<DonorlistDTO> items= donorlistService.getListOfAllDonatedItems();
 		model.addAttribute("donatedItems", items);
 		
@@ -65,8 +69,12 @@ public class AdminController extends AbstractProfileController{
 	
 	
 	@RequestMapping(value="/wishList", method = RequestMethod.GET)
-	public String adminViewWishList(Model model) {
-		WishlistDTO dto = new WishlistDTO();
+	public String adminViewWishList(Model model,@RequestParam(value="userId", required=false) Long userId) {
+		
+		if (userId == null) {
+			userId = getMyUserId();
+		}
+		/*WishlistDTO dto = new WishlistDTO();
 		dto.setdateExpires(new Date());
 		dto.setId(null);
 		dto.setImpact(null);
@@ -75,7 +83,10 @@ public class AdminController extends AbstractProfileController{
 		dto.setQuantityDesired(1);
 	    dto.setWishlistItemCategories(populateItemCategoryList());
 		dto.setUserId(new Long(18));
-		model.addAttribute("wishlistDTO", dto);
+	//	model.addAttribute("wishlistDTO", dto);
+*/		
+		model.addAttribute("userId", userId);
+		model.addAttribute("wishlistDTO", new WishlistDTO());
 		List<WishlistDTO> wishlistItems= wishlistService.getAllWishes();
 		System.out.println("The size of wishlistItems is:" +wishlistItems.size());
 		model.addAttribute("wishlistItems", wishlistItems);

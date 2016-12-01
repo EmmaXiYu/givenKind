@@ -24,7 +24,7 @@
 <div id="mainContainer" class='container-fluid'>
 	<div class='row'>
 		<div class='col-sm-offset-2 col-sm-8'>
-			<p>An account has already been made with your email address. Please contact giveNkind if you have not already registered.</a> </p>
+			<p>An account has already been made with your EIN . Please contact giveNkind if you have not already registered.</p>
 			
 		</div>
 	</div>

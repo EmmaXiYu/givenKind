@@ -24,7 +24,12 @@
 	<div id="mainContainer" class='container-fluid'>
 		<div class='row'>
 			<div class=' col-sm-9'>
-				<h1>Search Results</h1>
+			<c:if test="${booleanNPuser==false}">
+				<h1>Search Nonprofit Wish Lists</h1>
+			</c:if>
+			<c:if test="${booleanNPuser==true}">
+				<h1>Search Donation Lists</h1>
+			</c:if>
 				<table id='searchResults' class='table table-hover'>
 				    <thead>
 				        <tr>
@@ -132,5 +137,6 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

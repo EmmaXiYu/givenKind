@@ -66,7 +66,7 @@ public class Profile {
 	private Double travelDistance;
 	
 	@Column(name="EIN")
-	private String EIN;
+	private String ein;
 	
 	@Column(name="ApprovalStatus")
 	private String approvalStatus;
@@ -342,15 +342,15 @@ public class Profile {
 	/**
 	 * @return the eIN
 	 */
-	public String getEIN() {
-		return EIN;
+	public String getEin() {
+		return ein;
 	}
 
 	/**
 	 * @param eIN the eIN to set
 	 */
-	public void setEIN(String eIN) {
-		EIN = eIN;
+	public void setEin(String eIN) {
+		ein = eIN;
 	}
 
 	/**

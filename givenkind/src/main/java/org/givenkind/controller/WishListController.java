@@ -210,6 +210,8 @@ public class WishListController extends AbstractProfileController {
 		dto.setItemName(itemName);
 		String note = item.getNotes();
 		dto.setNote(note);
+		String comments = item.getComments();
+		dto.setComments(comments);
 		Integer quantityDesired = item.getQuantityDesired();
 		dto.setQuantityDesired(quantityDesired);
 		
