@@ -83,10 +83,9 @@ public class RegistrationController {
 		
 		// Processing captcha status
 		try{
-			/*String captchaResponse = request.getParameter("g-recaptcha-response");
+			String captchaResponse = request.getParameter("g-recaptcha-response");
 
-			boolean isValid = captchaValidator.verify(captchaResponse);*/
-			boolean isValid=true;
+			boolean isValid = captchaValidator.verify(captchaResponse);			
 		
 			registrationDTO.setValidCaptcha(isValid);			
 		
