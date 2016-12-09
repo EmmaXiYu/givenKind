@@ -58,10 +58,16 @@ public class RegistrationController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/alreadyRegistered", method = RequestMethod.GET)
+	@RequestMapping(value = "/alreadyRegisteredUser", method = RequestMethod.GET)
 	public ModelAndView launchThanksPage() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("alreadyRegistered");
+		mav.setViewName("alreadyRegisteredUser");
+		return mav;
+	}
+	@RequestMapping(value = "/alreadyRegisteredEIN", method = RequestMethod.GET)
+	public ModelAndView launchPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("alreadyRegisteredEIN");
 		return mav;
 	}
 	
@@ -79,7 +85,7 @@ public class RegistrationController {
 		try{
 			String captchaResponse = request.getParameter("g-recaptcha-response");
 
-			boolean isValid = captchaValidator.verify(captchaResponse);
+			boolean isValid = captchaValidator.verify(captchaResponse);			
 		
 			registrationDTO.setValidCaptcha(isValid);			
 		
@@ -87,7 +93,10 @@ public class RegistrationController {
 				// process DTO and go to profile?
 				Long profileId = registrationService.registerUser(registrationDTO);
 				if(profileId == -1L){
-					return "redirect:alreadyRegistered";
+					return "redirect:alreadyRegisteredUser";
+				}
+				if(profileId == -2L){
+					return "redirect:alreadyRegisteredEIN";
 				}
 				status.setComplete();
 				model.asMap().clear();

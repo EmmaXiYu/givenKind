@@ -103,7 +103,7 @@ public class ProfileServiceImpl implements ProfileService {
 			profileDTO.setZip(profile.getZipCode());
 			profileDTO.setPickupService(profile.getIsPickupServiceAvailable() ? "Yes" : "No");
 			profileDTO.setPickupDistance(profile.getTravelDistance());
-			profileDTO.setEmployerIdentificationNumber(profile.getEIN());
+			profileDTO.setEmployerIdentificationNumber(profile.getEin());
 			profileDTO.setContactPerson(profile.getFullName());
 			profileDTO.setContactEmail(profile.getContactEmail());
 			profileDTO.setContactPhone(profile.getPhone1());
@@ -135,7 +135,7 @@ public class ProfileServiceImpl implements ProfileService {
 			profile.setZipCode(profileDTO.getZip());
 			profile.setIsPickupServiceAvailable(profileDTO.getPickupService().equalsIgnoreCase("yes"));
 			profile.setTravelDistance(profileDTO.getPickupDistance());
-			profile.setEIN(profileDTO.getEmployerIdentificationNumber());
+			profile.setEin(profileDTO.getEmployerIdentificationNumber());
 			profile.setFullName(profileDTO.getContactPerson());
 			profile.setContactEmail(profileDTO.getContactEmail());
 			profile.setPhone1(profileDTO.getContactPhone());

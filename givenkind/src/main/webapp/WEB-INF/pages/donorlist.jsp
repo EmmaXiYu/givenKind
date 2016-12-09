@@ -14,10 +14,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.css" />">
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
-<script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
-<script src="<c:url value="/js/bootstrap.min.js" />"></script>
-<script src="<c:url value="/js/validation.js" />"></script>
-<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
+
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>Donation List</title>
@@ -50,25 +47,29 @@
 							<span style="font-size: 11px;font-weight: bold;">(Limit to 3 categories)</span>
 							</th>
 							<th class='col-sm-1'>Condition</th>
+<<<<<<< HEAD
 							<th class='col-sm-1'>Fair Market Value (USD)
 							<span>&nbsp;</span>
 							<span><a target="_blank" href="https://www.irs.gov/publications/p561/ar02.html#d0e139"><i class="fa fa-question-circle" aria-hidden="true"></i></a></span>
 							</th>
+=======
+							<th class='col-sm-1'>Fair Market Value (USD) Per Item</th>
+>>>>>>> upstream/master
 							<th class='col-sm-3'>Description</th>
 						<tr>
 					</thead>
-					<%-- <c:url var="addUrl" value="/addToDonorlist"/>
-					<form:form role="form" modelAttribute='donorlistDTO' name="addToDonorlist" action="${addUrl}" method='POST' id="addToDonorlist"> --%>
+					
 						<tbody>
 							<tr>
-								<td><form:input id='itemName' class='form-control' path="itemName" placeholder="Item Name"/></td>
+								<td><form:input id='itemName' class='form-control' path="itemName" placeholder="Item Name" maxlength='100'/></td>
 								<td><form:input class='form-control datepicker'
 										path="dateExpires" id="dateExpires" placeholder="Expiration Date"></form:input></td>
-								<td><form:input id='quantityAvailable' type='number' class='form-control'
-										step='1' min='1' path="quantity"></form:input></td>
+								<td><form:input id='quantityAvailable'  class='form-control'
+										step='1' min='1' path="quantity" maxlength='10'></form:input></td>
 								<td><form:select class='form-control'
 										items="${ItemCategoryList}" id='itemCategories'
 										path='itemCategories' multiple = "true" selected='selected'></form:select>
+										<span id="selectError" class="error hidden">Only three categories can be selected</span>
 								</td>
 								
 								<td><form:select id='condition' style="width:125px;"
@@ -83,16 +84,13 @@
 								</td>
 								<td>
 									<form:input id='fairMarketValue' type='textarea' style="width:50px;" class='form-control'
-										 path="fairMarketValue" ></form:input>
+										 path="fairMarketValue" maxlength='10'></form:input>
 								</td>
 								
-								<td><form:input id='description' class='form-control' path="description" placeholder="Description"/></td>
+								<td><form:input id='description' class='form-control' path="description" placeholder="Description" maxlength='100'/></td>
 								
 							</tr>
-							<!-- <tr>
-								<td><input type="submit" id="submitBtn" class="formbutton"
-									value="Add Donation Item"/></td>
-							</tr> -->
+							
 						</tbody>
 					
 
@@ -140,7 +138,9 @@
 	<%@ include file="footer.jsp"%>
 	<script src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
 	<script src="<c:url value="/js/jquery-ui-1.11.2/jquery-ui.min.js" />"></script>
-	<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/js/validation.js" />"></script>
+<script src="<c:url value="/js/jquery.mask.min.js" />"></script>
 	<script>
 	document.getElementById("submitBtn").disabled=true;
 	var dateToday = new Date();
@@ -169,13 +169,15 @@
 				document.getElementById("submitBtn").disabled=false;
 			}
 		});
-		$("#itemCategories").click(function(){
+		
+	/* 	$("#itemCategories").click(function(){
 			if ($("#itemCategories :selected").length > 3) {
 		        alert('You can select upto 3 options only');
 		        $("#itemCategories :selected").removeAttr("selected");
 		    }
 			
-		});
+		}); */
+		
 	</script>
 </body>
 </html>

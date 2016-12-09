@@ -49,7 +49,7 @@
 								<td><c:out value="${trans.npItem.itemName}" escapeXml='true'/></td>
 								<td><label for="name" class="control-label" id="text-info${loop.index}"><c:out value="${trans.quantity}" escapeXml='true'/></label></td>
 								<td><c:out value="${trans.statusCategory.statusCategoryName}" escapeXml='true'/></td>								
-								<td><c:out value="${trans.npProfile.user.loginId}" escapeXml='true'/></td>
+								<td><c:out value="${trans.npProfile.contactEmail}" escapeXml='true'/></td>
 								<td>
 									<c:choose>
 										<c:when test="${trans.statusCategory.statusCategoryName eq 'NP Requested'}">
