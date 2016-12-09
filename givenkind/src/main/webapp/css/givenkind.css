@@ -131,7 +131,7 @@ a.btnFooter:hover {
 #gnk-aboutus img {
     max-height: 150px;
     margin-left: auto;
-    margin-right: auto;
+    /*margin-right: auto;*/
 }
 
 #logo {
@@ -217,7 +217,7 @@ p, li {
     padding: 0px;
     margin: 0px auto;
     text-align:center;
-   }
+}
 
 #footer-btn-row li {
 	float: left;
@@ -225,6 +225,49 @@ p, li {
     margin-right:30px;
 }
 
+@font-face {
+	font-family: 'ITC Officina Sans Std Book';
+  src: url('../fonts/officiana_sans_std_book.otf');
+}
 
+@font-face {
+  font-family: 'ITC Officina Sans Std Bold';
+  src: url('../fonts/officiana_sans_std_bold.otf');
+}
 
+.aboutus-header {
+	font-size:18pt;
+	font-family:'ITC Officina Sans Std Bold';
+}
+
+.aboutus-content {
+	font-size: 15pt;
+    font-family:'ITC Officina Sans Std Book';
+    text-align:justify;
+}
+
+.aboutus-profile-img {
+	float:left;
+	margin-right:10px;
+}
+
+h2.pg-header {
+	font-size:18pt;
+	font-family:'ITC Officina Sans Std Bold';	
+}
+
+h3.pg-question {
+	font-size:15pt;
+	font-family:'ITC Officina Sans Std Bold';	
+}
+
+p.pg-description {
+	font-size: 15pt;
+    font-family:'ITC Officina Sans Std Book';
+    text-align:justify;
+}
+
+.border-description {
+	border-bottom: 2px solid black;
+}
 
