@@ -16,6 +16,7 @@
 <script src="<c:url value="/js/bootstrap.min.js" />"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="icon" href="<c:url value="/img/favicon.ico" />" >
 <title>Thank you</title>
 </head>
 <body>
