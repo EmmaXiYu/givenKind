@@ -10,7 +10,7 @@ public interface ProfileRepository extends JpaRepository<Profile, Long>{
 	public Profile findById(Long Id);
 	//public Profile findByEIN(Long EIN);
 	
-//	public Profile findByProfile(String contactEmail);
+  //public Profile findByProfile(String contactEmail);
 	
 	public List<Profile> findAll();
 
