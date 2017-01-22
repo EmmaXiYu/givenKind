@@ -15,5 +15,4 @@ public interface ProfileRepository extends JpaRepository<Profile, Long>{
 	
 	public Profile findByContactEmail(String email);	
 	
-	
 }
