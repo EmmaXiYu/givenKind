@@ -19,6 +19,7 @@ import org.givenkind.repository.DonorlistItemRepository;
 import org.givenkind.repository.ProfileRepository;
 import org.givenkind.repository.StatusCategoryRepository;
 import org.givenkind.repository.WishlistItemRepository;
+import org.givenkind.service.EmailService;
 import org.givenkind.service.TransactionService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,6 +28,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,6 +53,9 @@ public class TransactionServiceImpl implements TransactionService{
 	@Inject
 	StatusCategoryRepository statusCategoryRepository;
 	
+	@Inject
+	private EmailService emailService;
+	
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Override
@@ -69,6 +74,19 @@ public class TransactionServiceImpl implements TransactionService{
 		item.setStatusCategoryId(toDB.getStatusCategory().getId());
 		
 		activeTransactionItemsRepository.save(item);
+		if(isNP){
+			String donorEmail =toDB.getDonorProfile().getContactEmail();
+			log.info("donor email id ",donorEmail);
+			emailService.npRequestedEmail(donorEmail);
+		}
+		else{
+			String npEmail =toDB.getNpProfile().getContactEmail();
+			log.info("Np email id ",npEmail);
+			emailService.donorRequestedEmail(npEmail);
+		}
+		
+		
+		
 	}
 	
 	@Override
@@ -176,6 +194,12 @@ public class TransactionServiceImpl implements TransactionService{
 		completedTransactionRepository.save(completedTransaction);
 		activeTransactionItemsRepository.delete(transactionID);
 		log.info("Transaction complete");
+		
+			Profile npProfile = profileRepository.findById(completedItem.getNpProfileId());
+			Profile donorProfile = profileRepository.findById(completedItem.getDonorProfileId());			
+			
+			emailService.completedTransactionEmail(npProfile.getContactEmail(),donorProfile.getContactEmail());
+		
 	
 	}
 

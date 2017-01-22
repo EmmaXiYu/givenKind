@@ -12,6 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.givenkind.dto.PasswordResetAuthorizationDTO;
+import org.givenkind.model.ActiveTransactionItems;
 import org.givenkind.model.CompletedTransactions;
 import org.givenkind.service.EmailService;
 import org.slf4j.Logger;
@@ -57,21 +58,60 @@ public class DevEmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public Boolean donorItemEmail(CompletedTransactions completedTransactions, String email) {
-		log.info("donorItemEmail: donatedItem="+completedTransactions.toString()+" email="+email);
-		return true;
+	public Boolean donorRequestedEmail(String npemail) {
+		
+		try {	
+			
+			String donorRequestedMsg ="Great news!  A donor is looking to give you an item from your giveNkind wish list! Here's the next steps!<br><br>" +
+					"1. Please login to your giveNkind dashboard at www.givenkind.org and select 'Active Transactions'.  Here you can accept or deny the offered item.<br>" +
+					"2. If you accept the item, you can directly contact the donor through the email provided to arrange a drop off or pick up.<br>" +
+					"3. Receive the donated item and provide the donor a tax receipt.<br>" +
+					"4. Mark the transaction as completed on your giveNkind dashboard.<br><br>" +
+					"As a courtesy to the donor, please don't forget to respond in a timely manner.<br><br>" +
+					"We are excited to offer the opportunity to connect nonprofits and donors.Please let us know if you have any questions by emailing contact@givenkind.org or calling 847-802-8977.<br><br><br>" +
+					"Thank you for using givenkind and for making a difference in your community!<br><br><br>" +
+					"- The giveNkind Team";
+			
+			generateAndSendEmail(npemail,donorRequestedMsg);
+			return true;
+		} catch (Exception ex) {
+			log.error("could not send Donor Requested email", ex);
+			return false;
+		}
 	}
 
+	@Override
+	public Boolean npRequestedEmail(String donorEmail) {
+		
+		try {	
+			
+			String npRequestedMsg ="Great news!  A nonprofit needs an item you have on your giveNkind donor list! Here's the next steps!<br><br>" +
+					"1. Please login to your giveNkind dashboard at www.givenkind.org and select 'Active Transactions'.  Here you can accept or deny the offered item.<br>" +
+					"2. If you accept the request for your item, you can directly contact the nonprofit through the email provided to arrange a drop off or pick up.  Please let them know if you would like a tax receipt for your donation at this time.<br>" +
+					"3. Give your donated item!<br>" +
+					"4. Mark the transaction as completed on your giveNkind dashboard.<br><br>" +
+					"As a courtesy to the nonprofit, please don't forget to respond in a timely manner.<br><br>" +
+					"We are excited to offer the opportunity to connect nonprofits and donors.Please let us know if you have any questions by emailing contact@givenkind.org or calling 847-802-8977.<br><br><br>" +
+					"Thank you for using givenkind and for making a difference in your community!<br><br><br>" +
+					"- The giveNkind Team";
+			
+			generateAndSendEmail(donorEmail,npRequestedMsg);
+			return true;
+		} catch (Exception ex) {
+			log.error("could not send NP Requested email", ex);
+			return false;
+		}
+	}
 	@Override
 	public Boolean forgotPasswordEmail(PasswordResetAuthorizationDTO pr,String httpURL) {
 		try {
 			log.info("password reset link is: "+pr.getPasswordResetLink());
 			String pwdlink =httpURL+pr.getPasswordResetLink();
-			String forgotPWDmsg ="Hi,<br> We received a request to reset password for your giveNkind account. Click the below link to reset your password.<br>"+pwdlink+ "<br><br> Regards, <br>giveNkind Admin";
+			String forgotPWDmsg ="Hi,<br> We received a request to reset password for your giveNkind account. Click the below link to reset your password.<br>"+pwdlink+ "<br><br> We are excited to offer the opportunity to connect nonprofits and donors.  Please let us know if you have any questions by emailing contact@givenkind.org or calling 847-802-8977.<br><br>Thank you for using givenkind and for making a difference in your community!<br>-- The giveNkind Team";
 			generateAndSendEmail(pr.getUserEmail(),forgotPWDmsg);
 			return true;
 		} catch (Exception ex) {
-			log.error("could not send password reset email", ex);
+			log.error("could not send forgot password email", ex);
 			return false;
 		}
 	}
@@ -105,4 +145,38 @@ public class DevEmailServiceImpl implements EmailService {
 		transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
 		transport.close();
 	}
+
+	@Override
+	public Boolean donorItemEmail(CompletedTransactions completedTransactions,
+			String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean completedTransactionEmail(String npEmail, String donorEmail) {
+
+		try {	
+			
+			String donorMsg ="Thank you for using giveNkind to complete your donation!<br>" +
+					"Your donation will help nonprofit organizations fulfill their mission, extend their reach in your community, and serve those in need.<br><br>" +
+					"At giveNkind, we are just getting started!  We would love your feedback on how we can improve our Beta site.  Please send your suggestions for improvement, share your experience with the site, or let us know what you liked about giveNkind.  You can email us at contact@givenkind.org or call 847-802-8977.<br><br>" +
+					"Thank you for using givenkind and for making a difference in your community and we hope to see you back on givenkind.org soon!<br><br><br>" +
+					"- The giveNkind Team";
+			
+			String npMsg ="Thank you for using giveNkind to list your wish list need.  We hope the donation you received will help you carry out your organization's mission, extend your reach in the community, and serve those in need.<br><br>" +
+					"At giveNkind, we are just getting started!  We would love your feedback on how we can improve our Beta site.  Please send your suggestions for improvement, share your experience with the site, or let us know what you liked about giveNkind.  You can email us at contact@givenkind.org or call 847-802-8977.<br><br>" +
+					"Thank you for using givenkind and for making a difference in your community and we hope to see you back on givenkind.org soon!<br><br><br>" +
+					"- The giveNkind Team";
+			
+			generateAndSendEmail(npEmail,npMsg);
+			generateAndSendEmail(donorEmail,donorMsg);
+			return true;
+		} catch (Exception ex) {
+			log.error("could not send Donor Requested email", ex);
+			return false;
+		}
+	}
+
+	
 }

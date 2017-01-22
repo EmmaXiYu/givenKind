@@ -7,8 +7,10 @@ import org.givenkind.dto.LoginDTO;
 import org.givenkind.dto.PasswordResetAuthorizationDTO;
 import org.givenkind.dto.PasswordResetDTO;
 import org.givenkind.model.PasswordReset;
+import org.givenkind.model.Profile;
 import org.givenkind.model.UserLogon;
 import org.givenkind.repository.PasswordResetRepository;
+import org.givenkind.repository.ProfileRepository;
 import org.givenkind.repository.UserLogonRepository;
 import org.givenkind.service.EmailService;
 import org.givenkind.service.LoginService;
@@ -32,6 +34,9 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Inject
 	UserLogonRepository userLogonRepository;
+	
+	@Inject
+	ProfileRepository profileRepository;
 	
 	@Override
 	public LoginDTO prepareLoginPage() {
@@ -63,9 +68,11 @@ public class LoginServiceImpl implements LoginService {
 		boolean status=false;
 		PasswordResetAuthorizationDTO prDTO = new PasswordResetAuthorizationDTO();
 		String emailAddress = dto.getEmail();
-		UserLogon userLogon = userLogonRepository.findByLoginId(emailAddress);
-		if(userLogon != null) {
+		//UserLogon userLogon = userLogonRepository.findByLoginId(emailAddress);
+		Profile user = profileRepository.findByContactEmail(emailAddress);
+		if(user != null) {
 			log.info("user exist");
+			UserLogon userLogon = userLogonRepository.findByProfile(user);
 			PasswordReset pr = new PasswordReset();
 			pr.setUser(userLogon);
 			pr = passwordResetRepo.save(pr);			
