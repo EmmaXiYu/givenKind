@@ -17,6 +17,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="icon" href="<c:url value="/img/favicon.ico" />" >
 <title>Donation List</title>
 <script type="text/javascript">
 	
@@ -47,7 +48,10 @@
 							<span style="font-size: 11px;font-weight: bold;">(Limit to 3 categories)</span>
 							</th>
 							<th class='col-sm-1'>Condition</th>
-							<th class='col-sm-1'>Fair Market Value (USD) Per Item</th>
+							<th class='col-sm-1'>Fair Market Value (USD) Per Item
+							<span>&nbsp;</span>
+							<span><a target="_blank" href="https://www.irs.gov/publications/p561/ar02.html#d0e139"><i class="fa fa-question-circle" aria-hidden="true"></i></a></span>
+							</th>
 							<th class='col-sm-3'>Description</th>
 						<tr>
 					</thead>

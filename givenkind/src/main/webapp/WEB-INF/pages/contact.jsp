@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="<c:url value="/css/givenkind.css" />">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="icon" href="<c:url value="/img/favicon.ico" />" >
 <title>Support Us</title>
 </head>
 <body>
@@ -22,21 +23,21 @@
 	<div class='row'>
 		<div class='col-sm-offset-2 col-sm-8'>
 		
-		<h1>Support Us</h1>
-		<p>giveNkind is creating a service unlike any other, but like all charitable organizations we rely on the kindness of others to continue providing our 
+		<h2 class="pg-header">SUPPORT US</h2>
+		<p class="pg-description">giveNkind is creating a service unlike any other, but like all charitable organizations we rely on the kindness of others to continue providing our 
 		services to the nonprofit community.</p>
 		
-		<h2>Why give a cash donation to giveNkind?</h2>
-		<p>We are a 100% volunteer organization!  We have no paid staff members which means 100% of your donation goes directly to funding our project to help nonprofits 
+		<h2 class="pg-header">Why give a cash donation to giveNkind?</h2>
+		<p class="pg-description">We are a 100% volunteer organization!  We have no paid staff members which means 100% of your donation goes directly to funding our project to help nonprofits 
 		find the materials they need to impact their communities.</p>
 
-		<p>Supporting us supports nonprofits nationwide.  Your dollars help us to create and sustain our services, which in turn supports the many other nonprofits that will use 
+		<p class="pg-description">Supporting us supports nonprofits nationwide.  Your dollars help us to create and sustain our services, which in turn supports the many other nonprofits that will use 
 		giveNkind across the country.</p>
 		
-		<p>You can actually see the results of your donation.  Our site will collect data that will measure the impact that your support is making by measuring the number of connections 
+		<p class="pg-description">You can actually see the results of your donation.  Our site will collect data that will measure the impact that your support is making by measuring the number of connections 
 		between potential donors and nonprofits, the estimated value of the items being donated, and the number of repeat donors that use the site.</p>
 		
-		<h2>Donate to giveNkind:</h2>
+		<h2 class="pg-header">Donate to giveNkind:</h2>
 		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 			<input type="hidden" name="cmd" value="_s-xclick">
 			<input type="hidden" name="hosted_button_id" value="NLUPF4SQBMSEL">
@@ -44,13 +45,13 @@
 			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 		</form>
 		
-		<h2>Mailing Address:</h2>
-		<p>giveNkind<br>
+		<h2 class="pg-header">Mailing Address:</h2>
+		<p class="pg-description">giveNkind<br>
 		1650 Lind Lane<br>
 		Gurnee, IL 60031</p>
 		
-		<h2>Email Us:</h2>
-		<a style="font-size:18pt" href="mailto:info@givenkind.org?subject=Feedback">info@givenkind.org</a>
+		<h2 class="pg-header">Email Us:</h2>
+		<a style="font-size:15pt" href="mailto:contact@givenkind.org?subject=Feedback">contact@givenkind.org</a>
 
 		</div>
 	</div>
