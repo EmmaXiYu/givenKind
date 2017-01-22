@@ -14,5 +14,4 @@ public interface ProfileRepository extends JpaRepository<Profile, Long>{
 	public Profile findByEin(String ein);
 	
 	public Profile findByContactEmail(String email);	
-	
-}
+	}
