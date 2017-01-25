@@ -14,7 +14,7 @@
 <link rel="icon" href="<c:url value="/img/favicon.ico" />" >
 <title>Login</title>
 </head>
-<body>
+<body id="grayBackground">
 <%@ include file="nav.jsp" %>
 <div id='blankspace'></div>
 <div id="mainContainer" class='container-fluid'>
