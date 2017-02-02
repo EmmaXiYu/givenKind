@@ -23,6 +23,14 @@ import javax.persistence.Table;
 @Entity @Table(name="tblDonorListItem")
 public class DonorlistItem {
 	
+	public String getItemStatus() {
+		return itemStatus;
+	}
+
+	public void setItemStatus(String itemStatus) {
+		this.itemStatus = itemStatus;
+	}
+
 	@Id @GeneratedValue @Column(name="DonorListItemId")
 	private Long id;
 	
@@ -49,6 +57,8 @@ public class DonorlistItem {
 	
 	@Column(name = "Description")
 	private String description;
+	@Column (name = "ItemStatus")
+	private String itemStatus;
 
 	public Long getId(){
 		return id;

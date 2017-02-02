@@ -7,7 +7,12 @@ import org.givenkind.model.Profile;
 
 public interface ProfileService {
 	
-	ProfileDTO prepareProfileData(String contactEmail);
+	ProfileDTO getDonorProfile(String email);
+	ProfileDTO getNPProfile(String email);
+	List<List<ProfileDTO>> getAllProfile();
+
+
+ 	ProfileDTO prepareProfileData(String contactEmail);
 
 	void editProfilePage(String contactEmail, ProfileDTO profileDTO);
 

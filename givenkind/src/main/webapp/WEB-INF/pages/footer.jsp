@@ -17,9 +17,9 @@
 		          		<ul class="dropdown-menu">
 		           			<li><a href="<c:url value="/admin/view/donatedItem"/>">Donated Items</a></li>
 		           			<li><a href="<c:url value="/admin/view/wishList"/>">Wish List</a></li>
-		           			<li><a href="">Transaction</a></li>
+		           			<li><a href="<c:url value="/admin/view/transaction"/>">Transaction</a></li>
 		           			<li><a href="<c:url value="/admin/view/status"/>">User status</a></li>
-		           			<li><a href="">User's profile</a></li>
+		           			<li><a href="<c:url value="/admin/view/userProfile"/>">User's profile</a></li>
 		         		</ul>
    			    	</li>
                	</sec:authorize>

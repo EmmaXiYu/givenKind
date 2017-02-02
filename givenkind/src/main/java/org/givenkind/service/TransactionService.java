@@ -13,7 +13,7 @@ import org.givenkind.model.ActiveTransactionItems;
 public interface TransactionService {
 	
 	List<ActiveTransactionItemsDTO> getActiveTransactions(Long userId, boolean isNP);
-	
+	List<ActiveTransactionItemsDTO> getAllActiveTransactions();
 	void deleteTransaction(Long transactionID);
 	
 	void updateStatus(Long transactionID, String newStatus, int qty);
@@ -28,4 +28,5 @@ public interface TransactionService {
 
 	List<CompletedTransactionsDTO> getCompletedTransactions(Long userId,
 			boolean isNP);
+	List<CompletedTransactionsDTO> getAllCompletedTransactions();
 }

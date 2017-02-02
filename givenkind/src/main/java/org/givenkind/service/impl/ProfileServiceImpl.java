@@ -172,4 +172,142 @@ public class ProfileServiceImpl implements ProfileService {
 		return profileList;
 	}
 
+	@Override
+	public ProfileDTO getDonorProfile(String email) {
+		ProfileDTO profileDTO = new ProfileDTO();
+		Profile profile =profileRepository.findByContactEmail(email);
+		
+		if(profile != null) {
+			profileDTO.setWebsite(profile.getWebSiteUrl());
+			profileDTO.setContactPerson(profile.getFullName());
+			profileDTO.setContactEmail(profile.getContactEmail());
+			profileDTO.setContactPhone(profile.getPhone1());
+			profileDTO.setAddress1(profile.getAddressLine1());
+			profileDTO.setAddress2(profile.getAddressLine2());
+			profileDTO.setCity(profile.getCity());
+			profileDTO.setState(profile.getState().getAbbreviation());
+			profileDTO.setZip(profile.getZipCode());
+		}
+		return profileDTO;
+		}
+
+	@Override
+	public ProfileDTO getNPProfile(String email) {
+		ProfileDTO profileDTO = new ProfileDTO();
+		Profile profile =profileRepository.findByContactEmail(email);
+		if (profile != null) {
+			profileDTO.setOrganizationName(profile.getOrganizationName());
+			profileDTO.setMissionStatement(profile.getMissionStatement());
+			profileDTO.setWebsite(profile.getWebSiteUrl());
+			profileDTO.setAddress1(profile.getAddressLine1());
+			profileDTO.setAddress2(profile.getAddressLine2());
+			profileDTO.setCity(profile.getCity());
+			profileDTO.setState(profile.getState().getAbbreviation());
+			List<String> categories = new ArrayList<String>();
+			if(profile.getCategories() != null) {
+				for(NonProfitCategory category : profile.getCategories()) {
+					categories.add(category.getName());
+				}
+			}
+			profileDTO.setNonprofitCategories(categories);
+			profileDTO.setZip(profile.getZipCode());
+			profileDTO.setPickupService(profile.getIsPickupServiceAvailable() ? "Yes" : "No");
+			profileDTO.setPickupDistance(profile.getTravelDistance());
+			profileDTO.setEmployerIdentificationNumber(profile.getEin());
+			profileDTO.setContactPerson(profile.getFullName());
+			profileDTO.setContactEmail(profile.getContactEmail());
+			profileDTO.setContactPhone(profile.getPhone1());
+		}
+		
+		
+		return profileDTO;
+	}
+
+	@Override
+	public List<List<ProfileDTO>> getAllProfile() {
+		List<List<ProfileDTO>>  ll= new ArrayList<>();
+		List<ProfileDTO> nonProfitDTO = new ArrayList<>();
+		List<ProfileDTO> donorProfitDTO = new ArrayList<>();
+		
+		
+		List<Profile> list = profileRepository.findAll();
+		
+		for(Profile profile : list){
+			if(profile.getUser().getRole().getId()==2){
+				//none-profit
+				ProfileDTO profileDTO = new ProfileDTO();
+				if (profile != null) {
+					if(profile.getOrganizationName()!=null)
+					profileDTO.setOrganizationName(profile.getOrganizationName());
+					if(profile.getMissionStatement()!=null)
+					profileDTO.setMissionStatement(profile.getMissionStatement());
+					if(profile.getWebSiteUrl()!=null)
+					profileDTO.setWebsite(profile.getWebSiteUrl());
+					if(profile.getAddressLine1()!=null)
+					profileDTO.setAddress1(profile.getAddressLine1());
+					if(profile.getAddressLine2()!=null)
+					profileDTO.setAddress2(profile.getAddressLine2());
+					if(profile.getCity()!=null)
+					profileDTO.setCity(profile.getCity());
+					if(profile.getState()!=null)
+					profileDTO.setState(profile.getState().getAbbreviation());
+					List<String> categories = new ArrayList<String>();
+					List<NonProfitCategory> cate =  profile.getCategories();
+					if(cate != null) {
+						for(NonProfitCategory category : cate) {
+						categories.add(category.getName());
+						}
+					}
+			
+					profileDTO.setNonprofitCategories(categories);
+					if(profile.getZipCode()!=null)
+					profileDTO.setZip(profile.getZipCode());
+					if(profile.getIsPickupServiceAvailable()!=null)
+				profileDTO.setPickupService(profile.getIsPickupServiceAvailable() ? "Yes" : "No");
+					if(profile.getTravelDistance()!=null)
+					profileDTO.setPickupDistance(profile.getTravelDistance());
+					if(profile.getEin()!=null)
+					profileDTO.setEmployerIdentificationNumber(profile.getEin());
+					if(profile.getFullName()!=null)
+					profileDTO.setContactPerson(profile.getFullName());
+					if(profile.getContactEmail()!=null)
+					profileDTO.setContactEmail(profile.getContactEmail());
+					if(profile.getPhone1()!=null)
+					profileDTO.setContactPhone(profile.getPhone1());
+					
+				}
+				
+				nonProfitDTO.add(profileDTO);
+				
+			}
+			else if(profile.getUser().getRole().getId()==3){
+				// donor
+				ProfileDTO profileDTO = new ProfileDTO();
+				if(profile.getWebSiteUrl()!=null)
+				profileDTO.setWebsite(profile.getWebSiteUrl());
+				if(profile.getFullName()!=null)
+				profileDTO.setContactPerson(profile.getFullName());
+				if(profile.getContactEmail()!=null)
+				profileDTO.setContactEmail(profile.getContactEmail());
+				if(profile.getPhone1()!=null)
+				profileDTO.setContactPhone(profile.getPhone1());
+				if(profile.getAddressLine1()!=null)
+				profileDTO.setAddress1(profile.getAddressLine1());
+				if(profile.getAddressLine2()!=null)
+				profileDTO.setAddress2(profile.getAddressLine2());
+				if(profile.getCity()!=null)
+				profileDTO.setCity(profile.getCity());
+				if(profile.getState()!=null)
+				profileDTO.setState(profile.getState().getAbbreviation());
+				if(profile.getZipCode()!=null)
+				profileDTO.setZip(profile.getZipCode());
+				donorProfitDTO.add(profileDTO);
+			}
+			
+			
+		}
+		ll.add(nonProfitDTO);
+		ll.add(donorProfitDTO);
+		return ll;
+	}
 }

@@ -12,7 +12,7 @@ public class CompletedTransactionsDTO {
 	
 	private Long id;
 	
-	private Profile donorProfileId;
+	private Profile donorProfileId ;
 	
 	private Profile npProfileId;
 

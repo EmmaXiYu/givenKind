@@ -204,5 +204,11 @@ public class WishlistServiceImpl implements WishlistService {
 		
 	}
 
+	@Override
+	public WishlistDTO getWishItem(Long itemID) {
+		
+		return convertWishlistItemToWishlistDTO(wishlistItemRepository.findById(itemID));
+	}
+
 	
 }

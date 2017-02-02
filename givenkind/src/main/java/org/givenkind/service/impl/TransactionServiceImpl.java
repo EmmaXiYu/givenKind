@@ -282,5 +282,56 @@ public class TransactionServiceImpl implements TransactionService{
 		}
 		return completedTransItemsDTO;
 	}
+
+	@Override
+	public List<ActiveTransactionItemsDTO> getAllActiveTransactions() {
+		List<ActiveTransactionItems> allActiveTransItems = new ArrayList<ActiveTransactionItems>();
+		List<ActiveTransactionItemsDTO> allActiveTransItemsDTO = new ArrayList<ActiveTransactionItemsDTO>();
+		allActiveTransItems = activeTransactionItemsRepository.findAll();
+		for(ActiveTransactionItems allActiveTransItem : allActiveTransItems )
+		{
+			ActiveTransactionItemsDTO  activeTransactionItemsDTO = new ActiveTransactionItemsDTO();
+			activeTransactionItemsDTO.setId(allActiveTransItem.getId());
+			WishlistItem NpItem = wishlistItemRepository.findById(allActiveTransItem.getWishItemId());							
+			activeTransactionItemsDTO.setNpItem(NpItem);
+			DonorlistItem donorItem = donorlistItemRepository.findById(allActiveTransItem.getDonorItemId());
+			activeTransactionItemsDTO.setDonorItem(donorItem);
+			Profile donorProfile = profileRepository.findById(allActiveTransItem.getDonorProfileId());
+			Profile notProfitProfile = profileRepository.findById(allActiveTransItem.getNpProfileId());
+			activeTransactionItemsDTO.setDonorProfile(donorProfile);
+			activeTransactionItemsDTO.setNpProfile(notProfitProfile);
+			activeTransactionItemsDTO.setQuantity(allActiveTransItem.getQuantity());
+			activeTransactionItemsDTO.setStatusCategory(statusCategoryRepository.findById(allActiveTransItem.getStatusCategoryId()));
+			allActiveTransItemsDTO.add(activeTransactionItemsDTO);
+			
+		}
+		return allActiveTransItemsDTO;
+	}
+	
+
+	@Override
+	public List<CompletedTransactionsDTO> getAllCompletedTransactions() {
+		List<CompletedTransactions> allCompletedTransItems = new ArrayList<CompletedTransactions>();
+		List<CompletedTransactionsDTO> allCompletedTransItemsDTO = new ArrayList<CompletedTransactionsDTO>();
+		allCompletedTransItems = completedTransactionRepository.findAll();
+		for(CompletedTransactions allCompletedTransItem : allCompletedTransItems )
+		{
+			CompletedTransactionsDTO  completedTransactionsDTO = new CompletedTransactionsDTO();
+			completedTransactionsDTO.setId(allCompletedTransItem.getId());
+			WishlistItem NpItem = wishlistItemRepository.findById(allCompletedTransItem.getWishlistItemId());							
+			completedTransactionsDTO.setNpItemId(NpItem);
+			DonorlistItem donorItem = donorlistItemRepository.findById(allCompletedTransItem.getDonorItemId());
+			completedTransactionsDTO.setDonorItemId(donorItem);
+			Profile donorProfile = profileRepository.findById(allCompletedTransItem.getDonorProfileId());
+			Profile notProfitProfile = profileRepository.findById(allCompletedTransItem.getNpProfileId());
+			completedTransactionsDTO.setDonorProfileId(donorProfile);
+			completedTransactionsDTO.setNpProfileId(notProfitProfile);
+			completedTransactionsDTO.setQuantity(allCompletedTransItem.getQuantity());
+			//completedTransactionsDTO.setStatusCategory(statusCategoryRepository.findById(allCompletedTransItem.getStatusCategoryId()));
+			allCompletedTransItemsDTO.add(completedTransactionsDTO);
+			
+		}
+		return allCompletedTransItemsDTO;
+	}
 	
 }

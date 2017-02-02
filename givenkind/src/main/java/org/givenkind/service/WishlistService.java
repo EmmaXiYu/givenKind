@@ -16,4 +16,5 @@ public interface WishlistService {
 	
 	List<WishlistDTO> getWishesForUser(Long userId);
 	List<WishlistDTO> getAllWishes();
+	WishlistDTO getWishItem(Long itemID);
 }

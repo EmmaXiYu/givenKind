@@ -13,5 +13,5 @@ public interface CompletedTransactionsRepository extends JpaRepository<Completed
 	List<CompletedTransactions> findByNpProfileId(Long id);
 
 	List<CompletedTransactions> findByDonorProfileId(Long id);
-	
+	List<CompletedTransactions> findAll();
 }

@@ -43,6 +43,17 @@ public class WishlistItem {
 	@Column(name="Impact")
 	private String impact;
 
+	
+	@Column (name = "WishListStatus")
+	private String WishListStatus;
+	public String getWishListStatus() {
+		return WishListStatus;
+	}
+
+	public void setWishListStatus(String wishListStatus) {
+		WishListStatus = wishListStatus;
+	}
+
 	public Long getId() {
 		return id;
 	}

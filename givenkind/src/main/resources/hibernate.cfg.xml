@@ -6,7 +6,7 @@
 	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/givenkind</property>
 	<property name="hibernate.connection.username">root</property>
-	<property name="hibernate.connection.password">ffg2015</property>
+	<property name="hibernate.connection.password">password</property>
 	<mapping class="org.givenkind.model.ActiveTransactionItems"></mapping>
 	<mapping class="org.givenkind.model.AdminUserLogon"></mapping>
 	<mapping class="org.givenkind.model.ApprovalStatus"></mapping>

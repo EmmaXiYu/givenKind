@@ -14,4 +14,6 @@ public interface ActiveTransactionItemsRepository extends JpaRepository<ActiveTr
 
 	List<ActiveTransactionItems> findByDonorProfileId(Long id);
 	
+	List<ActiveTransactionItems> findAll();
+	
 }
