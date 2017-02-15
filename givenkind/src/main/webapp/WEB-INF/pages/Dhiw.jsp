@@ -18,7 +18,7 @@
 .btn-lg { font-size: 36px }
 </style>
 </head>
-<body>
+<body id="grayBackground">
 
 <%@ include file="nav.jsp" %>
 
