@@ -22,7 +22,7 @@
 <link rel="icon" href="<c:url value="/img/favicon.ico" />" >
 <title>Your Active Transactions</title>
 </head>
-<body>
+<body id="grayBackground">
 	<%@ include file="nav.jsp"%>
 	<div id='blankspace'></div>
 	<div id="mainContainer" class="container">

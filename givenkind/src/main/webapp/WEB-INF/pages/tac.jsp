@@ -14,7 +14,7 @@
 <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>Terms and Conditions</title>
 </head>
-<body>
+<body id="grayBackground">
 <%@ include file="nav.jsp" %>
 <div id='blankspace'></div>
 <div id='mainContainer' class='container-fluid'>
